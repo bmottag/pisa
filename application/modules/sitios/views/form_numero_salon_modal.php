@@ -1,9 +1,8 @@
-<script type="text/javascript" src="<?php echo base_url("assets/js/validate/sitios/salones.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/validate/sitios/numero_salon.js"); ?>"></script>
 
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	<h4 class="modal-title" id="exampleModalLabel">Salones
-	<br><small>Adicionar/Editar Salones</small>
+	<h4 class="modal-title" id="exampleModalLabel">Número de salones
 	</h4>
 </div>
 
@@ -13,26 +12,18 @@
 
 	<form name="form" id="form" role="form" method="post" >
 		<input type="hidden" id="hddIdSitio" name="hddIdSitio" value="<?php echo $idSitio; ?>"/>
-		<input type="hidden" id="hddIdSalon" name="hddIdSalon" value="<?php echo $information?$information[0]["id_sitio_salon"]:""; ?>"/>	
 		
-		<div class="row">			
-			<div class="col-sm-6">
+		<div class="row">
+			<div class="col-sm-12">
 				<div class="form-group text-left">
-					<label class="control-label" for="salon">Nombre : *</label>
-					<input type="text" id="salon" name="salon" class="form-control" value="<?php echo $information?$information[0]["nombre_salon"]:""; ?>" placeholder="Nombre" required >
-				</div>
-			</div>
-			
-			<div class="col-sm-6">
-				<div class="form-group text-left">
-					<label class="control-label" for="computadores">No. computadores : *</label>
-					<select name="computadores" id="computadores" class="form-control" required>
+					<label class="control-label" for="no_salones">Número de salones : *</label>
+					<select name="no_salones" id="no_salones" class="form-control" required>
 						<option value='' >Select...</option>
 						<?php
-						for ($i = 1; $i < 20; $i++) {
+						for ($i = 1; $i < 50; $i++) {
 							?>
 							<option value='<?php echo $i; ?>' <?php
-							if ($information && $i == $information[0]["computadores"]) {
+							if ($information && $i == $information[0]["numero_salas"]) {
 								echo 'selected="selected"';
 							}
 							?>><?php echo $i; ?></option>
@@ -40,7 +31,8 @@
 					</select>
 				</div>
 			</div>
-		</div>	
+		</div>		
+			
 
 		<div class="form-group">
 			<div class="row" align="center">

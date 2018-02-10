@@ -4,35 +4,6 @@
 
 	
 		/**
-		 * Add/Edit BLOQUES
-		 * @since 14/12/2017
-		 */
-		public function saveBloques() 
-		{
-				$idBloque = $this->input->post('hddIdBloque');
-				
-				$data = array(
-					'fk_id_sitio' => $this->input->post('hddIdSitio'),
-					'nombre_bloque' => $this->input->post('bloque'),
-					'estado_bloque' => $this->input->post('estado'),
-					'observacion_bloque' => $this->input->post('observacion')
-				);
-				
-				//revisar si es para adicionar o editar
-				if ($idBloque == '') {
-					$query = $this->db->insert('sitios_bloques', $data);			
-				} else {
-					$this->db->where('id_sitio_bloque', $idBloque);
-					$query = $this->db->update('sitios_bloques', $data);
-				}
-				if ($query) {
-					return true;
-				} else {
-					return false;
-				}
-		}
-		
-		/**
 		 * Add/Edit SALONES
 		 * @since 15/12/2017
 		 */
@@ -41,15 +12,9 @@
 				$idSalon = $this->input->post('hddIdSalon');
 				
 				$data = array(
-					'fk_id_sitio_bloque' => $this->input->post('bloque'),
+					'fk_id_sitio' => $this->input->post('hddIdSitio'),
 					'nombre_salon' => $this->input->post('salon'),
-					'capacidad_salon' => $this->input->post('capacidad'),
-					'computadores' => $this->input->post('computadores'),
-					'discapacitados' => $this->input->post('discapacitados'),
-					'estado_salon' => $this->input->post('estado'),
-					'numero_piso' => $this->input->post('piso'),
-					'observacion_salon' => $this->input->post('observacion'),
-					'tipo_salon' => $this->input->post('tipo_salon')					
+					'computadores' => $this->input->post('computadores')
 				);
 				
 				//revisar si es para adicionar o editar
@@ -399,6 +364,26 @@
 
 				$this->db->where('id_sitio_computador', $idComputador);
 				$query = $this->db->update('sitios_computadores', $data);
+
+				if ($query) {
+					return true;
+				} else {
+					return false;
+				}
+		}
+		
+		/**
+		 * update numero de salones
+		 * @since 10/2/2018
+		 */
+		public function updateNumeroSalones() 
+		{
+				$idSitio = $this->input->post('hddIdSitio');
+							
+				$data['numero_salas'] = $this->input->post('no_salones');
+					
+				$this->db->where('id_sitio', $idSitio);
+				$query = $this->db->update('sitios', $data);
 
 				if ($query) {
 					return true;

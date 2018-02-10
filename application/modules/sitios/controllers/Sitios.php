@@ -77,50 +77,36 @@ class Sitios extends CI_Controller {
      * Cargo modal - formulario BLOQUES
      * @since 14/12/2017
      */
-    public function cargarModalBloques() 
+    public function cargarModalNumeroSalones() 
 	{
 			header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
-						
-			$data['information'] = FALSE;
+			$this->load->model("general_model");
+			
 			$data["idSitio"] = $this->input->post("idSitio");
-			$data["idBloque"] = $this->input->post("idBloque");
 			
-			if ($data["idBloque"] != 'x') {
-				$this->load->model("general_model");
-				$arrParam = array("idBloque" => $data["idBloque"]);
-				$data['information'] = $this->general_model->get_sitios_bloques($arrParam);//info bloques
-				
-				$data["idSitio"] = $data['information'][0]['fk_id_sitio'];
-			}
+			//info de sitio
+			$arrParam = array("idSitio" => $data["idSitio"]);
+			$data['information'] = $this->general_model->get_sitios($arrParam);
 			
-			$this->load->view("form_bloque_modal", $data);
+			$this->load->view("form_numero_salon_modal", $data);
     }
 	
 	/**
 	 * Guardar bloques
      * @since 14/12/2017
 	 */
-	public function save_bloques()
+	public function update_numero_salones()
 	{			
 			header('Content-Type: application/json');
 			$data = array();
 			
-			$idSitio = $this->input->post('hddIdSitio');
-			$idBloque = $this->input->post('hddIdBloque');
-			$data["idRecord"] = $idSitio;
+			$data["idRecord"] = $this->input->post('hddIdSitio');
 			
-			$msj = "Se adicionó el bloque con éxito.";
-			if ($idBloque != '') {
-				$msj = "Se actualizó el bloque con éxito.";
-			}
-			
-			if ($this->sitios_model->saveBloques()) {
-				$data["result"] = true;
-				
-				$this->session->set_flashdata('retornoExito', $msj);
+			if ($this->sitios_model->updateNumeroSalones()) {
+				$data["result"] = true;				
+				$this->session->set_flashdata('retornoExito', 'Se actualizó la información.');
 			} else {
 				$data["result"] = "error";
-				
 				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador.');
 			}
 
@@ -207,12 +193,7 @@ class Sitios extends CI_Controller {
 				$arrParam = array("idSalon" => $data["idSalon"]);
 				$data['information'] = $this->general_model->get_salones_by($arrParam);//info salon
 			
-				$data["idSitio"] = $data['information'][0]['fk_id_sitio'];
 			}
-			
-			//lista de bloques
-			$arrParam = array("idSitio" => $data["idSitio"]);
-			$data['infoBloques'] = $this->general_model->get_sitios_bloques($arrParam);
 			
 			$this->load->view("form_salon_modal", $data);
     }
@@ -227,7 +208,6 @@ class Sitios extends CI_Controller {
 			$data = array();
 			
 			$idSitio = $this->input->post('hddIdSitio');
-			$idBloque = $this->input->post('hddIdBloque');
 			$data["idRecord"] = $idSitio;
 			
 			$msj = "Se adicionó el salón con éxito.";
@@ -237,11 +217,9 @@ class Sitios extends CI_Controller {
 			
 			if ($this->sitios_model->saveSalones()) {
 				$data["result"] = true;
-				
 				$this->session->set_flashdata('retornoExito', $msj);
 			} else {
 				$data["result"] = "error";
-				
 				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador.');
 			}
 

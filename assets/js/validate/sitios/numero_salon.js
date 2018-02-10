@@ -1,12 +1,8 @@
-$( document ).ready( function () {
-	
-	$("#bloque").convertirMayuscula();
-	$("#observacion").convertirMayuscula();
+$( document ).ready( function () {	
 		
 	$( "#form" ).validate( {
 		rules: {
-			bloque:				{ required: true, maxlength:150 },
-			estado:				{ required: true }
+			no_salones:				{ required: true }
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {
@@ -25,50 +21,7 @@ $( document ).ready( function () {
 			return true;
 		}
 	});
-	
-	$(".btn-danger").click(function () {	
-			var oID = $(this).attr("id");
-			
-			//Activa icono guardando
-			if(window.confirm('Esta seguro de eliminar la Sesión?'))
-			{
-					$(".btn-danger").attr('disabled','-1');
-					$.ajax ({
-						type: 'POST',
-						url: base_url + 'admin/eliminar_sesiones',
-						data: {'identificador': oID},
-						cache: false,
-						success: function(data){
-												
-							if( data.result == "error" )
-							{
-								alert(data.mensaje);
-								$(".btn-danger").removeAttr('disabled');							
-								return false;
-							} 
-											
-							if( data.result )//true
-							{	                                                        
-								$(".btn-danger").removeAttr('disabled');
-
-								var url = base_url + "admin/sesiones/" + data.idRecord;
-								$(location).attr("href", url);
-							}
-							else
-							{
-								alert('Error. Reload the web page.');
-								$(".btn-danger").removeAttr('disabled');
-							}	
-						},
-						error: function(result) {
-							alert('Error. Reload the web page.');
-							$(".btn-danger").removeAttr('disabled');
-						}
-
-					});
-			}
-	});
-	
+		
 	$("#btnSubmit").click(function(){		
 	
 		if ($("#form").valid() == true){
@@ -80,7 +33,7 @@ $( document ).ready( function () {
 			
 				$.ajax({
 					type: "POST",	
-					url: base_url + "sitios/save_bloques",	
+					url: base_url + "sitios/update_numero_salones",	
 					data: $("#form").serialize(),
 					dataType: "json",
 					contentType: "application/x-www-form-urlencoded;charset=UTF-8",

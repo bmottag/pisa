@@ -6,27 +6,14 @@ $(function(){
 			var oID = $(this).attr("id");
             $.ajax ({
                 type: 'POST',
-				url: base_url + 'sitios/cargarModalBloques',
-                data: {'idSitio': oID, 'idBloque': 'x'},
+				url: base_url + 'sitios/cargarModalNumeroSalones',
+                data: {'idSitio': oID},
                 cache: false,
                 success: function (data) {
                     $('#tablaDatos').html(data);
                 }
             });
 	});	
-	
-	$(".btn-info").click(function () {	
-			var oID = $(this).attr("id");
-            $.ajax ({
-                type: 'POST',
-				url: base_url + 'sitios/cargarModalBloques',
-                data: {'idSitio': '', 'idBloque': oID},
-                cache: false,
-                success: function (data) {
-                    $('#tablaDatos').html(data);
-                }
-            });
-	});
 	
 	$(".btn-primary").click(function () {	
 			var oID = $(this).attr("id");
@@ -95,7 +82,7 @@ $(function(){
 					<div class="col-lg-4">	
 						<div class="alert alert-info">
 							<strong>No. de Salones: </strong><?php echo $infoSitio[0]['numero_salas']; ?><br>
-			<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="x">
+			<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $infoSitio[0]['id_sitio']; ?>">
 					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Número de salones
 			</button><br>
 						</div>
@@ -136,10 +123,17 @@ if ($retornoError) {
     <?php
 }
 ?> 
-				
-				<?php
-					if($infoSalones){
-				?>
+
+<?php
+	$idSitio = $infoSitio[0]['id_sitio'];
+	
+	$numeroSalones = $infoSitio[0]['numero_salas'];//numero de salones 
+	$noSalones = $noSalones;//salones guardados
+	
+	$salonesFaltantes = $numeroSalones - $noSalones;
+	
+	if($numeroSalones > 0){
+?>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
@@ -153,25 +147,51 @@ if ($retornoError) {
 							<table width="100%" class="table table-striped table-hover" >
 								<thead>
 									<tr>
+										<th class='text-center'>No.</th>
 										<th class='text-center'>Salón</th>
 										<th class='text-center'>No. Computadores</th>
-										<th class='text-center'>Edit</th>
+										<th class='text-center'>Actualizar</th>
 									</tr>
 								</thead>
 								<tbody id="salones">							
 								<?php
 									$i=0;
+
+									for ($i = 1; $i <= $salonesFaltantes; $i++)
+									{
+											echo "<tr>";
+											echo "<td class='text-center'>" . $i . "</td>";
+											echo "<td >Falta información</td>";
+											echo "<td class='text-center'>Falta información</td>";
+	
+											echo "<td class='text-center'>";								
+								?>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal_salon" id="<?php echo $idSitio; ?>">
+						Actualizar <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+				</button>
+								<?php
+											echo "</td>";
+											echo "</tr>";								
+									}
+								?>
+								
+<?php
+	if($infoSalones){
+?>
+								<?php
+									$i=$salonesFaltantes;
 									foreach ($infoSalones as $lista):
 											$i++;
 									
 											echo "<tr>";
+											echo "<td class='text-center'>" . $i . "</td>";
 											echo "<td >" . $lista['nombre_salon'] . "</td>";
 											echo "<td class='text-center'>" . $lista['computadores'] . "</td>";
 	
 											echo "<td class='text-center'>";									
 								?>
 											<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal_salon" id="<?php echo $lista['id_sitio_salon']; ?>" >
-												Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
+												Actualizar <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 											</button>
 
 <a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/computadores_salon/' . $lista['id_sitio_salon'] ); ?>'>
@@ -182,6 +202,10 @@ if ($retornoError) {
 											echo "</tr>";								
 									endforeach;
 								?>
+
+<?php 
+	}
+?>
 								</tbody>
 							</table>
 					
@@ -190,7 +214,9 @@ if ($retornoError) {
 				</div>
 			</div>
 		</div>
-				<?php } //Fin Info Salones ?>
+<?php
+	}
+?>
 
 	
 </div>
