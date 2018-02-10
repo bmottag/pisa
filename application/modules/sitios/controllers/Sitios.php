@@ -62,20 +62,14 @@ class Sitios extends CI_Controller {
 			//info de sitio
 			$arrParam = array("idSitio" => $idSitio);
 			$data['infoSitio'] = $this->general_model->get_sitios($arrParam);
-			
-			//lista de bloques
-			$data['infoBloques'] = $this->general_model->get_sitios_bloques($arrParam);
 		
 			//lista de salones
 			$data['infoSalones'] = $this->general_model->get_salones_by($arrParam);
-
-			//cuenta registros de bloques
-			$data['noBloques'] = $this->general_model->countBloques($arrParam);
 			
 			//cuenta registros de salones
 			$data['noSalones'] = $this->general_model->countSalones($arrParam);
 
-			$data["view"] ='bloques&salones';
+			$data["view"] ='salones';
 			$this->load->view("layout", $data);
 	}
 

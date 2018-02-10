@@ -198,32 +198,14 @@ class General_model extends CI_Model {
 		 */
 		public function get_sitios($arrDatos) 
 		{
-				$this->db->select('S.*, O.nombre_organizacion, R.nombre_region, D.*, Z.nombre_zona, 
-				U.numero_documento as cedula_delegado, U.nombres_usuario nom_delegado, U.apellidos_usuario ape_delegado, U.celular celular_delegado,
-				Y.numero_documento as cedula_coordinador, Y.nombres_usuario nom_coordinador, Y.apellidos_usuario ape_coordiandor, Y.celular celular_coordinador, 
-				K.celular celular_operador, K.nombres_usuario nom_operador, K.apellidos_usuario ape_operador, K.numero_documento as cedula_operador');
+				$this->db->select('S.*, O.nombre_organizacion, R.nombre_region, D.*, Z.nombre_zona');
 				$this->db->join('param_regiones R', 'R.id_region = S.fk_id_region', 'INNER');
 				$this->db->join('param_divipola D', 'D.mpio_divipola = S.fk_mpio_divipola', 'INNER');
 				$this->db->join('param_organizaciones O', 'O.id_organizacion = S.fk_id_organizacion', 'LEFT');
 				$this->db->join('param_zonas Z', 'Z.id_zona = S.fk_id_zona', 'LEFT');
-				$this->db->join('usuario U', 'U.id_usuario = S.fk_id_user_delegado', 'LEFT');
-				$this->db->join('usuario Y', 'Y.id_usuario = S.fk_id_user_coordinador', 'LEFT');
-				$this->db->join('usuario K', 'K.id_usuario = S.fk_id_user_operador', 'LEFT');
 				
 				if (array_key_exists("idSitio", $arrDatos)) {
 					$this->db->where('S.id_sitio', $arrDatos["idSitio"]);
-				}
-				
-				if (array_key_exists("idDelegado", $arrDatos)) {
-					$this->db->where('S.fk_id_user_delegado', $arrDatos["idDelegado"]);
-				}
-				
-				if (array_key_exists("idCoordinador", $arrDatos)) {
-					$this->db->where('S.fk_id_user_coordinador', $arrDatos["idCoordinador"]);
-				}
-				
-				if (array_key_exists("idOperador", $arrDatos)) {
-					$this->db->where('S.fk_id_user_operador', $arrDatos["idOperador"]);
 				}
 				
 				if (array_key_exists("depto", $arrDatos)) {
@@ -1105,18 +1087,15 @@ class General_model extends CI_Model {
 		public function get_salones_by($arrDatos) 
 		{
 				$this->db->select('');
-				$this->db->join('sitios_bloques B', 'B.id_sitio_bloque = S.fk_id_sitio_bloque', 'INNER');
-				if (array_key_exists("idBloque", $arrDatos)) {
-					$this->db->where('S.fk_id_sitio_bloque', $arrDatos["idBloque"]);
-				}
+
 				if (array_key_exists("idSalon", $arrDatos)) {
 					$this->db->where('S.id_sitio_salon', $arrDatos["idSalon"]);
 				}
 				if (array_key_exists("idSitio", $arrDatos)) {
-					$this->db->where('B.fk_id_sitio', $arrDatos["idSitio"]);
+					$this->db->where('S.fk_id_sitio', $arrDatos["idSitio"]);
 				}
 								
-				$this->db->order_by('nombre_bloque, nombre_salon', 'asc');
+				$this->db->order_by('nombre_salon', 'asc');
 				$query = $this->db->get('sitios_salones S');
 
 				if ($query->num_rows() > 0) {
@@ -1152,7 +1131,6 @@ class General_model extends CI_Model {
 		{
 			$sql = "SELECT count(S.id_sitio_salon) CONTEO";
 			$sql.= " FROM sitios_salones S";
-			$sql.= " INNER JOIN sitios_bloques B ON B.id_sitio_bloque = S.fk_id_sitio_bloque";		
 			$sql.= " WHERE 1=1";
 
 			if (array_key_exists("idSitio", $arrDatos)) {
