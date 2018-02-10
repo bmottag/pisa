@@ -82,7 +82,7 @@
 								redirect("/login","location",301);								
 							}
 						}else{
-							redirect("/dashboard/admin","location",301);
+							redirect("/sitios","location",301);
 						}
 	    				break;
 	    		case 2: //INACTIVE USER
