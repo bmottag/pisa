@@ -1,0 +1,2 @@
+nombre_sitio;direccion_sitio;barrio_sitio;telefono_sitio;fax_sitio;celular_sitio;email_sitio;codigo_postal_sitio;fk_id_organizacion;fk_id_region;fk_dpto_divipola;fk_mpio_divipola;fk_id_zona;contacto_nombres;contacto_apellidos;contacto_cargo;contacto_telefono;contacto_celular;contacto_email;fk_id_user_delegado;fk_id_user_operador;fk_id_user_coordinador;codigo_dane
+COLEGIO AGUSTINIANO-NORTE;-;;-;;;;;2;2;11;11001;10;EFRAIN;MORENO CASALLAS;Sin cargo;9999999;3108699251;COORDINACION.PROYECTOS@AGUSTINIANONORTE.EDU.CO;13;11;9;11001003-1

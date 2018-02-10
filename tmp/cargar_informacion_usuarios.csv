@@ -1,0 +1,2 @@
+numero_documento;tipo_documento;nombres_usuario;apellidos_usuario;direccion_usuario;telefono_fijo;celular;email;log_user;password;clave;fk_id_rol;fk_codigo_dane
+12645615;1;ADMIN;APP;AIRDRIE;3347766;4034089921;benmotta@gmail.com;12645615;ce5dbff68c1cb46e1dbf45eb6736ddc2;12645615;1;11001003-1
