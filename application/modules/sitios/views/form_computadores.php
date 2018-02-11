@@ -103,10 +103,9 @@ function valid_todos()
 					</div>
 					<div class="col-lg-4">	
 						<div class="alert alert-info">
-							<strong>Bloque: </strong><?php echo $infoSalon[0]['nombre_salon']; ?><br>
-							<strong>Salón: </strong><?php echo $infoSalon[0]['nombre_bloque']; ?><br>
-							<?php $noComputadores = $infoSalon[0]['computadores']?$infoSalon[0]['computadores']:0; ?>
-							<strong>No. computadores: </strong><?php echo $noComputadores; ?>
+							<strong>Salón: </strong><?php echo $infoSalon[0]['nombre_salon']; ?><br>
+							<?php $numeroComputadores = $infoSalon[0]['computadores']?$infoSalon[0]['computadores']:0; ?>
+							<strong>No. computadores: </strong><?php echo $numeroComputadores; ?>
 						</div>
 					</div>
 									
@@ -244,55 +243,80 @@ if($infoSalon)
 	</div>
 </form>
 
-	<div class="row">
-		<div class="col-lg-12">				
-			<div class="panel panel-info">
-				<div class="panel-heading">
-					<strong>Computadores</strong>
-				</div>
-				<div class="panel-body">
-<?php
-	$cuentaActual = $information?count($information):0;
 
-	if($noComputadores > 0 && $cuentaActual < $noComputadores){
-?>									
-				<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal_computador" id="<?php echo $infoSalon[0]['id_sitio_salon']; ?>">
-						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar computador
-				</button>					
-<?php 
-	}elseif($noComputadores == 0){
-			echo "Indique el número de computadores en la información del salón.";
-	}
+<?php
+	$idSitio = $infoSitio[0]['id_sitio'];
+	
+	$computadoresFaltantes = $numeroComputadores - $noComputadores;
+	
+	if($numeroComputadores > 0){
 ?>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<strong>Listado de computadores</strong>
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<div class="table-responsive" >
 				
-				
-					
+							<table width="100%" class="table table-striped table-hover" >
+								<thead>
+									<tr>
+										<th class='text-center'>No.</th>
+										<th class='text-center'>CPU</th>
+										<th class='text-center'>OS</th>
+										<th class='text-center'>Memoria del sistema</th>
+										<th class='text-center'>Resolución de la pantalla</th>
+										<th class='text-center'>¿Está funcionando Skype?</th>
+										<th class='text-center'>Velocidad de transferecia de datos a la USB</th>
+										<th class='text-center'>Virus SCAN</th>
+										<th class='text-center'>Unidad USB </th>
+										<th class='text-center'>¿El computador es adecuado? </th>
+										<th class='text-center'>Foto</th>
+										<th class='text-center'>Actualizar</th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php
+									$i=0;
+
+									for ($i = 1; $i <= $computadoresFaltantes; $i++)
+									{
+											echo "<tr>";
+											echo "<td class='text-center'>" . $i . "</td>";
+											echo "<td >Falta</td>";
+											echo "<td >Falta</td>";
+											echo "<td >Falta</td>";
+											echo "<td >Falta</td>";
+											echo "<td >Falta</td>";
+											echo "<td >Falta</td>";
+											echo "<td >Falta</td>";
+											echo "<td >Falta</td>";
+											echo "<td >Falta</td>";
+											echo "<td >Falta</td>";
+	
+											echo "<td class='text-center'>";								
+								?>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal_computador" id="<?php echo $infoSalon[0]['id_sitio_salon']; ?>">
+						Actualizar <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+				</button>
+								<?php
+											echo "</td>";
+											echo "</tr>";								
+									}
+								?>
+								
 <?php
 	if($information){
 ?>
-					<table width="100%" class="table table-striped table-hover" >
-						<thead>
-							<tr>
-								<th class='text-center'>ID</th>
-								<th class='text-center'>CPU</th>
-								<th class='text-center'>OS</th>
-								<th class='text-center'>Memoria del sistema</th>
-								<th class='text-center'>Resolución de la pantalla</th>
-								<th class='text-center'>¿Está funcionando Skype?</th>
-								<th class='text-center'>Velocidad de transferecia de datos a la USB</th>
-								<th class='text-center'>Virus SCAN</th>
-								<th class='text-center'>Unidad USB </th>
-								<th class='text-center'>¿El computador es adecuado? </th>
-								<th class='text-center'>Foto</th>
-								<th class='text-center'>Editar</th>
-							</tr>
-						</thead>
-						<tbody>							
 						<?php
+							$i=$computadoresFaltantes;
 							foreach ($information as $lista):
-							
+									$i++;
 									echo "<tr>";
-									echo "<td class='text-center'>" . $lista['id_sitio_computador'] . "</td>";
+									echo "<td class='text-center'>" . $i . "</td>";
 									
 									switch ($lista['cpu']) {
 										case 1:
@@ -411,14 +435,24 @@ if($infoSalon)
 									echo "</tr>";								
 							endforeach;
 						?>
-						</tbody>
-					</table>
-<?php } ?>
+								
+								
+
+<?php 
+	}
+?>
+								</tbody>
+							</table>
 					
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+<?php
+	}
+?>
+
 
 
 </div>

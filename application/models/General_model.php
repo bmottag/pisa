@@ -1270,6 +1270,24 @@ class General_model extends CI_Model {
 					return false;
 				}
 		}
+		
+		/**
+		 * Contar registros de computadores
+		 * @since  11/2/2018
+		 */
+		public function countComputadores($arrDatos)
+		{
+			$sql = "SELECT count(S.id_sitio_computador) CONTEO";
+			$sql.= " FROM sitios_computadores S";
+			$sql.= " WHERE 1=1";
+
+			if (array_key_exists("idSalon", $arrDatos)) {
+				$sql.= " AND fk_id_sitio_salon = " . $arrDatos["idSalon"];
+			}
+			$query = $this->db->query($sql);
+			$row = $query->row();
+			return $row->CONTEO;
+		}
 
 
 }

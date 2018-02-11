@@ -656,6 +656,9 @@ class Sitios extends CI_Controller {
 			$arrParam = array("idSalon" => $idSalon);
 			$data['infoSalon'] = $this->general_model->get_salones_by($arrParam);
 			
+			//cuenta registros de computadores
+			$data['noComputadores'] = $this->general_model->countComputadores($arrParam);
+			
 			//lista computadores
 			$data['information'] = $this->general_model->get_computadores($arrParam);
 
@@ -664,7 +667,6 @@ class Sitios extends CI_Controller {
 			//info de sitio
 			$arrParam = array("idSitio" => $data["idSitio"]);
 			$data['infoSitio'] = $this->general_model->get_sitios($arrParam);
-			
 
 			$data["view"] = 'form_computadores';
 			$this->load->view("layout", $data);
