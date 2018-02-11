@@ -192,7 +192,8 @@ class Sitios extends CI_Controller {
 				
 				$arrParam = array("idSalon" => $data["idSalon"]);
 				$data['information'] = $this->general_model->get_salones_by($arrParam);//info salon
-			
+				
+				$data["idSitio"] = $data['information'][0]['fk_id_sitio'];
 			}
 			
 			$this->load->view("form_salon_modal", $data);

@@ -12,13 +12,13 @@
 				$idSalon = $this->input->post('hddIdSalon');
 				
 				$data = array(
-					'fk_id_sitio' => $this->input->post('hddIdSitio'),
 					'nombre_salon' => $this->input->post('salon'),
 					'computadores' => $this->input->post('computadores')
 				);
 				
 				//revisar si es para adicionar o editar
 				if ($idSalon == '') {
+					$data['fk_id_sitio'] = $this->input->post('hddIdSitio');
 					$query = $this->db->insert('sitios_salones', $data);
 				} else {
 					$this->db->where('id_sitio_salon', $idSalon);
