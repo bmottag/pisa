@@ -68,7 +68,6 @@ $(function(){
 								<th class="text-center">Editar</th>
 								<th class="text-center">Gestión de Salones</th>
 								<th class="text-center">Usuario PISA</th>
-								<th class="text-center">Fotos</th>
 							</tr>
 						</thead>
 						<tbody id="sitios">							
@@ -107,17 +106,8 @@ if($lista['fk_id_user_pisa']){
 }else{
 	echo "<p class='text-danger text-center'><strong>Falta</strong></p>";
 }
-						?>
-									</td>
 
-									<td class='text-center'>
-						
-									<a class='btn btn-warning btn-xs' href='<?php echo base_url('sitios/fotos/' . $lista['id_sitio']) ?>'>
-										Fotos <span class="fa fa-photo" aria-hidden="true">
-									</a>
-						<?php
 									echo "</td>";
-									
 									echo "</tr>";
 							endforeach;
 						?>
