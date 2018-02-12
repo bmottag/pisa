@@ -42,11 +42,7 @@
 
 <?php 
 if($userRol!=7){//USUARIOS QUE NO SON PISA
-?>
-				<li>
-					<a href="<?php echo $enlace; ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard <?php echo $titulo; ?></a>
-				</li>
-				
+?>				
 				
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -122,54 +118,6 @@ if($userRol==1){ //ADMIN
 				
 						<li>
 							<a href="<?php echo base_url("admin/users"); ?>"><i class="fa fa-users fa-fw"></i> Usuarios</a>
-						</li>
-						
-						<li class="divider"></li>
-						
-						<li>
-							<a href="<?php echo base_url("admin/pruebas"); ?>"><i class="fa fa-star fa-fw"></i> Pruebas</a>
-						</li>
-
-						<li>
-							<a href="<?php echo base_url("admin/grupo_instrumentos"); ?>"><i class="fa fa-bullseye fa-fw"></i> Grupo Instrumentos</a>
-						</li>
-													
-						<li class="divider"></li>
-
-						<li>
-							<a href="<?php echo base_url("admin/sitios"); ?>"><i class="fa fa-building-o fa-fw"></i> Sitios</a>
-						</li>
-						
-						<li>
-							<a href="<?php echo base_url("admin/coordinador"); ?>"><i class="fa fa-building-o fa-fw"></i> Coordinadores por municipio</a>
-						</li>
-						
-						<li>
-							<a href="<?php echo base_url("admin/coordinador_nodo"); ?>"><i class="fa fa-building-o fa-fw"></i> Coordinadores por nodo</a>
-						</li>
-						
-						<li>
-							<a href="<?php echo base_url("admin/operador"); ?>"><i class="fa fa-building-o fa-fw"></i> Operadores por municipio</a>
-						</li>
-						
-						<li>
-							<a href="<?php echo base_url("admin/operador_nodo"); ?>"><i class="fa fa-building-o fa-fw"></i> Operadores por nodo</a>
-						</li>
-						
-						<li class="divider"></li>
-
-						<li>
-							<a href="<?php echo base_url("admin/tipo_alertas"); ?>"><i class="fa fa-ticket fa-fw"></i> Tipo de Alertas</a>
-						</li>
-						
-						<li>
-							<a href="<?php echo base_url("admin/alertas"); ?>"><i class="fa fa-bell fa-fw"></i> Alertas</a>
-						</li>
-						
-						<li class="divider"></li>
-						
-						<li>
-							<a href="<?php echo base_url("admin/atencion_eliminar"); ?>"><i class="fa fa-ban fa-fw"></i> Eliminar Registros de la BD</a>
 						</li>
 
                     </ul>
