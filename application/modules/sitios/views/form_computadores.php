@@ -270,13 +270,20 @@ if ($retornoError) {
 									}
 									echo "<td class='text-center text-success'>" . $adecuado . "</td>";
 									
-									echo "<td class='text-center'>";
+									echo "<td class='text-center text-danger'>";
 																		
 						//si hay una foto la muestro
-						if($lista["foto_computador"]){ ?>
+						if($lista["foto_computador"]){ 
+							$estiloFoto = "btn btn-primary btn-xs";
+							$textoFoto = "Foto";
+						?>
 <img src="<?php echo base_url($lista["foto_computador"]); ?>" class="img-rounded" width="42" height="42" />
-						<?php } ?>
-<a href="<?php echo base_url("sitios/foto_computador/" . $infoSalon[0]['id_sitio_salon'] . "/" . $lista['id_sitio_computador']); ?>" class="btn btn-primary btn-xs">Foto</a>						
+						<?php }else{ 
+								$estiloFoto = "btn btn-danger btn-xs";
+								$textoFoto = "Falta Foto";
+							} 
+						?>
+<a href="<?php echo base_url("sitios/foto_computador/" . $infoSalon[0]['id_sitio_salon'] . "/" . $lista['id_sitio_computador']); ?>" class="<?php echo $estiloFoto; ?>"><?php echo $textoFoto; ?></a>
 									
 						<?php
 									echo "</td>";
