@@ -161,7 +161,7 @@ if ($retornoError) {
 									{
 											echo "<tr>";
 											echo "<td class='text-center text-danger'>" . $i . "</td>";
-											echo "<td class='text-danger'>Falta información</td>";
+											echo "<td class='text-center text-danger'>Falta información</td>";
 											echo "<td class='text-center text-danger'>Falta información</td>";
 	
 											echo "<td class='text-center'>";								
@@ -185,7 +185,7 @@ if ($retornoError) {
 									
 											echo "<tr>";
 											echo "<td class='text-center text-success'>" . $i . "</td>";
-											echo "<td class='text-success'>" . $lista['nombre_salon'] . "</td>";
+											echo "<td class='text-center text-success'>" . $lista['nombre_salon'] . "</td>";
 											echo "<td class='text-center text-success'>" . $lista['computadores'] . "</td>";
 	
 											echo "<td class='text-center'>";									
