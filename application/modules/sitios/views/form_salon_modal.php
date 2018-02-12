@@ -13,7 +13,19 @@
 
 	<form name="form" id="form" role="form" method="post" >
 		<input type="hidden" id="hddIdSitio" name="hddIdSitio" value="<?php echo $idSitio; ?>"/>
-		<input type="hidden" id="hddIdSalon" name="hddIdSalon" value="<?php echo $information?$information[0]["id_sitio_salon"]:""; ?>"/>	
+		<input type="hidden" id="hddIdSalon" name="hddIdSalon" value="<?php echo $information?$information[0]["id_sitio_salon"]:""; ?>"/>
+		<?php
+			//esto es para saber si es desde el boton adicionar, si es asi se adiciona la sala y se suma uno al conteo de salas
+			if($add){
+		?>	
+				<input type="hidden" id="hddAdd" name="hddAdd" value=1 />
+		<?php	
+			}else{
+		?>
+				<input type="hidden" id="hddAdd" name="hddAdd" value=2 />
+		<?php
+			}
+		?>
 		
 		<div class="row">			
 			<div class="col-sm-6">

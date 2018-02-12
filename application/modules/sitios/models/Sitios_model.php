@@ -376,11 +376,11 @@
 		 * update numero de salones
 		 * @since 10/2/2018
 		 */
-		public function updateNumeroSalones() 
+		public function updateNumeroSalones($numeroSalas) 
 		{
 				$idSitio = $this->input->post('hddIdSitio');
 							
-				$data['numero_salas'] = $this->input->post('no_salones');
+				$data['numero_salas'] = $numeroSalas;
 					
 				$this->db->where('id_sitio', $idSitio);
 				$query = $this->db->update('sitios', $data);

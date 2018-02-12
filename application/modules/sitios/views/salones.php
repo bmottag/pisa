@@ -15,6 +15,19 @@ $(function(){
             });
 	});	
 	
+	$(".btn-warning").click(function () {	
+			var oID = $(this).attr("id");
+            $.ajax ({
+                type: 'POST',
+				url: base_url + 'sitios/cargarModalSalonesV2',
+                data: {'idSitio': oID},
+                cache: false,
+                success: function (data) {
+                    $('#tablaDatosSalon').html(data);
+                }
+            });
+	});
+	
 	$(".btn-primary").click(function () {	
 			var oID = $(this).attr("id");
             $.ajax ({
@@ -54,6 +67,8 @@ $(function(){
 				<div class="panel-heading">
 				
 <?php
+	$idSitio = $infoSitio[0]['id_sitio'];
+
 	$userRol = $this->session->userdata("rol");
 	if($userRol!=7){//USUARIOS QUE NO SON PISA les muestro en enlace de regresar
 ?>
@@ -124,9 +139,13 @@ if ($retornoError) {
 }
 ?> 
 
+
+		<button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal_salon" id="<?php echo $idSitio; ?>">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Sala o Salón
+		</button>	
+		<br>
+
 <?php
-	$idSitio = $infoSitio[0]['id_sitio'];
-	
 	$numeroSalones = $infoSitio[0]['numero_salas'];//numero de salones 
 	$noSalones = $noSalones;//salones guardados
 	
