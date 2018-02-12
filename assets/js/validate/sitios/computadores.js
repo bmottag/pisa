@@ -67,6 +67,7 @@ $( document ).ready( function () {
 						{	                                                        
 							$("#div_load").css("display", "none");
 							$('#btnSubmit').removeAttr('disabled');
+							alert("Por favor subir la foto del computador.");
 
 							var url = base_url + "sitios/computadores_salon" + "/" + data.idRecord;
 							$(location).attr("href", url);
