@@ -66,7 +66,7 @@ $(function(){
 								<th>Sitio</th>
 								<th>Código DANE</th>
 								<th class="text-center">Editar</th>
-								<th class="text-center">Gestión de Bloques y Salones</th>
+								<th class="text-center">Gestión de Salones</th>
 								<th class="text-center">Georreferenciación</th>
 								<th class="text-center">Fotos</th>
 							</tr>
@@ -86,24 +86,13 @@ $(function(){
 										Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
 									</a>
 									
-									<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_sitio']; ?>" >
-										Disponibilidad <span class="glyphicon glyphicon-edit" aria-hidden="true">
-									</button>
-									
-									<a class='btn btn-success btn-xs' href='<?php echo base_url('sitios/contactos/' . $lista['id_sitio']) ?>'>
-										Contactos <span class="glyphicon glyphicon-edit" aria-hidden="true">
-									</a>
-									
-									<a class='btn btn-success btn-xs' href='<?php echo base_url('sitios/caracterizacion/' . $lista['id_sitio']) ?>'>
-										Caracterización <span class="glyphicon glyphicon-edit" aria-hidden="true">
-									</a>
 						<?php
 									echo "</td>";
 									
 									echo "<td class='text-center'>";
 						?>
 									<a class='btn btn-default btn-xs' href='<?php echo base_url('sitios/salones/' . $lista['id_sitio']) ?>'>
-										Bloques y Salones <span class="fa fa-cube" aria-hidden="true">
+										Salones <span class="fa fa-cube" aria-hidden="true">
 									</a>
 						<?php
 									echo "</td>";
