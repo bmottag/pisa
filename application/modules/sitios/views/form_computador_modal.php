@@ -119,7 +119,7 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label for="skype">¿Está funcionando Skype? : *</label>
+					<label for="skype">¿Skype NO se está ejecutando en el computador? : *</label>
 				</div>
 			</div>
 			
@@ -207,17 +207,17 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label for="adecuado">¿El computador es adecuado? : *</label>
+					<label for="adecuado">¿El computador cumple los requisitos para aplicar PISA? : *</label>
 				</div>
 			</div>
 			
 			<div class="col-sm-6">
 				<div class="form-group text-left">
 					<label class="radio-inline">
-						<input type="radio" name="adecuado" id="adecuado1" value=1 <?php if($information && $information[0]["adecuado"] == 1) { echo "checked"; }  ?>>Ok
+						<input type="radio" name="adecuado" id="adecuado1" value=1 <?php if($information && $information[0]["adecuado"] == 1) { echo "checked"; }  ?>>Si
 					</label>
 					<label class="radio-inline">
-						<input type="radio" name="adecuado" id="adecuado2" value=2 <?php if($information && $information[0]["adecuado"] == 2) { echo "checked"; }  ?>>Falló
+						<input type="radio" name="adecuado" id="adecuado2" value=2 <?php if($information && $information[0]["adecuado"] == 2) { echo "checked"; }  ?>>No
 					</label>
 				</div>
 			</div>
