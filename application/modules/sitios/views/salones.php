@@ -160,9 +160,9 @@ if ($retornoError) {
 									for ($i = 1; $i <= $salonesFaltantes; $i++)
 									{
 											echo "<tr>";
-											echo "<td class='text-center'>" . $i . "</td>";
-											echo "<td >Falta información</td>";
-											echo "<td class='text-center'>Falta información</td>";
+											echo "<td class='text-center text-danger'>" . $i . "</td>";
+											echo "<td class='text-danger'>Falta información</td>";
+											echo "<td class='text-center text-danger'>Falta información</td>";
 	
 											echo "<td class='text-center'>";								
 								?>
