@@ -101,8 +101,9 @@ class Sitios extends CI_Controller {
 			$data = array();
 			
 			$data["idRecord"] = $this->input->post('hddIdSitio');
+			$numeroSalas = $this->input->post('no_salones');
 			
-			if ($this->sitios_model->updateNumeroSalones()) {
+			if ($this->sitios_model->updateNumeroSalones($numeroSalas)) {
 				$data["result"] = true;				
 				$this->session->set_flashdata('retornoExito', 'Se actualizó la información.');
 			} else {
@@ -185,6 +186,7 @@ class Sitios extends CI_Controller {
 			$this->load->model("general_model");
 						
 			$data['information'] = FALSE;
+			$data['add'] = FALSE;
 			$data["idSitio"] = $this->input->post("idSitio");
 			$data["idSalon"] = $this->input->post("idSalon");
 			
@@ -199,6 +201,23 @@ class Sitios extends CI_Controller {
 			$this->load->view("form_salon_modal", $data);
     }
 	
+    /**
+     * Cargo modal - formulario SALONES
+     * @since 15/12/2017
+     */
+    public function cargarModalSalonesV2() 
+	{
+			header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
+			$this->load->model("general_model");
+			
+			$data['information'] = FALSE;
+			$data['add'] = TRUE;
+			$data["idSitio"] = $this->input->post("idSitio");
+			
+			$this->load->view("form_salon_modal", $data);
+    }
+
+	
 	/**
 	 * Guardar salones
      * @since 15/12/2017
@@ -209,6 +228,7 @@ class Sitios extends CI_Controller {
 			$data = array();
 			
 			$idSitio = $this->input->post('hddIdSitio');
+			$add = $this->input->post('hddAdd');
 			$data["idRecord"] = $idSitio;
 			
 			$msj = "Se adicionó el salón con éxito.";
@@ -217,6 +237,21 @@ class Sitios extends CI_Controller {
 			}
 			
 			if ($this->sitios_model->saveSalones()) {
+				
+				//sumar el numero de salas mas 1
+				if($add == 1){
+					
+					$this->load->model("general_model");
+					//info de sitio
+					$arrParam = array("idSitio" => $idSitio);
+					$infoSitio = $this->general_model->get_sitios($arrParam);
+					
+					$numeroSalas = $infoSitio[0]['numero_salas'] + 1;
+					
+					$this->sitios_model->updateNumeroSalones($numeroSalas);
+					
+				}
+				
 				$data["result"] = true;
 				$this->session->set_flashdata('retornoExito', $msj);
 			} else {
@@ -709,7 +744,7 @@ class Sitios extends CI_Controller {
 			$idComputador = $this->input->post('hddIdComputador');
 			$data["idRecord"] = $idSalon;
 			
-			$msj = "Se adicionó el computador con éxito.";
+			$msj = "Se adicionó el computador con éxito. <strong>Recuerde subir la foto del computador.</strong>";
 			if ($idComputador != '') {
 				$msj = "Se actualizó el computador con éxito.";
 			}
@@ -835,9 +870,9 @@ class Sitios extends CI_Controller {
         $config['upload_path'] = './images/sitios/computadores/';
         $config['overwrite'] = false;
         $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = '3000';
-        $config['max_width'] = '2024';
-        $config['max_height'] = '2008';
+        $config['max_size'] = '5000';
+        $config['max_width'] = '3024';
+        $config['max_height'] = '3008';
         $idComputador = $this->input->post("hddIdComputador");
 		$idSalon = $this->input->post("hddIdSalon");
 
