@@ -62,7 +62,7 @@ $(function(){
 <?php
 	}
 ?>
-					<i class="fa fa-cube"></i> <strong>Salones</strong>
+					<i class="fa fa-cube"></i> <strong>Salas o salones</strong>
 				</div>
 				<div class="panel-body">
 					
@@ -148,7 +148,7 @@ if ($retornoError) {
 								<thead>
 									<tr>
 										<th class='text-center'>No.</th>
-										<th class='text-center'>Salón</th>
+										<th class='text-center'>Nombre o identificación de sala o salón</th>
 										<th class='text-center'>No. Computadores</th>
 										<th class='text-center'>Actualizar</th>
 									</tr>

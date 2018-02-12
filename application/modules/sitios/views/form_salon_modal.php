@@ -18,8 +18,8 @@
 		<div class="row">			
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="salon">Nombre : *</label>
-					<input type="text" id="salon" name="salon" class="form-control" value="<?php echo $information?$information[0]["nombre_salon"]:""; ?>" placeholder="Nombre" required >
+					<label class="control-label" for="salon">Nombre o identificación de sala o salón : *</label>
+					<input type="text" id="salon" name="salon" class="form-control" value="<?php echo $information?$information[0]["nombre_salon"]:""; ?>" placeholder="Nombre o identificación de sala o salón" required >
 				</div>
 			</div>
 			
