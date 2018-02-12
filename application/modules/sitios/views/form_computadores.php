@@ -172,7 +172,7 @@ if ($retornoError) {
 							foreach ($information as $lista):
 									$i++;
 									echo "<tr>";
-									echo "<td class='text-center'>" . $i . "</td>";
+									echo "<td class='text-center text-success'>" . $i . "</td>";
 									
 									switch ($lista['cpu']) {
 										case 1:
@@ -182,7 +182,7 @@ if ($retornoError) {
 											$cpu = 'Falló';
 											break;
 									}
-									echo "<td class='text-center'>" . $cpu . "</td>";
+									echo "<td class='text-center text-success'>" . $cpu . "</td>";
 									
 									switch ($lista['os']) {
 										case 1:
@@ -192,7 +192,7 @@ if ($retornoError) {
 											$os = 'Falló';
 											break;
 									}
-									echo "<td class='text-center'>" . $os . "</td>";
+									echo "<td class='text-center text-success'>" . $os . "</td>";
 									
 									switch ($lista['memoria']) {
 										case 1:
@@ -205,7 +205,7 @@ if ($retornoError) {
 											$memoria = 'Falló';
 											break;
 									}
-									echo "<td class='text-center'>" . $memoria . "</td>";
+									echo "<td class='text-center text-success'>" . $memoria . "</td>";
 									
 									switch ($lista['resolucion']) {
 										case 1:
@@ -215,7 +215,7 @@ if ($retornoError) {
 											$resolucion = 'Falló';
 											break;
 									}
-									echo "<td class='text-center'>" . $resolucion . "</td>";
+									echo "<td class='text-center text-success'>" . $resolucion . "</td>";
 									
 									switch ($lista['skype']) {
 										case 1:
@@ -225,7 +225,7 @@ if ($retornoError) {
 											$skype = 'Falló';
 											break;
 									}
-									echo "<td class='text-center'>" . $skype . "</td>";
+									echo "<td class='text-center text-success'>" . $skype . "</td>";
 									
 									switch ($lista['transferencia_usb']) {
 										case 1:
@@ -235,7 +235,7 @@ if ($retornoError) {
 											$transferencia_usb = 'Falló';
 											break;
 									}
-									echo "<td class='text-center'>" . $transferencia_usb . "</td>";
+									echo "<td class='text-center text-success'>" . $transferencia_usb . "</td>";
 									
 									switch ($lista['virus_scan']) {
 										case 1:
@@ -245,7 +245,7 @@ if ($retornoError) {
 											$virus_scan = 'Falló';
 											break;
 									}
-									echo "<td class='text-center'>" . $virus_scan . "</td>";
+									echo "<td class='text-center text-success'>" . $virus_scan . "</td>";
 									
 									switch ($lista['unidad_usb']) {
 										case 1:
@@ -258,7 +258,7 @@ if ($retornoError) {
 											$unidad_usb = 'Falló';
 											break;
 									}
-									echo "<td class='text-center'>" . $unidad_usb . "</td>";
+									echo "<td class='text-center text-success'>" . $unidad_usb . "</td>";
 									
 									switch ($lista['adecuado']) {
 										case 1:
@@ -268,7 +268,7 @@ if ($retornoError) {
 											$adecuado = 'No';
 											break;
 									}
-									echo "<td class='text-center'>" . $adecuado . "</td>";
+									echo "<td class='text-center text-success'>" . $adecuado . "</td>";
 									
 									echo "<td class='text-center'>";
 																		

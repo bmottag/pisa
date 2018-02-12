@@ -184,9 +184,9 @@ if ($retornoError) {
 											$i++;
 									
 											echo "<tr>";
-											echo "<td class='text-center'>" . $i . "</td>";
-											echo "<td >" . $lista['nombre_salon'] . "</td>";
-											echo "<td class='text-center'>" . $lista['computadores'] . "</td>";
+											echo "<td class='text-center text-success'>" . $i . "</td>";
+											echo "<td class='text-success'>" . $lista['nombre_salon'] . "</td>";
+											echo "<td class='text-center text-success'>" . $lista['computadores'] . "</td>";
 	
 											echo "<td class='text-center'>";									
 								?>
