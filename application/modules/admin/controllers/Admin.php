@@ -808,17 +808,15 @@ class Admin extends MX_Controller {
 	 * Formulario para asignar delegado al sitio
      * @since 21/5/2017
 	 */
-	public function asignar_delegado($idSitio, $rol)
+	public function asignar_pisa($idSitio)
 	{
 			$this->load->model("general_model");
 			$arrParam = array("idSitio" => $idSitio);
 			$data['infoSitio'] = $this->general_model->get_sitios($arrParam);//informacion sitio
-			$data['rol'] = $rol;
-			$lista = "lista_" . $rol;
 
-			$data['usuarios'] = $this->general_model->$lista($arrParam);//listado usuarios
+			$data['usuarios'] = $this->general_model->lista_pisa($arrParam);//listado usuarios
 
-			$data["view"] = 'asignar_delegado';
+			$data["view"] = 'asignar_pisa';
 			$this->load->view("layout", $data);
 	}
 	
@@ -826,11 +824,11 @@ class Admin extends MX_Controller {
 	 * Guardar delegado o coordinador para el sitio
 	 * @since 13/5/2017
 	 */
-	public function guardar_delegado()
+	public function guardar_pisa()
 	{
 			$data = array();			
 				
-			$data['linkBack'] = "admin/sitios/";
+			$data['linkBack'] = "sitios";
 			$data['titulo'] = "<i class='fa fa-gear fa-fw'></i>ASIGNAR";
 			
 			$idSitio = $this->input->post("hddId");
@@ -838,13 +836,9 @@ class Admin extends MX_Controller {
 			$this->load->model("general_model");
 			$arrParam = array("idSitio" => $idSitio);
 			$infoSitio = $this->general_model->get_sitios($arrParam);//informacion sitio
-			$idMunicipio = $infoSitio[0]['fk_mpio_divipola']; //envio el id municipio para los coordinadores
-			
-			$rol = $this->input->post("hddRol");
-			$Fmodelo = "updateSitio_" . $rol;
 	
-			if ($this->admin_model->$Fmodelo($idMunicipio)) {
-				$data["msj"] = "Se asignó el <strong>" . $rol . "</strong> con exito.";
+			if ($this->admin_model->updateSitio_pisa()) {
+				$data["msj"] = "Se asignó el <strong>Usuario PISA</strong> con éxito.";
 				$data["clase"] = "alert-success";
 			}else{
 				$data["msj"] = "<strong>Error!!!</strong> Contactarse con el administrador.";
@@ -1173,7 +1167,7 @@ class Admin extends MX_Controller {
     /**
      * actualizamos el campo delegado de los sitio
      */
-    public function updateDelegado($idSitio) 
+    public function updatePisa($idSitio) 
 	{
 			if (empty($idSitio) ) {
 				show_error('ERROR!!! - You are in the wrong place.');
@@ -1184,19 +1178,19 @@ class Admin extends MX_Controller {
 				"table" => "sitios",
 				"primaryKey" => "id_sitio",
 				"id" => $idSitio,
-				"column" => "fk_id_user_delegado",
+				"column" => "fk_id_user_pisa",
 				"value" => ""
 			);
 
 			$this->load->model("general_model");
 
 			if ($this->general_model->updateRecord($arrParam)) {
-				$this->session->set_flashdata('retornoExito', 'Se eliminó el <strong>DELEGADO</strong> del sitio.');
+				$this->session->set_flashdata('retornoExito', 'Se eliminó el <strong>Usuario PISA</strong> del sitio.');
 			} else {
 				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador');
 			}
 			
-			redirect(base_url('admin/sitios'), 'refresh');
+			redirect(base_url('sitios'), 'refresh');
     }
 	
     /**

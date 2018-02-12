@@ -324,12 +324,12 @@
 		 * param Id municipio int no se usa es para el modelo de asignar coordinador
 	     * @since  13/5/2017
 	     */
-	    public function updateSitio_delegado($idMunicipio)
+	    public function updateSitio_pisa()
 		{
 				$idSitio = $this->input->post("hddId");
 
 				$data = array(
-					'fk_id_user_delegado' => $this->input->post("usuario")
+					'fk_id_user_pisa' => $this->input->post("usuario")
 				);
 
 				$this->db->where('id_sitio', $idSitio);

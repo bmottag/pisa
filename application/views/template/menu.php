@@ -71,38 +71,6 @@ if($userRol!=7){//USUARIOS QUE NO SON PISA
 ?>
 				
 				
-<?php 
-if($userRol==2 || $userRol==1){ //SI es usuario ADMIN o DIRECTIVO
-?>				
-		<li class="dropdown">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-				<i class="fa fa-list-alt"></i> Reportes <i class="fa fa-caret-down"></i>
-			</a>
-			<ul class="dropdown-menu dropdown-messages">
-			
-				<li>
-					<a href="<?php echo base_url("report/searchBy"); ?>"><i class="fa fa-list-alt fa-fw"></i> Información Alertas - Representantes</a>
-				</li>
-				
-				<li class="divider"></li>
-
-				<li>
-					<a href="<?php echo base_url("public/reportico/run.php?execute_mode=MENU&project=ICFES"); ?>"><i class="fa fa-search fa-fw"></i> Ver Listados</a>
-				</li>
-				
-			</ul>
-		</li>
-<?php 
-}
-?>
-				
-				
-				
-				
-				
-				
-				
-				
 				
 				
 				

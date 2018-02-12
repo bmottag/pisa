@@ -67,7 +67,7 @@ $(function(){
 								<th>Código DANE</th>
 								<th class="text-center">Editar</th>
 								<th class="text-center">Gestión de Salones</th>
-								<th class="text-center">Georreferenciación</th>
+								<th class="text-center">Usuario PISA</th>
 								<th class="text-center">Fotos</th>
 							</tr>
 						</thead>
@@ -94,19 +94,24 @@ $(function(){
 									<a class='btn btn-default btn-xs' href='<?php echo base_url('sitios/salones/' . $lista['id_sitio']) ?>'>
 										Salones <span class="fa fa-cube" aria-hidden="true">
 									</a>
-						<?php
-									echo "</td>";
+						
+									</td>
 									
-									echo "<td class='text-center'>";
+									<td class='text-center'>
+									<a href="<?php echo base_url("admin/asignar_pisa/" . $lista['id_sitio']); ?>" class="btn btn-info btn-xs">Usuario PISA <span class="fa fa-gears fa-fw" aria-hidden="true"></a>
+						<?php 
+if($lista['fk_id_user_pisa']){
+	echo "<p class='text-primary text-center'>" . $lista['nom_pisa'] . " " . $lista['ape_pisa'] . "</br>";
+	echo "C.C. " . $lista['cedula_pisa'] . "</br>";
+	echo "<a href='" . base_url("admin/updatePisa/" . $lista['id_sitio']) . "' class='text-primary text-center'>Eliminar</p>";
+}else{
+	echo "<p class='text-danger text-center'><strong>Falta</strong></p>";
+}
 						?>
-									<a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/georreferenciacion/' . $lista['id_sitio']) ?>'>
-										Georreferenciación <span class="glyphicon glyphicon-screenshot" aria-hidden="true">
-									</a>
-						<?php
-									echo "</td>";
-									
-									echo "<td class='text-center'>";
-						?>
+									</td>
+
+									<td class='text-center'>
+						
 									<a class='btn btn-warning btn-xs' href='<?php echo base_url('sitios/fotos/' . $lista['id_sitio']) ?>'>
 										Fotos <span class="fa fa-photo" aria-hidden="true">
 									</a>
