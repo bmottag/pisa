@@ -77,7 +77,7 @@ $(function(){
 <?php
 	}
 ?>
-					<i class="fa fa-cube"></i> <strong>Salas o salones</strong>
+					<i class="fa fa-cube"></i> <strong>Salas de computo</strong>
 				</div>
 				<div class="panel-body">
 					
@@ -96,9 +96,9 @@ $(function(){
 					
 					<div class="col-lg-4">	
 						<div class="alert alert-info">
-							<strong>No. de Salones: </strong><?php echo $infoSitio[0]['numero_salas']; ?><br>
+							<strong>No. de salas de computo: </strong><?php echo $infoSitio[0]['numero_salas']; ?><br>
 			<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $infoSitio[0]['id_sitio']; ?>">
-					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Número de salones
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Número de salas de computo
 			</button><br>
 						</div>
 					</div>
@@ -141,7 +141,7 @@ if ($retornoError) {
 
 
 		<button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal_salon" id="<?php echo $idSitio; ?>">
-				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Sala o Salón
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Sala de computo
 		</button>	
 		<br>
 
@@ -157,7 +157,7 @@ if ($retornoError) {
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<strong>Listado de salones</strong>
+						<strong>Listado de salas de computo</strong>
 					</div>
 					<!-- /.panel-heading -->
 					<div class="panel-body">
@@ -167,7 +167,7 @@ if ($retornoError) {
 								<thead>
 									<tr>
 										<th class='text-center'>No.</th>
-										<th class='text-center'>Nombre o identificación de sala o salón</th>
+										<th class='text-center'>Nombre o identificación sala de computo</th>
 										<th class='text-center'>No. Computadores</th>
 										<th class='text-center'>Actualizar</th>
 									</tr>

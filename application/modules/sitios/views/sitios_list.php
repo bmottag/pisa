@@ -66,7 +66,7 @@ $(function(){
 								<th>Sitio</th>
 								<th>Código DANE</th>
 								<th class="text-center">Editar</th>
-								<th class="text-center">Gestión de Salas o salones</th>
+								<th class="text-center">Gestión de salas de computo</th>
 								<th class="text-center">Usuario PISA</th>
 							</tr>
 						</thead>
@@ -91,7 +91,7 @@ $(function(){
 									echo "<td class='text-center'>";
 						?>
 									<a class='btn btn-default btn-xs' href='<?php echo base_url('sitios/salones/' . $lista['id_sitio']) ?>'>
-										Salas o salones <span class="fa fa-cube" aria-hidden="true">
+										Sala de computo <span class="fa fa-cube" aria-hidden="true">
 									</a>
 						
 									</td>

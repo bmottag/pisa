@@ -58,7 +58,7 @@ $(function(){
 					</div>
 					<div class="col-lg-4">	
 						<div class="alert alert-info">
-							<strong>Salón: </strong><?php echo $infoSalon[0]['nombre_salon']; ?><br>
+							<strong>Sala de computo: </strong><?php echo $infoSalon[0]['nombre_salon']; ?><br>
 							<?php $numeroComputadores = $infoSalon[0]['computadores']?$infoSalon[0]['computadores']:0; ?>
 							<strong>No. computadores: </strong><?php echo $numeroComputadores; ?>
 						</div>

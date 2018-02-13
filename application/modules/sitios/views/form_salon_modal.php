@@ -2,8 +2,8 @@
 
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	<h4 class="modal-title" id="exampleModalLabel">Salones
-	<br><small>Adicionar/Editar Salones</small>
+	<h4 class="modal-title" id="exampleModalLabel">Sala de computo
+	<br><small>Adicionar/Editar</small>
 	</h4>
 </div>
 
@@ -30,8 +30,8 @@
 		<div class="row">			
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="salon">Nombre o identificación de sala o salón : *</label>
-					<input type="text" id="salon" name="salon" class="form-control" value="<?php echo $information?$information[0]["nombre_salon"]:""; ?>" placeholder="Nombre o identificación de sala o salón" required >
+					<label class="control-label" for="salon">Nombre o identificación sala de computo : *</label>
+					<input type="text" id="salon" name="salon" class="form-control" value="<?php echo $information?$information[0]["nombre_salon"]:""; ?>" placeholder="Nombre o identificación sala de computo" required >
 				</div>
 			</div>
 			
