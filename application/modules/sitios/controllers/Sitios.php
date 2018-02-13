@@ -100,10 +100,11 @@ class Sitios extends CI_Controller {
 			header('Content-Type: application/json');
 			$data = array();
 			
-			$data["idRecord"] = $this->input->post('hddIdSitio');
+			$idSitio = $data["idRecord"] = $this->input->post('hddIdSitio');
 			$numeroSalas = $this->input->post('no_salones');
+			$arrParam = array("idSitio" => $idSitio, "noSalones" => $numeroSalas);
 			
-			if ($this->sitios_model->updateNumeroSalones($numeroSalas)) {
+			if ($this->sitios_model->updateNumeroSalones($arrParam)) {
 				$data["result"] = true;				
 				$this->session->set_flashdata('retornoExito', 'Se actualizó la información.');
 			} else {
@@ -247,8 +248,9 @@ class Sitios extends CI_Controller {
 					$infoSitio = $this->general_model->get_sitios($arrParam);
 					
 					$numeroSalas = $infoSitio[0]['numero_salas'] + 1;
+					$arrParam = array("idSitio" => $idSitio, "noSalones" => $numeroSalas);
 					
-					$this->sitios_model->updateNumeroSalones($numeroSalas);
+					$this->sitios_model->updateNumeroSalones($arrParam);
 					
 				}
 				
@@ -898,6 +900,50 @@ class Sitios extends CI_Controller {
 						
 			redirect('sitios/computadores_salon/' . $idSalon);
         }
+    }
+	
+    /**
+     * Delete sala
+     */
+    public function deleteSala($idSitio, $idSala = 'x') 
+	{
+			if(empty($idSitio)) {
+				show_error('ERROR!!! - You are in the wrong place.');
+			}
+			
+			$this->load->model("general_model");
+			//info de sitio
+			$arrParam = array("idSitio" => $idSitio);
+			$infoSitio = $this->general_model->get_sitios($arrParam);
+			
+			$numeroSalones = $infoSitio[0]['numero_salas'];
+			
+			//restarle uno al numero de salas y actualiazr la base de datos
+			$nuevoValor = $numeroSalones - 1;
+			
+			$arrParam = array("idSitio" => $idSitio, "noSalones" => $nuevoValor);			
+			if ($this->sitios_model->updateNumeroSalones($arrParam)) {
+				$this->session->set_flashdata('retornoExito', 'Se eliminó el registro.');
+			} else {
+				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador.');
+			}
+
+			//si se envia el ID de la sala entonces eliminarlo
+			if($idSala != 'x'){
+					$arrParam = array(
+						"table" => "sitios_salones",
+						"primaryKey" => "id_sitio_salon",
+						"id" => $idSala
+					);
+					
+					if ($this->general_model->deleteRecord($arrParam)) {
+						$this->session->set_flashdata('retornoExito', 'Se eliminó el registro.');
+					} else {
+						$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador.');
+					}				
+			}
+
+			redirect(base_url('sitios/salones/' . $idSitio), 'refresh');
     }
 
 

@@ -183,6 +183,10 @@ if ($retornoError) {
 				<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal_salon" id="<?php echo $idSitio; ?>">
 						Actualizar <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 				</button>
+				
+<a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/deleteSala/' . $idSitio); ?>'>
+	Eliminar <span class='glyphicon glyphicon-plus' aria-hidden='true'>
+</a>
 								<?php
 											echo "</td>";
 											echo "</tr>";								
@@ -208,9 +212,13 @@ if ($retornoError) {
 												Actualizar <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 											</button>
 
-<a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/computadores_salon/' . $lista['id_sitio_salon'] ); ?>'>
-											Computadores <span class='glyphicon glyphicon-plus' aria-hidden='true'>
-							</a>							
+<a class='btn btn-default btn-xs' href='<?php echo base_url('sitios/computadores_salon/' . $lista['id_sitio_salon'] ); ?>'>
+	Computadores <span class='glyphicon glyphicon-plus' aria-hidden='true'>
+</a>
+
+<a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/deleteSala/' . $idSitio . '/' . $lista['id_sitio_salon'] ); ?>'>
+	Eliminar <span class='glyphicon glyphicon-plus' aria-hidden='true'>
+</a>
 								<?php
 											echo "</td>";
 											echo "</tr>";								

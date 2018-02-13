@@ -371,18 +371,16 @@
 					return false;
 				}
 		}
-		
+				
 		/**
 		 * update numero de salones
 		 * @since 10/2/2018
 		 */
-		public function updateNumeroSalones($numeroSalas) 
-		{
-				$idSitio = $this->input->post('hddIdSitio');
-							
-				$data['numero_salas'] = $numeroSalas;
+		public function updateNumeroSalones($arrDatos) 
+		{							
+				$data['numero_salas'] = $arrDatos ["noSalones"];
 					
-				$this->db->where('id_sitio', $idSitio);
+				$this->db->where('id_sitio', $arrDatos ["idSitio"]);
 				$query = $this->db->update('sitios', $data);
 
 				if ($query) {
@@ -391,6 +389,7 @@
 					return false;
 				}
 		}
+		
 
 		
 	    
