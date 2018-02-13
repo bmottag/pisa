@@ -4,6 +4,7 @@ $( document ).ready( function () {
 		
 	$( "#form" ).validate( {
 		rules: {
+			identificacion:		{ required: true, maxlength:200 },
 			windows_defender:	{ required: true },
 			cpu:				{ required: true },
 			os:					{ required: true },
