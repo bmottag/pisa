@@ -946,8 +946,49 @@ class Sitios extends CI_Controller {
 			redirect(base_url('sitios/salones/' . $idSitio), 'refresh');
     }
 
+    /**
+     * Delete comptador
+     */
+    public function deleteComputador($idSala, $idComputador = 'x') 
+	{
+			if(empty($idSala)) {
+				show_error('ERROR!!! - You are in the wrong place.');
+			}
+			
+			$this->load->model("general_model");
+			//info salon
+			$arrParam = array("idSalon" => $idSala);
+			$infoSala = $this->general_model->get_salones_by($arrParam);
 
+			$numeroComputadores = $infoSala[0]['computadores'];
+			
+			//restarle uno al numero de salas y actualiazr la base de datos
+			$nuevoValor = $numeroComputadores - 1;
 
+			$arrParam = array("idSala" => $idSala, "noComputadores" => $nuevoValor);			
+			if ($this->sitios_model->updateNumeroComputadores($arrParam)) {
+				$this->session->set_flashdata('retornoExito', 'Se eliminó el registro.');
+			} else {
+				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador.');
+			}
+
+			//si se envia el ID del computador entonces eliminarlo
+			if($idComputador != 'x'){
+					$arrParam = array(
+						"table" => "sitios_computadores",
+						"primaryKey" => "id_sitio_computador",
+						"id" => $idComputador
+					);
+					
+					if ($this->general_model->deleteRecord($arrParam)) {
+						$this->session->set_flashdata('retornoExito', 'Se eliminó el registro.');
+					} else {
+						$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador.');
+					}				
+			}
+
+			redirect(base_url('sitios/computadores_salon/' . $idSala), 'refresh');
+    }
 	
 	
 }

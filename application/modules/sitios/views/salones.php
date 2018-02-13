@@ -164,7 +164,7 @@ if ($retornoError) {
 										<th class='text-center'>No.</th>
 										<th class='text-center'>Nombre o identificación sala de computo</th>
 										<th class='text-center'>No. Computadores</th>
-										<th class='text-center'>Actualizar</th>
+										<th class='text-center'>Enlaces</th>
 									</tr>
 								</thead>
 								<tbody id="salones">							
@@ -185,7 +185,7 @@ if ($retornoError) {
 				</button>
 				
 <a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/deleteSala/' . $idSitio); ?>'>
-	Eliminar <span class='glyphicon glyphicon-plus' aria-hidden='true'>
+	Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
 </a>
 								<?php
 											echo "</td>";
@@ -217,7 +217,7 @@ if ($retornoError) {
 </a>
 
 <a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/deleteSala/' . $idSitio . '/' . $lista['id_sitio_salon'] ); ?>'>
-	Eliminar <span class='glyphicon glyphicon-plus' aria-hidden='true'>
+	Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
 </a>
 								<?php
 											echo "</td>";

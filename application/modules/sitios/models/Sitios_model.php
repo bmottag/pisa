@@ -390,6 +390,23 @@
 				}
 		}
 		
+		/**
+		 * update numero de computadores
+		 * @since 13/2/2018
+		 */
+		public function updateNumeroComputadores($arrDatos) 
+		{							
+				$data['computadores'] = $arrDatos ["noComputadores"];
+					
+				$this->db->where('id_sitio_salon', $arrDatos ["idSala"]);
+				$query = $this->db->update('sitios_salones', $data);
+
+				if ($query) {
+					return true;
+				} else {
+					return false;
+				}
+		}
 
 		
 	    

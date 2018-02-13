@@ -131,7 +131,7 @@ if ($retornoError) {
 										<th class='text-center'>Unidad USB </th>
 										<th class='text-center'>¿El computador cumple los requisitos para aplicar PISA? </th>
 										<th class='text-center'>Foto</th>
-										<th class='text-center'>Actualizar</th>
+										<th class='text-center'>Enlaces</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -158,6 +158,11 @@ if ($retornoError) {
 				<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal_computador" id="<?php echo $infoSalon[0]['id_sitio_salon']; ?>">
 						Actualizar <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 				</button>
+				
+<a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/deleteComputador/' . $infoSalon[0]['id_sitio_salon']); ?>'>
+	Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
+</a>
+
 								<?php
 											echo "</td>";
 											echo "</tr>";								
@@ -293,6 +298,11 @@ if ($retornoError) {
 									<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal_computador" id="<?php echo $lista['id_sitio_computador']; ?>" >
 										Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
 									</button>
+									
+<a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/deleteComputador/' . $infoSalon[0]['id_sitio_salon'] . '/' . $lista['id_sitio_computador'] ); ?>'>
+	Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
+</a>
+
 						<?php
 									echo "</td>";
 									echo "</tr>";								
