@@ -125,7 +125,7 @@ if ($retornoError) {
 										<th class='text-center'>OS</th>
 										<th class='text-center'>Memoria del sistema</th>
 										<th class='text-center'>Resolución de la pantalla</th>
-										<th class='text-center'>¿Skype NO se está ejecutando en el computador? </th>
+										<th class='text-center'>Skype NO se está ejecutando </th>
 										<th class='text-center'>Velocidad de transferecia de datos a la USB</th>
 										<th class='text-center'>Virus SCAN</th>
 										<th class='text-center'>Unidad USB </th>

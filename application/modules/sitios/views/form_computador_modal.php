@@ -122,7 +122,7 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label for="skype">¿Skype NO se está ejecutando en el computador? : *</label>
+					<label for="skype">Skype NO se está ejecutando : *</label>
 				</div>
 			</div>
 			
