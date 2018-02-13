@@ -41,7 +41,7 @@
 					<select name="computadores" id="computadores" class="form-control" required>
 						<option value='' >Select...</option>
 						<?php
-						for ($i = 1; $i < 20; $i++) {
+						for ($i = 1; $i < 51; $i++) {
 							?>
 							<option value='<?php echo $i; ?>' <?php
 							if ($information && $i == $information[0]["computadores"]) {
