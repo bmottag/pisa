@@ -168,36 +168,11 @@ if ($retornoError) {
 									</tr>
 								</thead>
 								<tbody id="salones">							
-								<?php
-									$i=0;
-
-									for ($i = 1; $i <= $salonesFaltantes; $i++)
-									{
-											echo "<tr>";
-											echo "<td class='text-center text-danger'>" . $i . "</td>";
-											echo "<td class='text-center text-danger'>Falta información</td>";
-											echo "<td class='text-center text-danger'>Falta información</td>";
-	
-											echo "<td class='text-center'>";								
-								?>
-				<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal_salon" id="<?php echo $idSitio; ?>">
-						Actualizar <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-				</button>
-				
-<a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/deleteSala/' . $idSitio); ?>'>
-	Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
-</a>
-								<?php
-											echo "</td>";
-											echo "</tr>";								
-									}
-								?>
-								
 <?php
 	if($infoSalones){
 ?>
 								<?php
-									$i=$salonesFaltantes;
+									$i=0;
 									foreach ($infoSalones as $lista):
 											$i++;
 									
@@ -228,6 +203,31 @@ if ($retornoError) {
 <?php 
 	}
 ?>
+								
+								
+								<?php
+									for ($i = 1; $i <= $salonesFaltantes; $i++)
+									{
+											echo "<tr>";
+											echo "<td class='text-center text-danger'>Falta información</td>";
+											echo "<td class='text-center text-danger'>Falta información</td>";
+											echo "<td class='text-center text-danger'>Falta información</td>";
+	
+											echo "<td class='text-center'>";								
+								?>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal_salon" id="<?php echo $idSitio; ?>">
+						Actualizar <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+				</button>
+				
+<a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/deleteSala/' . $idSitio); ?>'>
+	Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
+</a>
+								<?php
+											echo "</td>";
+											echo "</tr>";								
+									}
+								?>
+								
 								</tbody>
 							</table>
 					

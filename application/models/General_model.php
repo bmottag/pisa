@@ -1092,7 +1092,7 @@ class General_model extends CI_Model {
 					$this->db->where('S.fk_id_sitio', $arrDatos["idSitio"]);
 				}
 								
-				$this->db->order_by('nombre_salon', 'asc');
+				$this->db->order_by('id_sitio_salon', 'asc');
 				$query = $this->db->get('sitios_salones S');
 
 				if ($query->num_rows() > 0) {
