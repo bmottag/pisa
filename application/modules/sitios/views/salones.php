@@ -140,11 +140,6 @@ if ($retornoError) {
 ?> 
 
 
-		<button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal_salon" id="<?php echo $idSitio; ?>">
-				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Sala de computo
-		</button>	
-		<br>
-
 <?php
 	$numeroSalones = $infoSitio[0]['numero_salas'];//numero de salones 
 	$noSalones = $noSalones;//salones guardados
@@ -236,6 +231,12 @@ if ($retornoError) {
 <?php
 	}
 ?>
+
+
+		<button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal_salon" id="<?php echo $idSitio; ?>">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar sala de computo
+		</button>	
+		<br>
 
 	
 </div>
