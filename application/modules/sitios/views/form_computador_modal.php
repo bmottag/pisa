@@ -29,6 +29,9 @@
 					<label class="radio-inline">
 						<input type="radio" name="windows_defender" id="windows_defender2" value=2 <?php if($information && $information[0]["windows_defender"] == 2) { echo "checked"; }  ?>>No
 					</label>
+					<label class="radio-inline">
+						<input type="radio" name="windows_defender" id="windows_defender3" value=3 <?php if($information && $information[0]["windows_defender"] == 3) { echo "checked"; }  ?>>No aplica
+					</label>
 				</div>
 			</div>
 		</div>
