@@ -329,7 +329,7 @@
 				$idSitio = $this->input->post("hddId");
 
 				$data = array(
-					'fk_id_user_pisa' => $this->input->post("usuario")
+					'id_school_pisa' => $this->input->post("usuario")
 				);
 
 				$this->db->where('id_sitio', $idSitio);

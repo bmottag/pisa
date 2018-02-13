@@ -27,31 +27,6 @@ $(function(){
 				<div class="panel-heading">
 					<i class="fa fa-briefcase"></i> Lista de sitios
 					
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="form-group text-left">
-									<label class="control-label" for="depto">Departamento : </label>
-									<select name="depto" id="depto" class="form-control" >
-										<option value=''>Select...</option>
-										<?php for ($i = 0; $i < count($departamentos); $i++) { ?>
-											<option value="<?php echo $departamentos[$i]["dpto_divipola"]; ?>" ><?php echo $departamentos[$i]["dpto_divipola_nombre"]; ?></option>	
-										<?php } ?>
-									</select>
-								</div>
-							</div>
-						
-							<div class="col-sm-6">
-								<div class="form-group text-left">
-									<label class="control-label" for="mcpio">Municipio : </label>
-									<select name="mcpio" id="mcpio" class="form-control" required>					
-										<?php if($information){ ?>
-										<option value=''>Select...</option>
-											<option value="<?php echo $information[0]["fk_mpio_divipola"]; ?>" selected><?php echo $information[0]["mpio_divipola_nombre"]; ?></option>
-										<?php } ?>
-									</select>
-								</div>
-							</div>
-						</div>
 				</div>
 				<div class="panel-body">
 
@@ -65,7 +40,6 @@ $(function(){
 								<th>Municipio</th>
 								<th>Sitio</th>
 								<th>Código DANE</th>
-								<th class="text-center">Editar</th>
 								<th class="text-center">Gestión de salas de computo</th>
 								<th class="text-center">Usuario PISA</th>
 							</tr>
@@ -74,19 +48,10 @@ $(function(){
 						<?php
 							foreach ($info as $lista):
 									echo "<tr>";
-									echo "<td >" . strtoupper($lista['dpto_divipola_nombre']) . "</td>";
-									echo "<td >" . strtoupper($lista['mpio_divipola_nombre']) . "</td>";	
+									echo "<td >" . strtoupper($lista['departamento']) . "</td>";
+									echo "<td >" . strtoupper($lista['municipio']) . "</td>";	
 									echo "<td >" . $lista['nombre_sitio'] . "</td>";
-									echo "<td class='text-center'>" . $lista['codigo_dane'] . "</td>";
-
-									echo "<td class='text-center'>";
-						?>																
-									<a class='btn btn-success btn-xs' href='<?php echo base_url('sitios/sitio/' . $lista['id_sitio']) ?>'>
-										Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
-									</a>
-									
-						<?php
-									echo "</td>";
+									echo "<td class='text-center'>" . $lista['national_school_id'] . "</td>";
 									
 									echo "<td class='text-center'>";
 						?>
@@ -99,9 +64,9 @@ $(function(){
 									<td class='text-center'>
 									<a href="<?php echo base_url("admin/asignar_pisa/" . $lista['id_sitio']); ?>" class="btn btn-info btn-xs">Usuario PISA <span class="fa fa-gears fa-fw" aria-hidden="true"></a>
 						<?php 
-if($lista['fk_id_user_pisa']){
-	echo "<p class='text-primary text-center'>" . $lista['nom_pisa'] . " " . $lista['ape_pisa'] . "</br>";
-	echo "C.C. " . $lista['cedula_pisa'] . "</br>";
+if($lista['id_school_pisa']){
+	echo "<p class='text-primary text-center'>";
+	echo "No. " . $lista['cedula_pisa'] . "</br>";
 	echo "<a href='" . base_url("admin/updatePisa/" . $lista['id_sitio']) . "' class='text-primary text-center'>Eliminar</p>";
 }else{
 	echo "<p class='text-danger text-center'><strong>Falta</strong></p>";

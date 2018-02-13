@@ -20,9 +20,8 @@
 		<div class="col-md-4">
 			<div class="panel panel-success">
 				<div class="panel-heading">
-					<strong>Nombre Sitio: </strong><br><?php echo $infoSitio[0]['nombre_sitio']; ?>
-					<br><strong>Dirección: </strong><?php echo $infoSitio[0]['direccion_sitio']; ?>
-					<br><strong>Código DANE: </strong><?php echo $infoSitio[0]['codigo_dane']; ?>
+					<strong>Sitio: </strong><?php echo $infoSitio[0]['nombre_sitio']; ?><br>
+					<strong>ID: </strong><?php echo $infoSitio[0]['national_school_id']; ?>
 				</div>
 			</div>
 		</div>
@@ -30,10 +29,8 @@
 		<div class="col-md-4">
 			<div class="panel panel-success">
 				<div class="panel-heading">
-					<strong>Nodo o Región: </strong><?php echo $infoSitio[0]['nombre_region']; ?>
-					<br><strong>Departamento: </strong><?php echo $infoSitio[0]['dpto_divipola_nombre']; ?>
-					<br><strong>Municipio: </strong><?php echo $infoSitio[0]['mpio_divipola_nombre']; ?>
-					<br><strong>Zona: </strong><?php echo $infoSitio[0]['nombre_zona']; ?>
+					<strong>Departamento: </strong><?php echo $infoSitio[0]['departamento']; ?>
+					<br><strong>Municipio: </strong><?php echo $infoSitio[0]['municipio']; ?>
 				</div>
 			</div>
 		</div>
@@ -43,8 +40,8 @@
 				<div class="panel-heading">
 					<strong>Usuario PISA: </strong><br>
 					<?php 
-					if($infoSitio[0]['fk_id_user_pisa']){
-						echo "C.C. " . $infoSitio[0]['cedula_pisa'] . " " . $infoSitio[0]['nom_pisa'] . " "  . $infoSitio[0]['ape_pisa'];
+					if($infoSitio[0]['id_school_pisa']){
+						echo "No. " . $infoSitio[0]['cedula_pisa'];
 					} else { echo "Falta asignar usuario PISA.";}
 					?>
 				</div>
@@ -75,7 +72,7 @@
 							<select name="usuario" id="usuario" class="form-control" required>
 								<option value=''>Select...</option>
 								<?php for ($i = 0; $i < count($usuarios); $i++) { ?>
-									<option value="<?php echo $usuarios[$i]["id_usuario"]; ?>" <?php if($infoSitio[0]["fk_id_user_pisa"] == $usuarios[$i]["id_usuario"]) { echo "selected"; }  ?>><?php echo  "C.C. " . $usuarios[$i]["numero_documento"] . " - " . $usuarios[$i]["nombres_usuario"] . " " . $usuarios[$i]["apellidos_usuario"]; ?></option>
+									<option value="<?php echo $usuarios[$i]["numero_documento"]; ?>" <?php if($infoSitio[0]["id_school_pisa"] == $usuarios[$i]["numero_documento"]) { echo "selected"; }  ?>><?php echo  "No. " . $usuarios[$i]["numero_documento"]; ?></option>
 								<?php } ?>
 							</select>
 							

@@ -139,7 +139,7 @@ class General_model extends CI_Model {
 		{	
 				$sql = "SELECT U.*";
 				$sql.= " FROM usuario U";
-				$sql.= " WHERE U.id_usuario NOT IN ( SELECT fk_id_user_pisa FROM sitios S WHERE fk_id_user_pisa IS NOT NULL)";
+				$sql.= " WHERE U.numero_documento NOT IN ( SELECT id_school_pisa FROM sitios S WHERE id_school_pisa IS NOT NULL)";
 				$sql.= " AND U.fk_id_rol = 7";
 				$sql.= " AND U.estado = 1";
 				
@@ -198,12 +198,8 @@ class General_model extends CI_Model {
 		 */
 		public function get_sitios($arrDatos) 
 		{
-				$this->db->select('S.*, O.nombre_organizacion, R.nombre_region, D.*, Z.nombre_zona, U.numero_documento as cedula_pisa, U.nombres_usuario nom_pisa, U.apellidos_usuario ape_pisa, U.celular celular_pisa');
-				$this->db->join('param_regiones R', 'R.id_region = S.fk_id_region', 'INNER');
-				$this->db->join('param_divipola D', 'D.mpio_divipola = S.fk_mpio_divipola', 'INNER');
-				$this->db->join('param_organizaciones O', 'O.id_organizacion = S.fk_id_organizacion', 'LEFT');
-				$this->db->join('param_zonas Z', 'Z.id_zona = S.fk_id_zona', 'LEFT');
-				$this->db->join('usuario U', 'U.id_usuario = S.fk_id_user_pisa', 'LEFT');
+				$this->db->select('S.*, U.numero_documento as cedula_pisa, U.nombres_usuario nom_pisa, U.apellidos_usuario ape_pisa, U.celular celular_pisa');
+				$this->db->join('usuario U', 'U.numero_documento = S.id_school_pisa', 'LEFT');
 				
 				if (array_key_exists("idSitio", $arrDatos)) {
 					$this->db->where('S.id_sitio', $arrDatos["idSitio"]);
@@ -217,7 +213,7 @@ class General_model extends CI_Model {
 					$this->db->where('S.fk_mpio_divipola', $arrDatos["mcpio"]);
 				}
 				
-				$this->db->order_by('nombre_region, dpto_divipola_nombre, mpio_divipola_nombre, S.nombre_sitio', 'asc');
+				$this->db->order_by('S.departamento, S.municipio, S.nombre_sitio', 'asc');
 				$query = $this->db->get('sitios S');
 
 				if ($query->num_rows() > 0) {

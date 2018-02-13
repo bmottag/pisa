@@ -54,6 +54,7 @@
 			$state = $this->session->userdata("state");
 			$userRol = $this->session->userdata("rol");
 			$userId = $this->session->userdata("id");
+			$logUser = $this->session->userdata("logUser");
 
 	    	switch($state){
 	    		case 0: //NEW USER, must change the password
@@ -71,7 +72,7 @@
 						}elseif($userRol==7){//vista para PISA
 						
 							//consultar el sitio al que esta asignado
-							$sql = "SELECT * FROM sitios WHERE fk_id_user_pisa = '$userId'";
+							$sql = "SELECT * FROM sitios WHERE id_school_pisa = '$logUser'";
 							$query = $this->db->query($sql);
 							
 							if ($query->num_rows() > 0){	    		

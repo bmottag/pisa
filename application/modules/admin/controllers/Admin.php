@@ -826,7 +826,7 @@ class Admin extends MX_Controller {
 	 */
 	public function guardar_pisa()
 	{
-			$data = array();			
+			$data = array();
 				
 			$data['linkBack'] = "sitios";
 			$data['titulo'] = "<i class='fa fa-gear fa-fw'></i>ASIGNAR";
@@ -1178,7 +1178,7 @@ class Admin extends MX_Controller {
 				"table" => "sitios",
 				"primaryKey" => "id_sitio",
 				"id" => $idSitio,
-				"column" => "fk_id_user_pisa",
+				"column" => "id_school_pisa",
 				"value" => ""
 			);
 

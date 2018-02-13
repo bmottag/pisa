@@ -27,8 +27,6 @@ class Sitios extends CI_Controller {
 			//listado de sitios
 			$arrParam = array();
 			$data['info'] = $this->general_model->get_sitios($arrParam);
-			
-			$data['departamentos'] = $this->general_model->get_dpto_divipola();//listado de departamentos
 	
 			$data["view"] = 'sitios_list';			
 			$this->load->view("layout", $data);
