@@ -13,6 +13,20 @@ $(function(){
                 }
             });
 	});
+	
+	$(".btn-warning").click(function () {	
+			var oID = $(this).attr("id");
+            $.ajax ({
+                type: 'POST',
+				url: base_url + 'sitios/cargarModalComputadoresV2',
+                data: {'idSalon': oID},
+                cache: false,
+                success: function (data) {
+                    $('#tablaDatosComputador').html(data);
+                }
+            });
+	});
+
 
 	$(".btn-default").click(function () {	
 			var oID = $(this).attr("id");
@@ -326,6 +340,10 @@ if ($retornoError) {
 	}
 ?>
 
+		<button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal_computador" id="<?php echo $infoSalon[0]['id_sitio_salon']; ?>">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar computador
+		</button>
+		<br>
 
 
 </div>

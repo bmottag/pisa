@@ -13,6 +13,29 @@
 		<input type="hidden" id="hddIdSalon" name="hddIdSalon" value="<?php echo $idSalon; ?>"/>
 		<input type="hidden" id="hddIdComputador" name="hddIdComputador" value="<?php echo $information?$information[0]["id_sitio_computador"]:""; ?>"/>	
 		
+		<?php
+			//esto es para saber si es desde el boton adicionar, si es asi se adiciona el computador y se suma uno al conteo de computadores
+			if($add){
+		?>	
+				<input type="hidden" id="hddAdd" name="hddAdd" value=1 />
+		<?php	
+			}else{
+		?>
+				<input type="hidden" id="hddAdd" name="hddAdd" value=2 />
+		<?php
+			}
+		?>
+		
+		<div class="row">			
+			<div class="col-sm-6">
+				<div class="form-group text-left">
+					<label class="control-label" for="identificacion">Identificación del computador : *</label>
+					<input type="text" id="identificacion" name="identificacion" class="form-control" value="<?php echo $information?$information[0]["identificacion"]:""; ?>" placeholder="Identificación del computador" required >
+				</div>
+			</div>
+			
+		</div>	
+		
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">

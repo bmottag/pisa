@@ -719,6 +719,7 @@ class Sitios extends CI_Controller {
 			$this->load->model("general_model");
 						
 			$data['information'] = FALSE;
+			$data['add'] = FALSE;
 			$data["idSalon"] = $this->input->post("idSalon");
 			$data["idComputador"] = $this->input->post("idComputador");
 			
@@ -733,6 +734,23 @@ class Sitios extends CI_Controller {
 			$this->load->view("form_computador_modal", $data);
     }
 	
+    /**
+     * Cargo modal - formulario COMPUTADORES
+     * @since 13/2/2018
+     */
+    public function cargarModalComputadoresV2() 
+	{
+			header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
+			$this->load->model("general_model");
+						
+			$data['information'] = FALSE;
+			$data['add'] = TRUE;
+			$data["idSalon"] = $this->input->post("idSalon");
+			
+			$this->load->view("form_computador_modal", $data);
+    }
+
+	
 	/**
 	 * Guardar computadores
      * @since 5/2/2018
@@ -742,9 +760,10 @@ class Sitios extends CI_Controller {
 			header('Content-Type: application/json');
 			$data = array();
 			
-			$idSalon = $this->input->post('hddIdSalon');
+			$idSala = $this->input->post('hddIdSalon');
 			$idComputador = $this->input->post('hddIdComputador');
-			$data["idRecord"] = $idSalon;
+			$add = $this->input->post('hddAdd');
+			$data["idRecord"] = $idSala;
 			
 			$msj = "Se adicionó el computador con éxito. <strong>Recuerde subir la foto del computador.</strong>";
 			if ($idComputador != '') {
@@ -752,12 +771,25 @@ class Sitios extends CI_Controller {
 			}
 			
 			if ($this->sitios_model->saveComputador()) {
-				$data["result"] = true;
 				
+				//incrementar el numero de computadores en 1
+				if($add == 1){
+					
+					$this->load->model("general_model");
+					//info de sitio
+					$arrParam = array("idSala" => $idSala);
+					$infoSalon = $this->general_model->get_salones_by($arrParam);
+					
+					$numeroComputadores = $infoSalon[0]['computadores'] + 1;
+					$arrParam = array("idSala" => $idSala, "noComputadores" => $numeroComputadores);
+					$this->sitios_model->updateNumeroComputadores($arrParam);
+					
+				}
+				
+				$data["result"] = true;
 				$this->session->set_flashdata('retornoExito', $msj);
 			} else {
 				$data["result"] = "error";
-				
 				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador.');
 			}
 
