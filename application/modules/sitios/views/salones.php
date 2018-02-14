@@ -164,6 +164,8 @@ if ($retornoError) {
 										<th class='text-center'>No.</th>
 										<th class='text-center'>Nombre o identificación sala de computo</th>
 										<th class='text-center'>No. Computadores</th>
+										<th class='text-center'>No. Computadores actualizados</th>
+										<th class='text-center'>No. Computadores cumplen diagnóstico</th>
 										<th class='text-center'>Enlaces</th>
 									</tr>
 								</thead>
@@ -173,19 +175,31 @@ if ($retornoError) {
 ?>
 								<?php
 									$i=0;
-									foreach ($infoSalones as $lista):
-											$i++;
 									
-											echo "<tr>";
-											echo "<td class='text-center text-success'>" . $i . "</td>";
-											echo "<td class='text-center text-success'>" . $lista['nombre_salon'] . "</td>";
-											echo "<td class='text-center text-success'>" . $lista['computadores'] . "</td>";
-	
-											echo "<td class='text-center'>";									
+									$ci = &get_instance();
+									$ci->load->model("general_model");
+									
+									foreach ($infoSalones as $lista):
+										$i++;
+$arrParam = array("idSalon" => $lista['id_sitio_salon'],
+					"conFoto" => 1);
+$conteoComputadoresActualizado = $ci->general_model->countComputadores($arrParam);
+
+$arrParam["adecuado"] = 1; 
+$conteoComputadoresAdecuados = $ci->general_model->countComputadores($arrParam);
+									
+										echo "<tr>";
+										echo "<td class='text-center text-success'>" . $i . "</td>";
+										echo "<td class='text-center text-success'>" . $lista['nombre_salon'] . "</td>";
+										echo "<td class='text-center text-success'>" . $lista['computadores'] . "</td>";
+										echo "<td class='text-center text-success'>" . $conteoComputadoresActualizado . "</td>";
+										echo "<td class='text-center text-success'>" . $conteoComputadoresAdecuados . "</td>";
+
+										echo "<td class='text-center'>";									
 								?>
-											<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal_salon" id="<?php echo $lista['id_sitio_salon']; ?>" >
-												Actualizar <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-											</button>
+										<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal_salon" id="<?php echo $lista['id_sitio_salon']; ?>" >
+											Actualizar <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+										</button>
 
 <a class='btn btn-default btn-xs' href='<?php echo base_url('sitios/computadores_salon/' . $lista['id_sitio_salon'] ); ?>'>
 	Computadores <span class='glyphicon glyphicon-plus' aria-hidden='true'>
@@ -195,8 +209,8 @@ if ($retornoError) {
 	Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
 </a>
 								<?php
-											echo "</td>";
-											echo "</tr>";								
+										echo "</td>";
+										echo "</tr>";								
 									endforeach;
 								?>
 
@@ -209,6 +223,8 @@ if ($retornoError) {
 									for ($i = 1; $i <= $salonesFaltantes; $i++)
 									{
 											echo "<tr>";
+											echo "<td class='text-center text-danger'>Falta información</td>";
+											echo "<td class='text-center text-danger'>Falta información</td>";
 											echo "<td class='text-center text-danger'>Falta información</td>";
 											echo "<td class='text-center text-danger'>Falta información</td>";
 											echo "<td class='text-center text-danger'>Falta información</td>";

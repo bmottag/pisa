@@ -1282,10 +1282,21 @@ class General_model extends CI_Model {
 			if (array_key_exists("idSalon", $arrDatos)) {
 				$sql.= " AND fk_id_sitio_salon = " . $arrDatos["idSalon"];
 			}
+			
+			if (array_key_exists("conFoto", $arrDatos)) {
+				$sql.= " AND foto_computador IS NOT NULL";
+			}
+			
+			if (array_key_exists("adecuado", $arrDatos)) {
+				$sql.= " AND adecuado = 1";
+			}
+			
 			$query = $this->db->query($sql);
 			$row = $query->row();
 			return $row->CONTEO;
 		}
+		
+
 
 
 }
