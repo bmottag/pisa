@@ -149,45 +149,12 @@ if ($retornoError) {
 									</tr>
 								</thead>
 								<tbody>
-								<?php
-									$i=0;
-
-									for ($i = 1; $i <= $computadoresFaltantes; $i++)
-									{
-											echo "<tr>";
-											echo "<td class='text-danger text-center'>" . $i . "</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
-	
-											echo "<td class='text-center'>";								
-								?>
-				<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal_computador" id="<?php echo $infoSalon[0]['id_sitio_salon']; ?>">
-						Actualizar <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-				</button>
-				
-<a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/deleteComputador/' . $infoSalon[0]['id_sitio_salon']); ?>'>
-	Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
-</a>
-
-								<?php
-											echo "</td>";
-											echo "</tr>";								
-									}
-								?>
 								
 <?php
 	if($information){
 ?>
 						<?php
-							$i=$computadoresFaltantes;
+							$i=0;
 							foreach ($information as $lista):
 									$i++;
 									echo "<tr>";
@@ -328,6 +295,40 @@ if ($retornoError) {
 <?php 
 	}
 ?>
+								
+								<?php
+									for ($i = 1; $i <= $computadoresFaltantes; $i++)
+									{
+											echo "<tr>";
+											echo "<td class='text-danger text-center'>Falta Información</td>";
+											echo "<td class='text-danger'>Falta Información</td>";
+											echo "<td class='text-danger'>Falta Información</td>";
+											echo "<td class='text-danger'>Falta Información</td>";
+											echo "<td class='text-danger'>Falta Información</td>";
+											echo "<td class='text-danger'>Falta Información</td>";
+											echo "<td class='text-danger'>Falta Información</td>";
+											echo "<td class='text-danger'>Falta Información</td>";
+											echo "<td class='text-danger'>Falta Información</td>";
+											echo "<td class='text-danger'>Falta Información</td>";
+											echo "<td class='text-danger'>Falta Información</td>";
+	
+											echo "<td class='text-center'>";								
+								?>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal_computador" id="<?php echo $infoSalon[0]['id_sitio_salon']; ?>">
+						Actualizar <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+				</button>
+				
+<a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/deleteComputador/' . $infoSalon[0]['id_sitio_salon']); ?>'>
+	Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
+</a>
+
+								<?php
+											echo "</td>";
+											echo "</tr>";								
+									}
+								?>
+								
+
 								</tbody>
 							</table>
 					

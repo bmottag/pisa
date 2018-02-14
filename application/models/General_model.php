@@ -1236,6 +1236,7 @@ class General_model extends CI_Model {
 				if (array_key_exists("idComputador", $arrData)) {
 					$this->db->where('C.id_sitio_computador', $arrData["idComputador"]);
 				}
+				$this->db->order_by('id_sitio_computador', 'asc');
 				$query = $this->db->get('sitios_computadores C');
 
 				if ($query->num_rows() > 0) {
