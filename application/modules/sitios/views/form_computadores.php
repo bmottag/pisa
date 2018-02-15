@@ -134,7 +134,8 @@ if ($retornoError) {
 							<table width="100%" class="table table-striped table-hover" >
 								<thead>
 									<tr>
-										<th class='text-center'>No.</th>
+										<th class='text-center'>Identificación del computador</th>
+										<th class='text-center'>¿Para equipos con Windows 8.1 y Windows 10, se actualizó Windows Defender a la versión 1.261.610.0 o posterior? </th>
 										<th class='text-center'>CPU</th>
 										<th class='text-center'>OS</th>
 										<th class='text-center'>Memoria del sistema</th>
@@ -158,7 +159,20 @@ if ($retornoError) {
 							foreach ($information as $lista):
 									$i++;
 									echo "<tr>";
-									echo "<td class='text-center text-success'>" . $i . "</td>";
+									echo "<td class='text-center text-success'>" . $lista['identificacion'] . "</td>";
+
+									switch ($lista['windows_defender']) {
+										case 1:
+											$cpu = 'Si';
+											break;
+										case 2:
+											$cpu = 'No';
+											break;
+										case 3:
+											$cpu = 'No aplica';
+											break;
+									}
+									echo "<td class='text-center text-success'>" . $cpu . "</td>";
 									
 									switch ($lista['cpu']) {
 										case 1:
@@ -301,6 +315,7 @@ if ($retornoError) {
 									{
 											echo "<tr>";
 											echo "<td class='text-danger text-center'>Falta Información</td>";
+											echo "<td class='text-danger'>Falta Información</td>";
 											echo "<td class='text-danger'>Falta Información</td>";
 											echo "<td class='text-danger'>Falta Información</td>";
 											echo "<td class='text-danger'>Falta Información</td>";
