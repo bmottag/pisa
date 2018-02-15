@@ -56,7 +56,7 @@ $(function(){
 									echo "<td class='text-center'>";
 						?>
 									<a class='btn btn-default btn-xs' href='<?php echo base_url('sitios/salones/' . $lista['id_sitio']) ?>'>
-										Sala de cómputo <span class="fa fa-cube" aria-hidden="true">
+										Salas de cómputo <span class="fa fa-cube" aria-hidden="true">
 									</a>
 						
 									</td>
