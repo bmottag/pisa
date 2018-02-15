@@ -44,28 +44,11 @@
 if($userRol!=7){//USUARIOS QUE NO SON PISA
 ?>				
 				
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-						<i class="fa fa-list-alt"></i> Gestión de Sitios <i class="fa fa-caret-down"></i>
-					</a>
-					<ul class="dropdown-menu dropdown-messages">
-					
-						<li>
-							<a href="<?php echo base_url("sitios"); ?>"><i class="fa fa-building-o fa-fw"></i> Gestión de Sitios</a>
-						</li>
-						
-						<li class="divider"></li>
+				<li>
+					<a href="<?php echo base_url("sitios"); ?>"><i class="fa fa-building-o fa-fw"></i> Gestión de Sitios</a>
+				</li>
+				
 
-						<li>
-							<a href="<?php echo base_url("more/region"); ?>"><i class="fa fa-globe fa-fw"></i> Nodo o Región</a>
-						</li>
-
-						<li>
-							<a href="<?php echo base_url("more/zona"); ?>"><i class="fa fa-stack-exchange fa-fw"></i> Zona</a>
-						</li>
-						
-					</ul>
-				</li>				
 <?php 
 }
 ?>
