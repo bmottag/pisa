@@ -40,7 +40,7 @@ $(function(){
 								<th>Municipio</th>
 								<th>Sitio</th>
 								<th>Código DANE</th>
-								<th class="text-center">Gestión de salas de computo</th>
+								<th class="text-center">Gestión salas de cómputo</th>
 								<th class="text-center">Usuario PISA</th>
 							</tr>
 						</thead>
@@ -56,7 +56,7 @@ $(function(){
 									echo "<td class='text-center'>";
 						?>
 									<a class='btn btn-default btn-xs' href='<?php echo base_url('sitios/salones/' . $lista['id_sitio']) ?>'>
-										Sala de computo <span class="fa fa-cube" aria-hidden="true">
+										Sala de cómputo <span class="fa fa-cube" aria-hidden="true">
 									</a>
 						
 									</td>
@@ -105,7 +105,7 @@ if($lista['id_school_pisa']){
 $(document).ready(function() {
 	$('#dataTables').DataTable({
 		responsive: true,
-		"pageLength": 50
+		"pageLength": 100
 	});
 });
 </script>

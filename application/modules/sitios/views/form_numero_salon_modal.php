@@ -2,7 +2,7 @@
 
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	<h4 class="modal-title" id="exampleModalLabel">Número de salones
+	<h4 class="modal-title" id="exampleModalLabel">Número de salas de cómputo
 	</h4>
 </div>
 
@@ -16,7 +16,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="form-group text-left">
-					<label class="control-label" for="no_salones">Número de salones : *</label>
+					<label class="control-label" for="no_salones">Número de salas de cómputo : *</label>
 					<select name="no_salones" id="no_salones" class="form-control" required>
 						<option value='' >Select...</option>
 						<?php

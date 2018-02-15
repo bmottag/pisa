@@ -54,14 +54,14 @@ $(function(){
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<a class="btn btn-info btn-xs" href=" <?php echo base_url().'sitios/salones/' . $idSitio; ?> "><span class="glyphicon glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Regresar </a> 
-					<i class="glyphicon glyphicon-screenshot"></i> Salon
+					<i class="glyphicon glyphicon-screenshot"></i> Sala de cómputo
 				</div>
 				<div class="panel-body">
 					
 					<div class="col-lg-4">	
 						<div class="alert alert-info">
 							<strong>Sitio: </strong><?php echo $infoSitio[0]['nombre_sitio']; ?><br>
-							<strong>ID: </strong><?php echo $infoSitio[0]['national_school_id']; ?><br>
+							<strong>ID: </strong><?php echo $infoSitio[0]['national_school_id']; ?>
 						</div>
 					</div>
 					<div class="col-lg-4">	
@@ -72,7 +72,7 @@ $(function(){
 					</div>
 					<div class="col-lg-4">	
 						<div class="alert alert-info">
-							<strong>Sala de computo: </strong><?php echo $infoSalon[0]['nombre_salon']; ?><br>
+							<strong>Sala de cómputo: </strong><?php echo $infoSalon[0]['nombre_salon']; ?><br>
 							<?php $numeroComputadores = $infoSalon[0]['computadores']?$infoSalon[0]['computadores']:0; ?>
 							<strong>No. computadores: </strong><?php echo $numeroComputadores; ?>
 						</div>

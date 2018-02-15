@@ -77,7 +77,7 @@ $(function(){
 <?php
 	}
 ?>
-					<i class="fa fa-cube"></i> <strong>Salas de computo</strong>
+					<i class="fa fa-cube"></i> <strong>Salas de cómputo</strong>
 				</div>
 				<div class="panel-body">
 					
@@ -96,9 +96,9 @@ $(function(){
 					
 					<div class="col-lg-4">	
 						<div class="alert alert-info">
-							<strong>No. de salas de computo: </strong><?php echo $infoSitio[0]['numero_salas']; ?><br>
+							<strong>No. de salas de cómputo: </strong><?php echo $infoSitio[0]['numero_salas']; ?><br>
 			<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $infoSitio[0]['id_sitio']; ?>">
-					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Número de salas de computo
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Número de salas de cómputo
 			</button><br>
 						</div>
 					</div>
@@ -152,7 +152,7 @@ if ($retornoError) {
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<strong>Listado de salas de computo</strong>
+						<strong>Listado de salas de cómputo</strong>
 					</div>
 					<!-- /.panel-heading -->
 					<div class="panel-body">
@@ -162,7 +162,7 @@ if ($retornoError) {
 								<thead>
 									<tr>
 										<th class='text-center'>No.</th>
-										<th class='text-center'>Nombre o identificación sala de computo</th>
+										<th class='text-center'>Nombre o identificación sala de cómputo</th>
 										<th class='text-center'>No. Computadores</th>
 										<th class='text-center'>No. Computadores actualizados</th>
 										<th class='text-center'>No. Computadores cumplen diagnóstico</th>
@@ -252,15 +252,17 @@ $conteoComputadoresAdecuados = $ci->general_model->countComputadores($arrParam);
 				</div>
 			</div>
 		</div>
+		
+		<button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal_salon" id="<?php echo $idSitio; ?>">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar sala de cómputo
+		</button>	
+		<br>
+		
+		
 <?php
 	}
 ?>
 
-
-		<button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal_salon" id="<?php echo $idSitio; ?>">
-				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar sala de computo
-		</button>	
-		<br>
 
 	
 </div>
