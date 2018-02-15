@@ -100,14 +100,25 @@ class Sitios extends CI_Controller {
 			
 			$idSitio = $data["idRecord"] = $this->input->post('hddIdSitio');
 			$numeroSalas = $this->input->post('no_salones');
-			$arrParam = array("idSitio" => $idSitio, "noSalones" => $numeroSalas);
 			
-			if ($this->sitios_model->updateNumeroSalones($arrParam)) {
-				$data["result"] = true;				
-				$this->session->set_flashdata('retornoExito', 'Se actualizó la información.');
-			} else {
+			//noSalones
+			$this->load->model("general_model");
+			$arrParam = array("idSitio" => $idSitio);
+			$numeroActual = $this->general_model->countSalones($arrParam);
+			$diferencia = $numeroSalas - $numeroActual;
+			
+			if($diferencia < 0){
 				$data["result"] = "error";
-				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador.');
+				$data["mensaje"] = "Debe eliminar las salas de cómputo para disminuir el número de salas de cómputo.";
+			}else{
+				$arrParam = array("idSitio" => $idSitio, "noSalones" => $numeroSalas);
+				if ($this->sitios_model->updateNumeroSalones($arrParam)) {
+					$data["result"] = true;				
+					$this->session->set_flashdata('retornoExito', 'Se actualizó la información.');
+				} else {
+					$data["result"] = "error";
+					$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador.');
+				}
 			}
 
 			echo json_encode($data);
@@ -235,28 +246,43 @@ class Sitios extends CI_Controller {
 				$msj = "Se actualizó el salón con éxito.";
 			}
 			
-			if ($this->sitios_model->saveSalones()) {
-				
-				//sumar el numero de salas mas 1
-				if($add == 1){
-					
-					$this->load->model("general_model");
-					//info de sitio
-					$arrParam = array("idSitio" => $idSitio);
-					$infoSitio = $this->general_model->get_sitios($arrParam);
-					
-					$numeroSalas = $infoSitio[0]['numero_salas'] + 1;
-					$arrParam = array("idSitio" => $idSitio, "noSalones" => $numeroSalas);
-					
-					$this->sitios_model->updateNumeroSalones($arrParam);
-					
-				}
-				
-				$data["result"] = true;
-				$this->session->set_flashdata('retornoExito', $msj);
-			} else {
+			//noComputadores
+			$this->load->model("general_model");
+			$idSalon = $this->input->post('hddIdSalon');
+			$arrParam = array("idSalon" => $idSalon);			
+			$numeroActual = $this->general_model->countComputadores($arrParam);
+			$numeroComputadores = $this->input->post('computadores');
+			
+			$diferencia = $numeroComputadores - $numeroActual;
+			
+			if($diferencia < 0){
 				$data["result"] = "error";
-				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador.');
+				$data["mensaje"] = "Debe eliminar los computadores para disminuir el número de computadores.";
+			}else{
+			
+				if ($this->sitios_model->saveSalones()) {
+					
+					//sumar el numero de salas mas 1
+					if($add == 1){
+						
+						$this->load->model("general_model");
+						//info de sitio
+						$arrParam = array("idSitio" => $idSitio);
+						$infoSitio = $this->general_model->get_sitios($arrParam);
+						
+						$numeroSalas = $infoSitio[0]['numero_salas'] + 1;
+						$arrParam = array("idSitio" => $idSitio, "noSalones" => $numeroSalas);
+						
+						$this->sitios_model->updateNumeroSalones($arrParam);
+						
+					}
+					
+					$data["result"] = true;
+					$this->session->set_flashdata('retornoExito', $msj);
+				} else {
+					$data["result"] = "error";
+					$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador.');
+				}
 			}
 
 			echo json_encode($data);
