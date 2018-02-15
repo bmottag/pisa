@@ -165,7 +165,9 @@ if ($retornoError) {
 										<th class='text-center'>Nombre o identificación sala de cómputo</th>
 										<th class='text-center'>No. Computadores</th>
 										<th class='text-center'>No. Computadores actualizados</th>
+										<th class='text-center'>No. Computadores NO actualizados</th>
 										<th class='text-center'>No. Computadores cumplen diagnóstico</th>
+										<th class='text-center'>No. Computadores NO cumplen diagnóstico</th>
 										<th class='text-center'>Enlaces</th>
 									</tr>
 								</thead>
@@ -187,13 +189,18 @@ $conteoComputadoresActualizado = $ci->general_model->countComputadores($arrParam
 
 $arrParam["adecuado"] = 1; 
 $conteoComputadoresAdecuados = $ci->general_model->countComputadores($arrParam);
+
+$conteoComputadoresNOActualizado = $lista['computadores'] - $conteoComputadoresActualizado;
+$conteoComputadoresNOAdecuados = $lista['computadores'] - $conteoComputadoresAdecuados;
 									
 										echo "<tr>";
 										echo "<td class='text-center text-success'>" . $i . "</td>";
 										echo "<td class='text-center text-success'>" . $lista['nombre_salon'] . "</td>";
 										echo "<td class='text-center text-success'>" . $lista['computadores'] . "</td>";
 										echo "<td class='text-center text-success'>" . $conteoComputadoresActualizado . "</td>";
+										echo "<td class='text-center text-success'>" . $conteoComputadoresNOActualizado . "</td>";
 										echo "<td class='text-center text-success'>" . $conteoComputadoresAdecuados . "</td>";
+										echo "<td class='text-center text-success'>" . $conteoComputadoresNOAdecuados . "</td>";
 
 										echo "<td class='text-center'>";									
 								?>
@@ -223,6 +230,8 @@ $conteoComputadoresAdecuados = $ci->general_model->countComputadores($arrParam);
 									for ($i = 1; $i <= $salonesFaltantes; $i++)
 									{
 											echo "<tr>";
+											echo "<td class='text-center text-danger'>Falta información</td>";
+											echo "<td class='text-center text-danger'>Falta información</td>";
 											echo "<td class='text-center text-danger'>Falta información</td>";
 											echo "<td class='text-center text-danger'>Falta información</td>";
 											echo "<td class='text-center text-danger'>Falta información</td>";
