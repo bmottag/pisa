@@ -189,12 +189,12 @@
 			
 			<div class="col-sm-6">
 				<div class="form-group text-left">					
-					<label class="radio-inline">
-						<input type="radio" name="virus_scan" id="virus_scan1" value=1 <?php if($information && $information[0]["virus_scan"] == 1) { echo "checked"; }  ?>>Ok
-					</label>
-					<label class="radio-inline">
-						<input type="radio" name="virus_scan" id="virus_scan2" value=2 <?php if($information && $information[0]["virus_scan"] == 2) { echo "checked"; }  ?>>Falló
-					</label>
+						<label class="radio-inline">
+							<input type="radio" name="virus_scan" id="virus_scan1" value=1 <?php if($information && $information[0]["virus_scan"] == 1) { echo "checked"; }  ?>>Ok
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="virus_scan" id="virus_scan2" value=2 <?php if($information && $information[0]["virus_scan"] == 2) { echo "checked"; }  ?>>Falló
+						</label>
 				</div>
 			</div>
 		</div>

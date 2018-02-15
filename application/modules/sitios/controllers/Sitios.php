@@ -921,7 +921,8 @@ class Sitios extends CI_Controller {
 			$path = "images/sitios/computadores/" . $imagen;
 			
 			//insertar datos
-			if($this->sitios_model->add_foto_computador($path))
+			$arrParam = array("idComputador" => $idComputador, "path" => $path);
+			if($this->sitios_model->add_foto_computador($arrParam))
 			{
 				$this->session->set_flashdata('retornoExito', 'Se subio la imagen con éxito.');
 			}else{
@@ -1019,6 +1020,187 @@ class Sitios extends CI_Controller {
 
 			redirect(base_url('sitios/computadores_salon/' . $idSala), 'refresh');
     }
+	
+	/**
+	 * Form computador
+     * @since 13/2/2018
+     * @author BMOTTAG
+	 */
+	public function add_computador($idSala, $add, $idComputador = 'x', $error = '')
+	{
+			$this->load->model("general_model");
+			
+			$data['information'] = FALSE;
+			$data['add'] = $add;
+			$data['idSala'] = $idSala;
+			$data["idComputador"] = $idComputador;
+			
+			//info salon
+			$arrParam = array("idSalon" => $idSala);
+			$data['infoSalon'] = $this->general_model->get_salones_by($arrParam);
+
+			$data["idSitio"] = $data['infoSalon'][0]['fk_id_sitio'];
+
+			//info de sitio
+			$arrParam = array("idSitio" => $data["idSitio"]);
+			$data['infoSitio'] = $this->general_model->get_sitios($arrParam);
+
+			//si envio el id, entonces busco la informacion 
+			if ($idComputador != 'x') {
+				$arrParam = array("idComputador" => $idComputador);
+				$data['information'] = $this->general_model->get_computadores($arrParam);//info computador
+			}
+			
+			$data['error'] = $error; //se usa para mostrar los errores al cargar la imagen 			
+
+			$data["view"] = 'form_diagnostico';
+			$this->load->view("layout", $data);
+	}
+
+	/**
+	 * FUNCIÓN PARA SUBIR LA IMAGEN 
+	 */
+    function guardar_info_computador() 
+	{
+        $this->load->library('form_validation');
+		$this->form_validation->set_rules('identificacion', 'Identificación del computador', 'required|max_length[200]');
+		$this->form_validation->set_rules('windows_defender', 'Campo 1', 'required');
+		$this->form_validation->set_rules('cpu', 'Campo 2', 'required');
+		$this->form_validation->set_rules('os', 'Campo 3', 'required');
+		$this->form_validation->set_rules('memoria', 'Campo 4', 'required');
+		$this->form_validation->set_rules('resolucion', 'Campo 5', 'required');
+		$this->form_validation->set_rules('skype', 'Campo 6', 'required');
+		$this->form_validation->set_rules('transferencia_usb', 'Campo 7', 'required');
+		$this->form_validation->set_rules('virus_scan', 'Campo 8', 'required');
+		$this->form_validation->set_rules('unidad_usb', 'Campo 9', 'required');
+		$this->form_validation->set_rules('adecuado', 'Campo 10', 'required');
+		
+		$add = $data['add'] = $this->input->post('hddAdd');
+		$idSala = $data['idSala'] = $this->input->post('hddIdSala');
+		$idComputador = $data["idComputador"] = $this->input->post('hddIdComputador');					
+		
+		//bandera para deterinar si es para editar entonces no mostrar el formuario de foto
+		$bandera = TRUE;
+		if ($idComputador != 'x') {
+			$bandera = FALSE;
+		}
+		         
+        if ($this->form_validation->run() == FALSE) {
+            
+			$this->load->model("general_model");
+			
+			$data['information'] = FALSE;
+
+			
+			//info salon
+			$arrParam = array("idSalon" => $idSala);
+			$data['infoSalon'] = $this->general_model->get_salones_by($arrParam);
+
+			$data["idSitio"] = $data['infoSalon'][0]['fk_id_sitio'];
+
+			//info de sitio
+			$arrParam = array("idSitio" => $data["idSitio"]);
+			$data['infoSitio'] = $this->general_model->get_sitios($arrParam);
+
+			//si envio el id, entonces busco la informacion 
+			if ($idComputador != 'x') {
+				$arrParam = array("idComputador" => $idComputador);
+				$data['information'] = $this->general_model->get_computadores($arrParam);//info computador
+			}
+			
+			$data["view"] = 'form_diagnostico';
+			$this->load->view("layout", $data);
+			
+        } else {
+			$data = array();
+			
+
+			
+			$msj = "Se adicionó el computador con éxito.";
+			if ($idComputador != 'x') {
+				$msj = "Se actualizó el computador con éxito.";
+			}
+			
+			if ($idComputador = $this->sitios_model->saveComputador()) {
+				
+				//incrementar el numero de computadores en 1
+				if($add == 1){
+					
+					$this->load->model("general_model");
+					//info de sitio
+					$arrParam = array("idSalon" => $idSala);
+					$infoSalon = $this->general_model->get_salones_by($arrParam);
+
+					$numeroComputadores = $infoSalon[0]['computadores'] + 1;
+					$arrParam = array("idSala" => $idSala, "noComputadores" => $numeroComputadores);
+					$this->sitios_model->updateNumeroComputadores($arrParam);
+					
+				}
+				
+				$this->session->set_flashdata('retornoExito', $msj);
+			} else {
+				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador.');
+			}
+
+			if($bandera){
+					$config['upload_path'] = './images/sitios/computadores/';
+					$config['overwrite'] = false;
+					$config['allowed_types'] = 'gif|jpg|png';
+					$config['max_size'] = '5000';
+					$config['max_width'] = '3024';
+					$config['max_height'] = '3008';			
+					
+					$this->load->library('upload', $config);
+					//SI LA IMAGEN FALLA AL SUBIR MOSTRAMOS EL ERROR EN LA VISTA 
+					if (!$this->upload->do_upload()) {
+						$error = $this->upload->display_errors();
+						$this->foto_computador($idSala,$idComputador,$error);
+					} else {
+						$file_info = $this->upload->data();//subimos la imagen
+						
+						$data = array('upload_data' => $this->upload->data());
+						$imagen = $file_info['file_name'];
+						$path = "images/sitios/computadores/" . $imagen;
+						
+						//insertar datos
+						$arrParam = array("idComputador" => $idComputador, "path" => $path);
+						if($this->sitios_model->add_foto_computador($arrParam))
+						{
+							$this->session->set_flashdata('retornoExito', 'Se subio la imagen con éxito.');
+						}else{
+							$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+						}
+									
+						
+					}
+				
+			}
+			redirect('sitios/computadores_salon/' . $idSala);
+		}
+    }
+	
+	
+    public function procesar()
+    {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('username', 'Nombre de usuario', 'required|min_length[5]|max_length[12]');
+        $this->form_validation->set_rules('password', 'Password', 'required|matches[passconf]');
+        $this->form_validation->set_rules('passconf', 'Confirmar Password', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+         
+        if ($this->form_validation->run() == FALSE) {
+            
+			
+			
+			$data["view"] = 'form_diagnostico';
+			$this->load->view("layout", $data);
+			
+        } else {
+            echo "Datos cargador correctamente";
+        }
+         
+    }
+
 	
 	
 }

@@ -135,7 +135,7 @@ if ($retornoError) {
 								<thead>
 									<tr>
 										<th class='text-center'>Identificación del computador</th>
-										<th class='text-center'>¿Para equipos con Windows 8.1 y Windows 10, se actualizó Windows Defender a la versión 1.261.610.0 o posterior? </th>
+										<th class='text-center'>¿Se actualizó Windows Defender? </th>
 										<th class='text-center'>CPU</th>
 										<th class='text-center'>OS</th>
 										<th class='text-center'>Memoria del sistema</th>
@@ -290,9 +290,10 @@ if ($retornoError) {
 									
 									echo "<td class='text-center'>";									
 						?>
-									<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal_computador" id="<?php echo $lista['id_sitio_computador']; ?>" >
-										Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
-									</button>
+									
+<a class='btn btn-default btn-xs' href='<?php echo base_url('sitios/add_computador/' . $infoSalon[0]['id_sitio_salon'] . '/2/' . $lista['id_sitio_computador']); ?>'>
+	Actualizar <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+</a>
 									
 <a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/deleteComputador/' . $infoSalon[0]['id_sitio_salon'] . '/' . $lista['id_sitio_computador'] ); ?>'>
 	Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
@@ -315,23 +316,26 @@ if ($retornoError) {
 									{
 											echo "<tr>";
 											echo "<td class='text-danger text-center'>Falta Información</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
-											echo "<td class='text-danger'>Falta Información</td>";
+											echo "<td class='text-danger text-center'>Falta Información</td>";
+											echo "<td class='text-danger text-center'>Falta Información</td>";
+											echo "<td class='text-danger text-center'>Falta Información</td>";
+											echo "<td class='text-danger text-center'>Falta Información</td>";
+											echo "<td class='text-danger text-center'>Falta Información</td>";
+											echo "<td class='text-danger text-center'>Falta Información</td>";
+											echo "<td class='text-danger text-center'>Falta Información</td>";
+											echo "<td class='text-danger text-center'>Falta Información</td>";
+											echo "<td class='text-danger text-center'>Falta Información</td>";
+											echo "<td class='text-danger text-center'>Falta Información</td>";
+											echo "<td class='text-danger text-center'>Falta Información</td>";
 	
 											echo "<td class='text-center'>";								
 								?>
-				<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal_computador" id="<?php echo $infoSalon[0]['id_sitio_salon']; ?>">
-						Actualizar <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-				</button>
+
+				
+<a class='btn btn-primary btn-xs' href='<?php echo base_url('sitios/add_computador/' . $infoSalon[0]['id_sitio_salon'] . '/2'); ?>'>
+	Actualizar <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+</a>
+				
 				
 <a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/deleteComputador/' . $infoSalon[0]['id_sitio_salon']); ?>'>
 	Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
@@ -352,14 +356,16 @@ if ($retornoError) {
 				</div>
 			</div>
 		</div>
+		
+
+<a class='btn btn-warning btn-block' href='<?php echo base_url('sitios/add_computador/' . $infoSalon[0]['id_sitio_salon'] . '/1'); ?>'>
+	Agregar computador <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+</a>		
+<br>
+		
 <?php
 	}
 ?>
-
-		<button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal_computador" id="<?php echo $infoSalon[0]['id_sitio_salon']; ?>">
-				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar computador
-		</button>
-		<br>
 
 
 </div>

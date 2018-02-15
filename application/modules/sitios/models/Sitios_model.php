@@ -264,15 +264,16 @@
 				);
 				
 				//revisar si es para adicionar o editar
-				if ($idComputador == '') {
-					$data['fk_id_sitio_salon'] = $this->input->post('hddIdSalon');
+				if ($idComputador == 'x') {
+					$data['fk_id_sitio_salon'] = $this->input->post('hddIdSala');
 					$query = $this->db->insert('sitios_computadores', $data);
+					$idComputador = $this->db->insert_id();
 				} else {
 					$this->db->where('id_sitio_computador', $idComputador);
 					$query = $this->db->update('sitios_computadores', $data);
 				}
 				if ($query) {
-					return true;
+					return $idComputador;
 				} else {
 					return false;
 				}
@@ -355,15 +356,13 @@
 		 * Add fotos
 		 * @since 9/2/2018
 		 */
-		public function add_foto_computador($path) 
-		{			
-				$idComputador = $this->input->post("hddIdComputador");
-		
+		public function add_foto_computador($arrDatos) 
+		{					
 				$data = array(
-					'foto_computador' => $path
+					'foto_computador' => $arrDatos["path"]
 				);
 
-				$this->db->where('id_sitio_computador', $idComputador);
+				$this->db->where('id_sitio_computador', $arrDatos["idComputador"]);
 				$query = $this->db->update('sitios_computadores', $data);
 
 				if ($query) {
@@ -379,9 +378,9 @@
 		 */
 		public function updateNumeroSalones($arrDatos) 
 		{							
-				$data['numero_salas'] = $arrDatos ["noSalones"];
+				$data['numero_salas'] = $arrDatos["noSalones"];
 					
-				$this->db->where('id_sitio', $arrDatos ["idSitio"]);
+				$this->db->where('id_sitio', $arrDatos["idSitio"]);
 				$query = $this->db->update('sitios', $data);
 
 				if ($query) {

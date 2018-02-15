@@ -16,13 +16,13 @@
 					<div class="col-lg-6">	
 						<div class="alert alert-info">
 							<strong>Sitio: </strong><?php echo $infoSitio[0]['nombre_sitio']; ?><br>
-							<strong>Código DANE: </strong><?php echo $infoSitio[0]['codigo_dane']; ?>
+							<strong>ID: </strong><?php echo $infoSitio[0]['national_school_id']; ?>
 						</div>
 					</div>
 					<div class="col-lg-6">	
 						<div class="alert alert-info">
-							<strong>Departemanto: </strong><?php echo $infoSitio[0]['dpto_divipola_nombre']; ?><br>
-							<strong>Municipio: </strong><?php echo $infoSitio[0]['mpio_divipola_nombre']; ?>
+							<strong>Departemanto: </strong><?php echo $infoSitio[0]['departamento']; ?><br>
+							<strong>Municipio: </strong><?php echo $infoSitio[0]['municipio']; ?>
 						</div>
 					</div>
 									
