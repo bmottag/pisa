@@ -18,12 +18,12 @@ class Admin extends MX_Controller {
 			$arrParam = array("idUsuario" => $idUsuario);
 			$infoUsuario = $this->admin_model->get_users($arrParam);
 
-			$subjet = "Ingreso aplicativo - Control operativo ICFES Pruebas Competencias Ciudadanas SDE";
+			$subjet = "Ingreso APP ICFES - Pruebas PISA 2018";
 			$user = $infoUsuario[0]["nombres_usuario"] . " " . $infoUsuario[0]["apellidos_usuario"];
 			$to = $infoUsuario[0]["email"];
 		
 			//mensaje del correo
-			$msj = "<p>Los datos para ingresar al APP de Control Operativo Pruebas ICFES - Pruebas Competencias Ciudadanas SDE, son los siguientes:</p>";
+			$msj = "<p>Los datos para ingresar al APP ICFES - Pruebas PISA 2018, son los siguientes:</p>";
 			$msj .= "<br><strong>Usuario: </strong>" . $infoUsuario[0]["numero_documento"];
 			$msj .= "<br><strong>Contraseña: </strong>" . $infoUsuario[0]["clave"];
 			$msj .= "<br><br><strong><a href='" . base_url() . "'>Enlace Aplicación </a></strong><br>";
