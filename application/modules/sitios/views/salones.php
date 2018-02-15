@@ -280,7 +280,7 @@ $conteoComputadoresAdecuados = $ci->general_model->countComputadores($arrParam);
 
 <!--INICIO Modal Salones-->
 <div class="modal fade text-center" id="modal_salon" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">    
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content" id="tablaDatosSalon">
 
 		</div>

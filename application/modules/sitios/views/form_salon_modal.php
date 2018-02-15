@@ -31,7 +31,7 @@
 			<div class="col-sm-6">
 				<div class="form-group text-left">
 					<label class="control-label" for="salon">Nombre o identificación sala de cómputo : *</label>
-					<input type="text" id="salon" name="salon" class="form-control" value="<?php echo $information?$information[0]["nombre_salon"]:""; ?>" placeholder="Nombre o identificación sala de computo" required >
+					<input type="text" id="salon" name="salon" class="form-control" value="<?php echo $information?$information[0]["nombre_salon"]:""; ?>" placeholder="Nombre o identificación sala de cómputo" required >
 				</div>
 			</div>
 			
