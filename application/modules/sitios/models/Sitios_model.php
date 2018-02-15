@@ -249,7 +249,7 @@
 				$idComputador = $this->input->post('hddIdComputador');
 				
 				$data = array(
-					'identificacion' => $this->input->post('identificacion'),
+					'identificacion' => strtoupper($this->input->post('identificacion')),
 					'windows_defender' => $this->input->post('windows_defender'),
 					'cpu' => $this->input->post('cpu'),
 					'os' => $this->input->post('os'),
@@ -259,7 +259,7 @@
 					'transferencia_usb' => $this->input->post('transferencia_usb'),
 					'virus_scan' => $this->input->post('virus_scan'),
 					'unidad_usb' => $this->input->post('unidad_usb'),
-					'comentarios' => $this->input->post('comentarios'),
+					'comentarios' => strtoupper($this->input->post('comentarios')),
 					'adecuado' => $this->input->post('adecuado')
 				);
 				
