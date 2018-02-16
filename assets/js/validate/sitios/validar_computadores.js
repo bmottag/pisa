@@ -21,9 +21,75 @@ function validarFrmComputador(){
 	var form = document.getElementById('formDiagnostico');
 	var ok = 1;
 
+	if(form.userfile.value == '' && ok == 1){
+		alert('Los campos con * son obligatorios.');
+		form.userfile.focus();
+		ok = 0;
+	}
+	
 	if(form.identificacion.value == '' && ok == 1){
-		alert('Seleccione producto');
+		alert('Los campos con * son obligatorios.');
 		form.identificacion.focus();
+		ok = 0;
+	}
+	
+	if(form.windows_defender.value == '' && ok == 1){
+		alert('Los campos con * son obligatorios.');
+		form.windows_defender.focus();
+		ok = 0;
+	}
+	
+	if(form.cpu.value == '' && ok == 1){
+		alert('Los campos con * son obligatorios.');
+		form.cpu.focus();
+		ok = 0;
+	}
+	
+	if(form.os.value == '' && ok == 1){
+		alert('Los campos con * son obligatorios.');
+		form.os.focus();
+		ok = 0;
+	}
+	
+	if(form.memoria.value == '' && ok == 1){
+		alert('Los campos con * son obligatorios.');
+		form.memoria.focus();
+		ok = 0;
+	}
+	
+	if(form.resolucion.value == '' && ok == 1){
+		alert('Los campos con * son obligatorios.');
+		form.resolucion.focus();
+		ok = 0;
+	}
+	
+	if(form.skype.value == '' && ok == 1){
+		alert('Los campos con * son obligatorios.');
+		form.skype.focus();
+		ok = 0;
+	}
+	
+	if(form.transferencia_usb.value == '' && ok == 1){
+		alert('Los campos con * son obligatorios.');
+		form.transferencia_usb.focus();
+		ok = 0;
+	}
+	
+	if(form.virus_scan.value == '' && ok == 1){
+		alert('Los campos con * son obligatorios.');
+		form.virus_scan.focus();
+		ok = 0;
+	}
+	
+	if(form.unidad_usb.value == '' && ok == 1){
+		alert('Los campos con * son obligatorios.');
+		form.unidad_usb.focus();
+		ok = 0;
+	}
+	
+	if(form.adecuado.value == '' && ok == 1){
+		alert('Los campos con * son obligatorios.');
+		form.adecuado.focus();
 		ok = 0;
 	}
 	
