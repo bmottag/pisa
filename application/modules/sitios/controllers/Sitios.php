@@ -238,22 +238,26 @@ class Sitios extends CI_Controller {
 			$data = array();
 			
 			$idSitio = $this->input->post('hddIdSitio');
+			$idSalon = $this->input->post('hddIdSalon');
 			$add = $this->input->post('hddAdd');
 			$data["idRecord"] = $idSitio;
-			
+
 			$msj = "Se adicionó el salón con éxito.";
-			if ($idSitio != '') {
+			if ($idSalon != '') {
 				$msj = "Se actualizó el salón con éxito.";
+				
+				//noComputadores
+				$this->load->model("general_model");
+				
+				$arrParam = array("idSalon" => $idSalon);			
+				$numeroActual = $this->general_model->countComputadores($arrParam);
+				$numeroComputadores = $this->input->post('computadores');
+				
+				$diferencia = $numeroComputadores - $numeroActual;
+			}else{
+				//como es una sala nueva entonces no se hace el conteo
+				$diferencia = 0;
 			}
-			
-			//noComputadores
-			$this->load->model("general_model");
-			$idSalon = $this->input->post('hddIdSalon');
-			$arrParam = array("idSalon" => $idSalon);			
-			$numeroActual = $this->general_model->countComputadores($arrParam);
-			$numeroComputadores = $this->input->post('computadores');
-			
-			$diferencia = $numeroComputadores - $numeroActual;
 			
 			if($diferencia < 0){
 				$data["result"] = "error";
