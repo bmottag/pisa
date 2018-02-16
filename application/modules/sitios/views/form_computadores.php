@@ -134,6 +134,7 @@ if ($retornoError) {
 							<table width="100%" class="table table-striped table-hover" >
 								<thead>
 									<tr>
+										<th class='text-center'>No.</th>
 										<th class='text-center'>Identificación del computador</th>
 										<th class='text-center'>¿Se actualizó Windows Defender? </th>
 										<th class='text-center'>CPU</th>
@@ -159,6 +160,7 @@ if ($retornoError) {
 							foreach ($information as $lista):
 									$i++;
 									echo "<tr>";
+									echo "<td class='text-center text-success'>" . $i . "</td>";
 									echo "<td class='text-center text-success'>" . $lista['identificacion'] . "</td>";
 
 									switch ($lista['windows_defender']) {
