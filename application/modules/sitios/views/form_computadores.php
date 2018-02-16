@@ -332,6 +332,16 @@ if ($retornoError) {
 											echo "<td class='text-danger text-center'>Falta Información</td>";
 											echo "<td class='text-danger text-center'>Falta Información</td>";
 											echo "<td class='text-danger text-center'>Falta Información</td>";
+
+									echo "<td class='text-center'>";									
+						?>
+									
+<a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/add_computador/' . $infoSalon[0]['id_sitio_salon'] . '/2'); ?>'>
+	Falta foto <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+</a>
+
+						<?php
+									echo "</td>";
 	
 											echo "<td class='text-center'>";								
 								?>
