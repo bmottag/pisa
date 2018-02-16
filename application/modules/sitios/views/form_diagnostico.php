@@ -1,3 +1,5 @@
+<script type="text/javascript" src="<?php echo base_url("assets/js/validate/sitios/validar_computadores.js"); ?>"></script>
+
 <div id="page-wrapper">
 	<br>
 	
@@ -59,7 +61,7 @@ if ($retornoError) {
 }
 ?> 
 
-<form  name="form" id="form" class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url("sitios/guardar_info_computador"); ?>">
+<form  name="formDiagnostico" id="formDiagnostico" class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url("sitios/guardar_info_computador"); ?>">
 	<input type="hidden" id="hddIdSala" name="hddIdSala" value="<?php echo $idSala; ?>"/>
 	<input type="hidden" id="hddIdComputador" name="hddIdComputador" value="<?php echo $idComputador; ?>"/>
 
@@ -356,7 +358,7 @@ if(!$information){
 						<div class="form-group">
 							<div class="row" align="center">
 								<div style="width:100%;" align="center">							
-<button type="submit" id="btnSubmit" name="btnSubmit" class='btn btn-primary'>
+<button type="button" id="btnSubmit" name="btnSubmit" class='btn btn-primary' onclick="validarFrmComputador()">
 		Guardar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
 </button>
 									
