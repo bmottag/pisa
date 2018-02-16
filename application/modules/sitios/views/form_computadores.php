@@ -277,7 +277,10 @@ if ($retornoError) {
 							$estiloFoto = "btn btn-primary btn-xs";
 							$textoFoto = "Foto";
 						?>
-<img src="<?php echo base_url($lista["foto_computador"]); ?>" class="img-rounded" width="42" height="42" />
+						
+<a href='<?php echo base_url($lista["foto_computador"]); ?>' target="_blanck">
+	<img src="<?php echo base_url($lista["foto_computador"]); ?>" class="img-rounded" width="42" height="42" />
+</a>
 						<?php }else{ 
 								$estiloFoto = "btn btn-danger btn-xs";
 								$textoFoto = "Falta Foto";
