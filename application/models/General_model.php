@@ -198,8 +198,9 @@ class General_model extends CI_Model {
 		 */
 		public function get_sitios($arrDatos) 
 		{
-				$this->db->select('S.*, U.numero_documento as cedula_pisa, U.nombres_usuario nom_pisa, U.apellidos_usuario ape_pisa, U.celular celular_pisa');
+				$this->db->select('S.*, U.numero_documento as cedula_pisa, U.nombres_usuario nom_pisa, U.apellidos_usuario ape_pisa, U.celular celular_pisa, D.*');
 				$this->db->join('usuario U', 'U.numero_documento = S.id_school_pisa', 'LEFT');
+				$this->db->join('param_divipola D', 'D.mpio_divipola = S.fk_mpio_divipola', 'INNER');
 				
 				if (array_key_exists("idSitio", $arrDatos)) {
 					$this->db->where('S.id_sitio', $arrDatos["idSitio"]);
@@ -1277,10 +1278,15 @@ class General_model extends CI_Model {
 		{
 			$sql = "SELECT count(S.id_sitio_computador) CONTEO";
 			$sql.= " FROM sitios_computadores S";
+			$sql.= " INNER JOIN sitios_salones SS ON SS.id_sitio_salon = S.fk_id_sitio_salon";
 			$sql.= " WHERE 1=1";
 
 			if (array_key_exists("idSalon", $arrDatos)) {
-				$sql.= " AND fk_id_sitio_salon = " . $arrDatos["idSalon"];
+				$sql.= " AND S.fk_id_sitio_salon = " . $arrDatos["idSalon"];
+			}
+			
+			if (array_key_exists("idSitio", $arrDatos)) {
+				$sql.= " AND SS.fk_id_sitio = " . $arrDatos["idSitio"];
 			}
 			
 			if (array_key_exists("conFoto", $arrDatos)) {

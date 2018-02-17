@@ -26,6 +26,31 @@ $(function(){
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<i class="fa fa-briefcase"></i> Lista de sitios
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group text-left">
+									<label class="control-label" for="depto">Departamento : </label>
+									<select name="depto" id="depto" class="form-control" >
+										<option value=''>Select...</option>
+										<?php for ($i = 0; $i < count($departamentos); $i++) { ?>
+											<option value="<?php echo $departamentos[$i]["dpto_divipola"]; ?>" ><?php echo $departamentos[$i]["dpto_divipola_nombre"]; ?></option>	
+										<?php } ?>
+									</select>
+								</div>
+							</div>
+						
+							<div class="col-sm-6">
+								<div class="form-group text-left">
+									<label class="control-label" for="mcpio">Municipio : </label>
+									<select name="mcpio" id="mcpio" class="form-control" required>					
+										<?php if($information){ ?>
+										<option value=''>Select...</option>
+											<option value="<?php echo $information[0]["fk_mpio_divipola"]; ?>" selected><?php echo $information[0]["mpio_divipola_nombre"]; ?></option>
+										<?php } ?>
+									</select>
+								</div>
+							</div>
+						</div>
 					
 				</div>
 				<div class="panel-body">
@@ -36,16 +61,21 @@ $(function(){
 					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
 						<thead>
 							<tr>				
-								<th>Departamento</th>
-								<th>Municipio</th>
-								<th>Sitio</th>
-								<th>Código DANE</th>
+								<th class="text-center">Departamento</th>
+								<th class="text-center">Municipio</th>
+								<th class="text-center">Sitio</th>
+								<th class="text-center">Código DANE</th>
 								<th class="text-center">Gestión salas de cómputo</th>
+								<th class="text-center">No. salas de cómputo</th>
+								<th class="text-center">No. computadores</th>
 								<th class="text-center">Usuario PISA</th>
 							</tr>
 						</thead>
 						<tbody id="sitios">							
 						<?php
+							$ci = &get_instance();
+							$ci->load->model("general_model");
+						
 							foreach ($info as $lista):
 									echo "<tr>";
 									echo "<td >" . strtoupper($lista['departamento']) . "</td>";
@@ -61,6 +91,19 @@ $(function(){
 						
 									</td>
 									
+						<?php
+									//cuenta registros de salones
+									$arrParam = array("idSitio" => $lista['id_sitio']);
+									$noSalones = $ci->general_model->countSalones($arrParam);
+									if($noSalones){
+										$noComputadores = $ci->general_model->countComputadores($arrParam);
+									}else{
+										$noComputadores = 0;
+									}
+									
+									echo "<td class='text-center'>" . $noSalones . "</td>";
+									echo "<td class='text-center'>" . $noComputadores . "</td>";
+						?>		
 									<td class='text-center'>
 									<a href="<?php echo base_url("admin/asignar_pisa/" . $lista['id_sitio']); ?>" class="btn btn-info btn-xs">Usuario PISA <span class="fa fa-gears fa-fw" aria-hidden="true"></a>
 						<?php 
