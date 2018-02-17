@@ -89,8 +89,8 @@ $(function(){
 					</div>
 					<div class="col-lg-4">	
 						<div class="alert alert-info">
-							<strong>Departemanto: </strong><?php echo $infoSitio[0]['departamento']; ?><br>
-							<strong>Municipio: </strong><?php echo $infoSitio[0]['municipio']; ?>
+							<strong>Departemanto: </strong><?php echo $infoSitio[0]['dpto_divipola_nombre']; ?><br>
+							<strong>Municipio: </strong><?php echo $infoSitio[0]['mpio_divipola_nombre']; ?>
 						</div>
 					</div>
 					

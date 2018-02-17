@@ -214,7 +214,7 @@ class General_model extends CI_Model {
 					$this->db->where('S.fk_mpio_divipola', $arrDatos["mcpio"]);
 				}
 				
-				$this->db->order_by('S.departamento, S.municipio, S.nombre_sitio', 'asc');
+				$this->db->order_by('D.dpto_divipola_nombre, D.mpio_divipola_nombre, S.nombre_sitio', 'asc');
 				$query = $this->db->get('sitios S');
 
 				if ($query->num_rows() > 0) {

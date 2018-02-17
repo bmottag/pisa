@@ -78,8 +78,8 @@ $(function(){
 						
 							foreach ($info as $lista):
 									echo "<tr>";
-									echo "<td >" . strtoupper($lista['departamento']) . "</td>";
-									echo "<td >" . strtoupper($lista['municipio']) . "</td>";	
+									echo "<td >" . strtoupper($lista['dpto_divipola_nombre']) . "</td>";
+									echo "<td >" . strtoupper($lista['mpio_divipola_nombre']) . "</td>";	
 									echo "<td >" . $lista['nombre_sitio'] . "</td>";
 									echo "<td class='text-center'>" . $lista['national_school_id'] . "</td>";
 									

@@ -313,13 +313,43 @@ class Sitios extends CI_Controller {
 						echo "<td >" . strtoupper($lista['dpto_divipola_nombre']) . "</td>";
 						echo "<td >" . strtoupper($lista['mpio_divipola_nombre']) . "</td>";	
 						echo "<td >" . $lista['nombre_sitio'] . "</td>";
-						echo "<td class='text-center'>" . $lista['codigo_dane'] . "</td>";
+						echo "<td class='text-center'>" . $lista['national_school_id'] . "</td>";
 						
 						echo "<td class='text-center'>";
 
 						echo "<a class='btn btn-default btn-xs' href='" . base_url('sitios/salones/' . $lista['id_sitio']) . "'>
 								Bloques y Salones <span class='fa fa-cube' aria-hidden='true'>
 							</a>";
+
+						echo "</td>";
+						
+						
+						
+						
+						//cuenta registros de salones
+						$arrParam = array("idSitio" => $lista['id_sitio']);
+						$noSalones = $this->general_model->countSalones($arrParam);
+						if($noSalones){
+							$noComputadores = $this->general_model->countComputadores($arrParam);
+						}else{
+							$noComputadores = 0;
+						}
+						
+						echo "<td class='text-center'>" . $noSalones . "</td>";
+						echo "<td class='text-center'>" . $noComputadores . "</td>";
+						echo "<td class='text-center'>";
+						echo "<a class='btn btn-info btn-xs' href='" . base_url('admin/asignar_pisa/' . $lista['id_sitio']) . "'>
+								Usuario PISA <span class='fa fa-gears fa-fw' aria-hidden='true'>
+							</a>";
+						echo "</td>";
+
+						if($lista['id_school_pisa']){
+							echo "<p class='text-primary text-center'>";
+							echo "No. " . $lista['cedula_pisa'] . "</br>";
+							echo "<a href='" . base_url("admin/updatePisa/" . $lista['id_sitio']) . "' class='text-primary text-center'>Eliminar</p>";
+						}else{
+							echo "<p class='text-danger text-center'><strong>Falta</strong></p>";
+						}
 
 						echo "</td>";
 						echo "</tr>";
