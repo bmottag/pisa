@@ -31,11 +31,12 @@ class General_model extends CI_Model {
 		 */
 		public function get_dpto_divipola() 
 		{
-				$this->db->select('DISTINCT(dpto_divipola), dpto_divipola_nombre');
-
-				$this->db->order_by('dpto_divipola_nombre', 'asc');
-				$query = $this->db->get('param_divipola D');
-
+				$this->db->select('DISTINCT(S.fk_dpto_divipola), D.dpto_divipola, D.dpto_divipola_nombre');				
+				$this->db->join('param_divipola D', 'D.dpto_divipola = S.fk_dpto_divipola', 'INNER');
+				
+				$this->db->order_by('D.dpto_divipola_nombre', 'asc');
+				$query = $this->db->get('sitios S');
+				
 				if ($query->num_rows() > 0) {
 					return $query->result_array();
 				} else {
@@ -73,24 +74,16 @@ class General_model extends CI_Model {
 		 */
 		public function get_municipios_by($arrDatos)
 		{
-				$userRol = $this->session->userdata("rol");
-				$userID = $this->session->userdata("id");
-			
 				$municipios = array();
-				$this->db->select();
+				$this->db->select('DISTINCT(S.fk_mpio_divipola), D.mpio_divipola, D.mpio_divipola_nombre');				
+				$this->db->join('param_divipola D', 'D.mpio_divipola = S.fk_mpio_divipola', 'INNER');
+				
 				if (array_key_exists("idDepto", $arrDatos)) {
 					$this->db->where('dpto_divipola', $arrDatos["idDepto"]);
 				}
 				
-				if ($userRol==3) {
-					$this->db->where('fk_id_coordinador_mcpio', $userID);
-				}
-				if ($userRol==6) {
-					$this->db->where('fk_id_operador_mcpio', $userID);
-				}
-				
-				$this->db->order_by('mpio_divipola_nombre', 'asc');
-				$query = $this->db->get('param_divipola');
+				$this->db->order_by('D.mpio_divipola_nombre', 'asc');
+				$query = $this->db->get('sitios S');
 					
 				if ($query->num_rows() > 0) {
 					$i = 0;
