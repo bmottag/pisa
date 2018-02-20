@@ -213,9 +213,6 @@ $conteoComputadoresNOAdecuados = $lista['computadores'] - $conteoComputadoresAde
 	Computadores <span class='glyphicon glyphicon-plus' aria-hidden='true'>
 </a>
 
-<a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/deleteSala/' . $idSitio . '/' . $lista['id_sitio_salon'] ); ?>'>
-	Eliminar 
-</a>
 
 <button type="button" id="<?php echo $idSitio . '-' . $lista['id_sitio_salon']; ?>" class='btn btn-danger btn-xs'>
 		Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
@@ -249,10 +246,7 @@ $conteoComputadoresNOAdecuados = $lista['computadores'] - $conteoComputadoresAde
 				<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal_salon" id="<?php echo $idSitio; ?>">
 						Actualizar <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 				</button>
-				
-<a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/deleteSala/' . $idSitio); ?>'>
-	Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
-</a>
+
 
 <button type="button" id="<?php echo $idSitio . '-x'; ?>" class='btn btn-danger btn-xs'>
 		Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">

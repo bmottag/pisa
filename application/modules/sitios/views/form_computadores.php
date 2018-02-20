@@ -1,3 +1,5 @@
+<script type="text/javascript" src="<?php echo base_url("assets/js/validate/sitios/computadores.js"); ?>"></script>
+
 <script>
 $(function(){ 
 	
@@ -284,7 +286,7 @@ if ($retornoError) {
 	<img src="<?php echo base_url($lista["foto_computador"]); ?>" class="img-rounded" width="42" height="42" />
 </a>
 						<?php }else{ 
-								$estiloFoto = "btn btn-danger btn-xs";
+								$estiloFoto = "btn btn-warning btn-xs";
 								$textoFoto = "Falta Foto";
 							} 
 						?>
@@ -300,9 +302,11 @@ if ($retornoError) {
 	Actualizar <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 </a>
 									
-<a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/deleteComputador/' . $infoSalon[0]['id_sitio_salon'] . '/' . $lista['id_sitio_computador'] ); ?>'>
-	Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
-</a>
+
+<button type="button" id="<?php echo $infoSalon[0]['id_sitio_salon'] . '-' . $lista['id_sitio_computador']; ?>" class='btn btn-danger btn-xs'>
+		Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
+</button>
+
 
 						<?php
 									echo "</td>";
@@ -336,7 +340,7 @@ if ($retornoError) {
 									echo "<td class='text-center'>";									
 						?>
 									
-<a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/add_computador/' . $infoSalon[0]['id_sitio_salon'] . '/2'); ?>'>
+<a class='btn btn-warning btn-xs' href='<?php echo base_url('sitios/add_computador/' . $infoSalon[0]['id_sitio_salon'] . '/2'); ?>'>
 	Falta foto <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 </a>
 
@@ -351,10 +355,11 @@ if ($retornoError) {
 	Actualizar <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 </a>
 				
-				
-<a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/deleteComputador/' . $infoSalon[0]['id_sitio_salon']); ?>'>
-	Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
-</a>
+
+<button type="button" id="<?php echo $infoSalon[0]['id_sitio_salon'] . '-x'; ?>" class='btn btn-danger btn-xs'>
+		Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
+</button>
+
 
 								<?php
 											echo "</td>";

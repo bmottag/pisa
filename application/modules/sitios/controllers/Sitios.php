@@ -1319,6 +1319,63 @@ class Sitios extends CI_Controller {
 
 			echo json_encode($data);
     }
+	
+	/**
+	 * Eliminar computador
+     * @since 19/2/2018
+	 */
+	public function eliminar_computador()
+	{			
+			header('Content-Type: application/json');
+			$data = array();
+			
+			$identificador = $this->input->post('identificador');
+			
+			//como se coloca un ID diferente para que no entre en conflicto con los otros modales, toca sacar el ID
+			$porciones = explode("-", $identificador);
+			$data["idRecord"] = $idSala = $porciones[0];
+			$idComputador = $porciones[1];		
+
+			$this->load->model("general_model");
+			//info salon
+			$arrParam = array("idSalon" => $idSala);
+			$infoSala = $this->general_model->get_salones_by($arrParam);
+
+			$numeroComputadores = $infoSala[0]['computadores'];
+			
+			//restarle uno al numero de salas y actualiazr la base de datos
+			$nuevoValor = $numeroComputadores - 1;
+
+			$arrParam = array("idSala" => $idSala, "noComputadores" => $nuevoValor);			
+			if ($this->sitios_model->updateNumeroComputadores($arrParam)) {
+				$data["result"] = true;
+				$this->session->set_flashdata('retornoExito', 'Se eliminó el registro.');
+			} else {
+				$data["result"] = "error";
+				$data["mensaje"] = "Error!!! Contactarse con el Administrador.";
+				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador.');
+			}
+
+			//si se envia el ID del computador entonces eliminarlo
+			if($idComputador != 'x'){
+					$arrParam = array(
+						"table" => "sitios_computadores",
+						"primaryKey" => "id_sitio_computador",
+						"id" => $idComputador
+					);
+					
+					if ($this->general_model->deleteRecord($arrParam)) {
+						$data["result"] = true;
+						$this->session->set_flashdata('retornoExito', 'Se eliminó el registro.');
+					} else {
+						$data["result"] = "error";
+						$data["mensaje"] = "Error!!! Contactarse con el Administrador.";
+						$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador.');
+					}				
+			}
+
+			echo json_encode($data);
+    }
 
 	
 	
