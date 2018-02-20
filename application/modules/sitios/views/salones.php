@@ -1,4 +1,5 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/validate/sitios/ajaxSalones.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/validate/sitios/salones.js"); ?>"></script>
 
 <script>
 $(function(){ 
@@ -213,8 +214,13 @@ $conteoComputadoresNOAdecuados = $lista['computadores'] - $conteoComputadoresAde
 </a>
 
 <a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/deleteSala/' . $idSitio . '/' . $lista['id_sitio_salon'] ); ?>'>
-	Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
+	Eliminar 
 </a>
+
+<button type="button" id="<?php echo $idSitio . '-' . $lista['id_sitio_salon']; ?>" class='btn btn-danger btn-xs'>
+		Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
+</button>
+
 								<?php
 										echo "</td>";
 										echo "</tr>";								
@@ -247,6 +253,11 @@ $conteoComputadoresNOAdecuados = $lista['computadores'] - $conteoComputadoresAde
 <a class='btn btn-danger btn-xs' href='<?php echo base_url('sitios/deleteSala/' . $idSitio); ?>'>
 	Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
 </a>
+
+<button type="button" id="<?php echo $idSitio . '-x'; ?>" class='btn btn-danger btn-xs'>
+		Eliminar <span class="fa fa-times fa-fw" aria-hidden="true">
+</button>
+
 								<?php
 											echo "</td>";
 											echo "</tr>";								

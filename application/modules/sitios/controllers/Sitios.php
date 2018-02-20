@@ -1262,6 +1262,63 @@ class Sitios extends CI_Controller {
         }
          
     }
+	
+	/**
+	 * Eliminar sala
+     * @since 19/2/2018
+	 */
+	public function eliminar_sala()
+	{			
+			header('Content-Type: application/json');
+			$data = array();
+			
+			$identificador = $this->input->post('identificador');
+			
+			//como se coloca un ID diferente para que no entre en conflicto con los otros modales, toca sacar el ID
+			$porciones = explode("-", $identificador);
+			$data["idRecord"] = $idSitio = $porciones[0];
+			$idSala = $porciones[1];		
+			
+			$this->load->model("general_model");
+			//info de sitio
+			$arrParam = array("idSitio" => $idSitio);
+			$infoSitio = $this->general_model->get_sitios($arrParam);
+			
+			$numeroSalones = $infoSitio[0]['numero_salas'];
+			
+			//restarle uno al numero de salas y actualiazr la base de datos
+			$nuevoValor = $numeroSalones - 1;
+			
+			$arrParam = array("idSitio" => $idSitio, "noSalones" => $nuevoValor);			
+			if ($this->sitios_model->updateNumeroSalones($arrParam)) {
+				$data["result"] = true;
+				$this->session->set_flashdata('retornoExito', 'Se eliminó el registro.');
+			} else {
+				$data["result"] = "error";
+				$data["mensaje"] = "Error!!! Contactarse con el Administrador.";
+				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador.');
+			}
+
+			//si se envia el ID de la sala entonces eliminarlo
+			if($idSala != 'x'){
+					$arrParam = array(
+						"table" => "sitios_salones",
+						"primaryKey" => "id_sitio_salon",
+						"id" => $idSala
+					);
+					
+					if ($this->general_model->deleteRecord($arrParam)) {
+						$data["result"] = true;
+						$this->session->set_flashdata('retornoExito', 'Se eliminó el registro.');
+					} else {
+						$data["result"] = "error";
+						$data["mensaje"] = "Error!!! Contactarse con el Administrador.";
+						$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador.');
+					}				
+			}
+
+			echo json_encode($data);
+    }
 
 	
 	
