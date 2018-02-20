@@ -77,7 +77,7 @@ if ($retornoError) {
 		<div class="col-lg-6">					
 				<div class="col-lg-12">				
 					<div class="form-group">					
-						<label class="col-sm-4 control-label" for="hddTask">Foto</label>
+						<label class="col-sm-4 control-label" for="hddTask">Foto: *</label>
 						<div class="col-sm-5">
 							 <input type="file" name="userfile" capture="camera" accept="image/*">
 						</div>
