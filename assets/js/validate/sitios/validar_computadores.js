@@ -1,19 +1,9 @@
-function habilitar(){
-
-	var form = document.getElementById('formMateria');
-
-	if(form.tipoMovimiento.value ==  1){
-		document.formMateria.valorUnitario.disabled = false;
-		document.formMateria.proveedor.disabled = false;
-		document.formMateria.fechaCaducidad.disabled = false;
-	}else{
-		document.formMateria.valorUnitario.disabled = true;
-		document.formMateria.valorUnitario.value = "";
-		document.formMateria.proveedor.disabled = true;
-		document.formMateria.proveedor.value = "";			
-		document.formMateria.fechaCaducidad.disabled = true;
-		document.formMateria.fechaCaducidad.value = "";	
-	}
+function upperCase(){
+	var x = document.getElementById('identificacion').value;
+	var y = document.getElementById('comentarios').value;
+	
+	document.getElementById('identificacion').value=x.toUpperCase();
+	document.getElementById('comentarios').value=y.toUpperCase();
 }
 
 

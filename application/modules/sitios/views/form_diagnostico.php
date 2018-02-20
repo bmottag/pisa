@@ -140,7 +140,7 @@ if(!$information){
 					<div class="form-group">
 						<label class="col-sm-5 control-label" for="sites_watered">Identificación del computador: *</label>
 						<div class="col-sm-3">
-							<input type="text" id="identificacion" name="identificacion" class="form-control" value="<?php echo $information?$information[0]["identificacion"]:set_value('identificacion'); ?>" placeholder="Identificación del computador" >
+							<input type="text" id="identificacion" name="identificacion" class="form-control" value="<?php echo $information?$information[0]["identificacion"]:set_value('identificacion'); ?>" placeholder="Identificación del computador" onblur="upperCase()">
 						</div>
 						<div class="col-sm-3">
 							<?php echo form_error('identificacion','<p class="text-danger text-left">', '</p>'); ?>
@@ -327,7 +327,7 @@ if(!$information){
 					<div class="form-group">
 						<label class="col-sm-5 control-label" for="speed_control">Comentarios:</label>
 						<div class="col-sm-3">
-							<textarea id="comentarios" name="comentarios" class="form-control" rows="2"><?php echo $information?$information[0]["comentarios"]:set_value('comentarios'); ?></textarea>
+							<textarea id="comentarios" name="comentarios" class="form-control" rows="2" onblur="upperCase()"><?php echo $information?$information[0]["comentarios"]:set_value('comentarios'); ?></textarea>
 						</div>
 					</div>
 			<hr>	
