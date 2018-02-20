@@ -10,12 +10,6 @@ function upperCase(){
 function validarFrmComputador(){
 	var form = document.getElementById('formDiagnostico');
 	var ok = 1;
-
-	if(form.userfile.value == '' && ok == 1){
-		alert('Los campos con * son obligatorios.');
-		form.userfile.focus();
-		ok = 0;
-	}
 	
 	if(form.identificacion.value == '' && ok == 1){
 		alert('Los campos con * son obligatorios.');
