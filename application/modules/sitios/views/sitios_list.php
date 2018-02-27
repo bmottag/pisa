@@ -104,11 +104,6 @@ $(function(){
 									echo "<td class='text-center'>" . $noSalones . "</td>";
 									echo "<td class='text-center'>";
 									echo $noComputadores;
-									
-									if($noComputadores){
-echo "<br><a href='" . base_url('reporte/generaReporteXLS/' . $lista['id_sitio'] ) . "'>Descargar <img src='" . base_url_images('xls.png') . "' ></a>";
-									}
-									
 									echo "</td>";
 						?>		
 									<td class='text-center'>
