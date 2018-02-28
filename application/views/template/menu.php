@@ -43,6 +43,11 @@
 <?php 
 if($userRol!=7){//USUARIOS QUE NO SON PISA
 ?>				
+
+				<li>
+					<a href="<?php echo base_url("public/reportico/run.php?execute_mode=MENU&project=Reportes"); ?>" target="_blanck"><i class="fa fa-building-o fa-fw"></i> Reporte</a>
+				</li>
+
 				
 				<li>
 					<a href="<?php echo base_url("sitios"); ?>"><i class="fa fa-building-o fa-fw"></i> Gestión de Sitios</a>
