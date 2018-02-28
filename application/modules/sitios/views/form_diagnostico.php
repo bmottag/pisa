@@ -110,7 +110,7 @@ if(!$information){
 							<div class="col-lg-12">
 								<div class="alert alert-danger">
 										<strong>Formato permitido:</strong> gif - jpg - png<br>
-										<strong>Peso máximo:</strong> 2008 pixels										
+										<strong>Peso máximo:</strong> 3000 KB								
 								</div>
 							</div>
 					</div>
@@ -118,8 +118,8 @@ if(!$information){
 					<div class="col-lg-3">
 							<div class="col-lg-12">
 								<div class="alert alert-danger">
-										<strong>Tamaño mínimo:</strong> 2024 pixels<br>
-										<strong>Tamaño máximo:</strong> 3000 KB
+										<strong>Ancho máximo:</strong> 3200 pixeles<br>
+										<strong>Altura máxima:</strong> 2400 pixeles
 								</div>
 							</div>
 					</div>

@@ -115,10 +115,9 @@ if ($retornoError) {
 					<div class="alert alert-danger">
 							<strong>Nota :</strong><br>
 							Formato permitido: gif - jpg - png<br>
-							Tamaño máximo: 3000 KB<br>
-							Tamaño mínimo: 2024 pixels<br>
-							Peso máximo: 2008 pixels<br>
-							
+							Peso máximo: 3000 KB<br>
+							Ancho máximo: 3200 pixeles<br>
+							Altura máxima: 2400 pixeles
 					</div>
 				</div>
 		</div>
