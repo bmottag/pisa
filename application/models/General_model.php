@@ -1283,7 +1283,7 @@ class General_model extends CI_Model {
 			}
 			
 			if (array_key_exists("conFoto", $arrDatos)) {
-				$sql.= " AND foto_computador IS NOT NULL";
+				$sql.= " AND foto_computador IS NOT NULL AND foto_computador != ''";
 			}
 			
 			if (array_key_exists("adecuado", $arrDatos)) {
