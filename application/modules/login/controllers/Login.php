@@ -66,5 +66,9 @@ class Login extends MX_Controller {
 			}
 	}
 	
+	public function redireccionarUsuario()
+	{	
+		$this->login_model->redireccionarUsuario();
+	}
 	
 }

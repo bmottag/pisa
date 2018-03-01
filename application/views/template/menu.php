@@ -11,20 +11,11 @@
 <?php
 		$userRol = $this->session->userdata("rol");
 		
-		if($userRol==4){ //USUARIOS DELEGADOS
-			$enlace = base_url("dashboard/delegados");
+		if($userRol==7){ 
+			$enlace = base_url("login/redireccionarUsuario");
 			$titulo = 'Representante';
-		}elseif($userRol==6){ //USUARIOS OPERADOR
-			$enlace = base_url("dashboard/operador");
-			$titulo = 'Operador';
-		}elseif($userRol==3){ //USUARIOS DELEGADOS
-			$enlace = base_url("dashboard/coordinador");
-			$titulo = 'Coordinador';
-		}elseif($userRol==2){ //USUARIOS DIRECTIVO
-			$enlace = base_url("dashboard/directivo");
-			$titulo = 'Directivo';
 		}else{
-			$enlace = base_url("dashboard/admin");
+			$enlace = base_url("login/redireccionarUsuario");
 			$titulo = 'Admin';
 		}
 ?>
@@ -40,6 +31,10 @@
             <ul class="nav navbar-top-links navbar-right">
                 <!-- /.dropdown -->	
 
+				<li>
+					<a href="<?php echo base_url("login/redireccionarUsuario"); ?>"><i class="fa fa-home fa-fw"></i> Inicio</a>
+				</li>
+				
 <?php 
 if($userRol!=7){//USUARIOS QUE NO SON PISA
 ?>				
@@ -82,107 +77,6 @@ if($userRol==1){ //ADMIN
 <?php
 }
 ?>
-
-
-<?php 
-if($userRol==4){ //ROL DELEGADO
-?>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-warning"></i> Novedades <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-messages">
-				
-						<li>
-							<a href="<?php echo base_url("anulaciones"); ?>"><i class="fa fa-legal fa-fw"></i> Anulaciones</a>
-						</li>
-						
-						<li>
-							<a href="<?php echo base_url("novedades/cambio_cuadernillo"); ?>"><i class="fa fa-bug fa-fw"></i> Cambio de cuadernillo</a>
-						</li>
-						
-						<li>
-							<a href="<?php echo base_url("novedades/holgura"); ?>"><i class="fa fa-download fa-fw"></i> Holguras</a>
-						</li>
-						
-						<li>
-							<a href="<?php echo base_url("novedades/otras"); ?>"><i class="fa fa-fire fa-fw"></i> Otras novedades</a>
-						</li>
-
-                    </ul>
-                    <!-- /.dropdown-messages -->
-                </li>
-<?php
-}
-?>
-
-
-<?php 
-if($userRol==3){//COORDINADOR 
-?>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-warning"></i> Novedades <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-messages">
-				
-						<li>
-							<a href="<?php echo base_url("anulaciones/anulaciones_coordinador"); ?>"><i class="fa fa-legal fa-fw"></i> Lista Anulaciones</a>
-						</li>
-						
-						<li>
-							<a href="<?php echo base_url("novedades/cambio_cuadernillo_coordinador"); ?>"><i class="fa fa-bug fa-fw"></i> Lista Cambio de Cuadernillo</a>
-						</li>
-						
-						<li>
-							<a href="<?php echo base_url("novedades/holgura_coordinador"); ?>"><i class="fa fa-download fa-fw"></i> Lista Holguras</a>
-						</li>
-						
-						<li>
-							<a href="<?php echo base_url("novedades/otra_coordinador"); ?>"><i class="fa fa-fire fa-fw"></i> Lista otras novedades</a>
-						</li>
-
-                    </ul>
-                    <!-- /.dropdown-messages -->
-                </li>
-				
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-						<i class="fa fa-list-alt"></i> Reportes <i class="fa fa-caret-down"></i>
-					</a>
-					<ul class="dropdown-menu dropdown-messages">
-					
-						<li>
-							<a href="<?php echo base_url("report/searchByCoordinador"); ?>"><i class="fa fa-list-alt fa-fw"></i> Información Alertas - Representantes</a>
-						</li>
-						
-					</ul>
-				</li>
-<?php
-}
-?>
-
-
-<?php 
-if($userRol==6){//OPERADOR
-?>
-
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-						<i class="fa fa-list-alt"></i> Reportes <i class="fa fa-caret-down"></i>
-					</a>
-					<ul class="dropdown-menu dropdown-messages">
-					
-						<li>
-							<a href="<?php echo base_url("report/searchByCoordinador"); ?>"><i class="fa fa-list-alt fa-fw"></i> Información Alertas - Representantes</a>
-						</li>
-						
-					</ul>
-				</li>
-<?php
-}
-?>
-
 
 				<li>
 					<a href="<?php echo base_url("menu/salir"); ?>"><i class="fa fa-sign-out fa-fw"></i> Salir</a>
