@@ -195,7 +195,7 @@ $conteoComputadoresNOActualizado = $lista['computadores'] - $conteoComputadoresA
 $conteoComputadoresNOAdecuados = $lista['computadores'] - $conteoComputadoresAdecuados;
 									
 										echo "<tr>";
-										echo "<td class='text-center text-success'>" . $i . "</td>";
+										echo "<td class='text-center text-success'>" . $lista['orden_salon'] . "</td>";
 										echo "<td class='text-center text-success'>" . $lista['nombre_salon'] . "</td>";
 										echo "<td class='text-center text-success'>" . $lista['computadores'] . "</td>";
 										echo "<td class='text-center text-success'>" . $conteoComputadoresActualizado . "</td>";

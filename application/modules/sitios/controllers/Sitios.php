@@ -240,18 +240,18 @@ class Sitios extends CI_Controller {
 			$data = array();
 			
 			$idSitio = $this->input->post('hddIdSitio');
-			$idSalon = $this->input->post('hddIdSalon');
+			$idSala = $this->input->post('hddIdSalon');
 			$add = $this->input->post('hddAdd');
 			$data["idRecord"] = $idSitio;
+			$this->load->model("general_model");
 
 			$msj = "Se adicionó el salón con éxito.";
-			if ($idSalon != '') {
+			$noOrden = 'x';
+			if ($idSala != '') {
 				$msj = "Se actualizó el salón con éxito.";
 				
 				//noComputadores
-				$this->load->model("general_model");
-				
-				$arrParam = array("idSalon" => $idSalon);			
+				$arrParam = array("idSalon" => $idSala);			
 				$numeroActual = $this->general_model->countComputadores($arrParam);
 				$numeroComputadores = $this->input->post('computadores');
 				
@@ -259,6 +259,13 @@ class Sitios extends CI_Controller {
 			}else{
 				//como es una sala nueva entonces no se hace el conteo
 				$diferencia = 0;
+				
+				//como es una sala nueva consulto el ultimo registro de salas para este sitio y busco el orden para guardarlo en la base de datos
+				$infoUltimoSalon = $this->general_model->get_last_salon($idSitio);
+				
+				$noOrden = $infoUltimoSalon?$infoUltimoSalon['orden_salon']:0;
+				
+				$noOrden++;
 			}
 			
 			if($diferencia < 0){
@@ -266,7 +273,12 @@ class Sitios extends CI_Controller {
 				$data["mensaje"] = "Debe eliminar los computadores para disminuir el número de computadores.";
 			}else{
 			
-				if ($this->sitios_model->saveSalones()) {
+				if ($this->sitios_model->saveSalones($noOrden)) {
+					
+					if ($idSala != '') {
+						//actualizar los campos de numero de computadores actualizados y numero de computadores que cumples diganostico
+						$this->updateNumeroComputadoresActualizados($idSala);
+					}
 					
 					//sumar el numero de salas mas 1
 					if($add == 1){
@@ -660,6 +672,11 @@ class Sitios extends CI_Controller {
 			header('Content-Type: application/json');
 		
 			if ($idSitio = $this->sitios_model->saveDisponibilidad()) {
+				//actualizar los campos de numero de computadores actualizados y numero de computadores que cumples diganostico
+				$this->updateNumeroComputadoresActualizados($idSala);
+echo $this->db->last_query();
+exit;
+				
 				$data["result"] = true;
 				$this->session->set_flashdata('retornoExito', 'Se actualizó la disponibilidad del sitios');
 			} else {
@@ -844,6 +861,9 @@ class Sitios extends CI_Controller {
 					$arrParam = array("idSala" => $idSala, "noComputadores" => $numeroComputadores);
 					$this->sitios_model->updateNumeroComputadores($arrParam);
 					
+					//actualizar los campos de numero de computadores actualizados y numero de computadores que cumples diganostico
+					$this->updateNumeroComputadoresActualizados($idSala);
+					
 				}
 				
 				$data["result"] = true;
@@ -986,6 +1006,9 @@ class Sitios extends CI_Controller {
 			$arrParam = array("idComputador" => $idComputador, "path" => $path);
 			if($this->sitios_model->add_foto_computador($arrParam))
 			{
+				//actualizar los campos de numero de computadores actualizados y numero de computadores que cumples diganostico
+				$this->updateNumeroComputadoresActualizados($idSalon);
+				
 				$this->session->set_flashdata('retornoExito', 'Se subio la imagen con éxito.');
 			}else{
 				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
@@ -1059,7 +1082,7 @@ class Sitios extends CI_Controller {
 			$nuevoValor = $numeroComputadores - 1;
 
 			$arrParam = array("idSala" => $idSala, "noComputadores" => $nuevoValor);			
-			if ($this->sitios_model->updateNumeroComputadores($arrParam)) {
+			if ($this->sitios_model->updateNumeroComputadores($arrParam)) {				
 				$this->session->set_flashdata('retornoExito', 'Se eliminó el registro.');
 			} else {
 				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador.');
@@ -1079,6 +1102,10 @@ class Sitios extends CI_Controller {
 						$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador.');
 					}				
 			}
+
+
+			//actualizar los campos de numero de computadores actualizados y numero de computadores que cumples diganostico
+			$this->updateNumeroComputadoresActualizados($idSala);
 
 			redirect(base_url('sitios/computadores_salon/' . $idSala), 'refresh');
     }
@@ -1196,7 +1223,6 @@ class Sitios extends CI_Controller {
 					$numeroComputadores = $infoSalon[0]['computadores'] + 1;
 					$arrParam = array("idSala" => $idSala, "noComputadores" => $numeroComputadores);
 					$this->sitios_model->updateNumeroComputadores($arrParam);
-					
 				}
 				
 				$this->session->set_flashdata('retornoExito', $msj);
@@ -1232,11 +1258,13 @@ class Sitios extends CI_Controller {
 						}else{
 							$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
 						}
-									
-						
 					}
 				
 			}
+			
+			//actualizar los campos de numero de computadores actualizados y numero de computadores que cumples diganostico
+			$this->updateNumeroComputadoresActualizados($idSala);
+			
 			redirect('sitios/computadores_salon/' . $idSala);
 		}
     }
@@ -1373,10 +1401,35 @@ class Sitios extends CI_Controller {
 						$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador.');
 					}				
 			}
+			
+			//actualizar los campos de numero de computadores actualizados y numero de computadores que cumples diganostico
+			$this->updateNumeroComputadoresActualizados($idSala);
 
 			echo json_encode($data);
     }
-
 	
+	/**
+	 * Actualizar conteo de computadores
+     * @since 28/2/2018
+	 */
+	public function updateNumeroComputadoresActualizados($idSala)
+	{			
+			$this->load->model("general_model");
+			//actualizar los campos de numero de computadores actualizados y numero de computadores que cumples diganostico
+			$arrParam = array("idSalon" => $idSala,
+								"conFoto" => 1);
+			$conteoComputadoresActualizado = $this->general_model->countComputadores($arrParam);
+
+			$arrParam["adecuado"] = 1; 
+			$conteoComputadoresAdecuados = $this->general_model->countComputadores($arrParam);
+			
+			$arrParam = array(
+						"idSalon" => $idSala, 
+						"conteoComputadoresActualizado" => $conteoComputadoresActualizado,
+						"conteoComputadoresAdecuados" => $conteoComputadoresAdecuados
+						);
+			
+			$this->sitios_model->updateNumeroComputadoresActualizados($arrParam);
+	}
 	
 }

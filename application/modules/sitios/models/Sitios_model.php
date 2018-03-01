@@ -7,23 +7,47 @@
 		 * Add/Edit SALONES
 		 * @since 15/12/2017
 		 */
-		public function saveSalones() 
+		public function saveSalones($noOrden)
 		{
 				$idSalon = $this->input->post('hddIdSalon');
 				
 				$data = array(
 					'nombre_salon' => $this->input->post('salon'),
-					'computadores' => $this->input->post('computadores')
+					'computadores' => $this->input->post('computadores'),
+					'fecha_update_sala' => date("Y-m-d G:i:s")
 				);
 				
 				//revisar si es para adicionar o editar
 				if ($idSalon == '') {
+					$data['fecha_creacion_sala'] = date("Y-m-d G:i:s");
 					$data['fk_id_sitio'] = $this->input->post('hddIdSitio');
+					$data['orden_salon'] = $noOrden;
 					$query = $this->db->insert('sitios_salones', $data);
 				} else {
 					$this->db->where('id_sitio_salon', $idSalon);
 					$query = $this->db->update('sitios_salones', $data);
 				}
+				if ($query) {
+					return true;
+				} else {
+					return false;
+				}
+		}
+		
+		/**
+		 * update numero de computadores actualizados
+		 * @since 28/2/2018
+		 */
+		public function updateNumeroComputadoresActualizados($arrDatos) 
+		{										
+				$data = array(
+					'computadores_actualizados' => $arrDatos["conteoComputadoresActualizado"],
+					'computadores_diagnostico' => $arrDatos["conteoComputadoresAdecuados"]
+				);
+					
+				$this->db->where('id_sitio_salon', $arrDatos["idSalon"]);
+				$query = $this->db->update('sitios_salones', $data);
+
 				if ($query) {
 					return true;
 				} else {
@@ -260,11 +284,13 @@
 					'virus_scan' => $this->input->post('virus_scan'),
 					'unidad_usb' => $this->input->post('unidad_usb'),
 					'comentarios' => strtoupper($this->input->post('comentarios')),
-					'adecuado' => $this->input->post('adecuado')
+					'adecuado' => $this->input->post('adecuado'),
+					'fecha_update_cpu' => date("Y-m-d G:i:s")
 				);
 				
 				//revisar si es para adicionar o editar
 				if ($idComputador == 'x') {
+					$data['fecha_creacion_cpu'] = date("Y-m-d G:i:s");
 					$data['fk_id_sitio_salon'] = $this->input->post('hddIdSala');
 					$query = $this->db->insert('sitios_computadores', $data);
 					$idComputador = $this->db->insert_id();
@@ -396,7 +422,9 @@
 		 */
 		public function updateNumeroComputadores($arrDatos) 
 		{							
-				$data['computadores'] = $arrDatos ["noComputadores"];
+				$data = array(
+					'computadores' => $arrDatos ["noComputadores"]
+				);
 					
 				$this->db->where('id_sitio_salon', $arrDatos ["idSala"]);
 				$query = $this->db->update('sitios_salones', $data);

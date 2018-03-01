@@ -1295,6 +1295,26 @@ class General_model extends CI_Model {
 			return $row->CONTEO;
 		}
 		
+		/**
+		 * Registro de ultimo salon guardado para un sitio
+		 * @since 1/3/2018
+		 */
+		public function get_last_salon($idSitio)
+		{
+				$this->db->select('');
+
+				$this->db->where('S.fk_id_sitio', $idSitio);
+								
+				$this->db->order_by('id_sitio_salon', 'desc');
+				$query = $this->db->get('sitios_salones S',1);
+
+				if ($query->num_rows() > 0) {
+					return $query->row_array();
+				} else {
+					return false;
+				}
+				
+		}
 
 
 
