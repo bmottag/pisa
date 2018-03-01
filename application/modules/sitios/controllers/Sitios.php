@@ -330,7 +330,7 @@ class Sitios extends CI_Controller {
 						echo "<td class='text-center'>";
 
 						echo "<a class='btn btn-default btn-xs' href='" . base_url('sitios/salones/' . $lista['id_sitio']) . "'>
-								Bloques y Salones <span class='fa fa-cube' aria-hidden='true'>
+								Salas de cómputo <span class='fa fa-cube' aria-hidden='true'>
 							</a>";
 
 						echo "</td>";
