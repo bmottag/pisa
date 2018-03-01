@@ -1316,6 +1316,27 @@ class General_model extends CI_Model {
 				
 		}
 
+		/**
+		 * Registro de ultimo computadore guardado para una sala
+		 * @since 1/3/2018
+		 */
+		public function get_last_computador($idSala)
+		{
+				$this->db->select('');
+
+				$this->db->where('fk_id_sitio_salon', $idSala);
+								
+				$this->db->order_by('id_sitio_computador', 'desc');
+				$query = $this->db->get('sitios_computadores C',1);
+
+				if ($query->num_rows() > 0) {
+					return $query->row_array();
+				} else {
+					return false;
+				}
+				
+		}
+
 
 
 }

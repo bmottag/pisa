@@ -841,18 +841,27 @@ exit;
 			$idComputador = $this->input->post('hddIdComputador');
 			$add = $this->input->post('hddAdd');
 			$data["idRecord"] = $idSala;
+			$noOrden = 'x';
+			
+			$this->load->model("general_model");
 			
 			$msj = "Se adicionó el computador con éxito. <strong>Recuerde subir la foto del computador.</strong>";
 			if ($idComputador != '') {
 				$msj = "Se actualizó el computador con éxito.";
+			}else{
+				//como es una sala nueva consulto el ultimo registro de computadores para esta sala y busco el orden para guardarlo en la base de datos
+				$infoUltimoCpu = $this->general_model->get_last_computador($idSala);
+
+				$noOrden = $infoUltimoCpu?$infoUltimoCpu['orden_computador']:0;
+				
+				$noOrden++;				
 			}
-			
-			if ($this->sitios_model->saveComputador()) {
+
+			if ($this->sitios_model->saveComputador($noOrden)) {
 				
 				//incrementar el numero de computadores en 1
 				if($add == 1){
 					
-					$this->load->model("general_model");
 					//info de sitio
 					$arrParam = array("idSala" => $idSala);
 					$infoSalon = $this->general_model->get_salones_by($arrParam);
@@ -1167,20 +1176,26 @@ exit;
 		$add = $data['add'] = $this->input->post('hddAdd');
 		$idSala = $data['idSala'] = $this->input->post('hddIdSala');
 		$idComputador = $data["idComputador"] = $this->input->post('hddIdComputador');					
+		$this->load->model("general_model");
 		
 		//bandera para deterinar si es para editar entonces no mostrar el formuario de foto
 		$bandera = TRUE;
+		$noOrden = 'x';
 		if ($idComputador != 'x') {
 			$bandera = FALSE;
+		}else{
+			//como es una sala nueva consulto el ultimo registro de computadores para esta sala y busco el orden para guardarlo en la base de datos
+			$infoUltimoCpu = $this->general_model->get_last_computador($idSala);
+
+			$noOrden = $infoUltimoCpu?$infoUltimoCpu['orden_computador']:0;
+			
+			$noOrden++;
 		}
 		         
         if ($this->form_validation->run() == FALSE) {
             
-			$this->load->model("general_model");
-			
 			$data['information'] = FALSE;
 
-			
 			//info salon
 			$arrParam = array("idSalon" => $idSala);
 			$data['infoSalon'] = $this->general_model->get_salones_by($arrParam);
@@ -1210,7 +1225,7 @@ exit;
 				$msj = "Se actualizó el computador con éxito.";
 			}
 			
-			if ($idComputador = $this->sitios_model->saveComputador()) {
+			if ($idComputador = $this->sitios_model->saveComputador($noOrden)) {
 				
 				//incrementar el numero de computadores en 1
 				if($add == 1){

@@ -162,7 +162,7 @@ if ($retornoError) {
 							foreach ($information as $lista):
 									$i++;
 									echo "<tr>";
-									echo "<td class='text-center text-success'>" . $i . "</td>";
+									echo "<td class='text-center text-success'>" . $lista['orden_computador'] . "</td>";
 									echo "<td class='text-center text-success'>" . $lista['identificacion'] . "</td>";
 
 									switch ($lista['windows_defender']) {

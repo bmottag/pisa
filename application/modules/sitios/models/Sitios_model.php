@@ -268,7 +268,7 @@
 		 * Add/Edit COMPUTADORES
 		 * @since 5/2/2018
 		 */
-		public function saveComputador() 
+		public function saveComputador($noOrden) 
 		{
 				$idComputador = $this->input->post('hddIdComputador');
 				
@@ -292,6 +292,7 @@
 				if ($idComputador == 'x') {
 					$data['fecha_creacion_cpu'] = date("Y-m-d G:i:s");
 					$data['fk_id_sitio_salon'] = $this->input->post('hddIdSala');
+					$data['orden_computador'] = $noOrden;
 					$query = $this->db->insert('sitios_computadores', $data);
 					$idComputador = $this->db->insert_id();
 				} else {
