@@ -29,8 +29,8 @@
 		<div class="col-md-4">
 			<div class="panel panel-success">
 				<div class="panel-heading">
-					<strong>Departamento: </strong><?php echo $infoSitio[0]['departamento']; ?>
-					<br><strong>Municipio: </strong><?php echo $infoSitio[0]['municipio']; ?>
+					<strong>Departamento: </strong><?php echo $infoSitio[0]['dpto_divipola_nombre']; ?>
+					<br><strong>Municipio: </strong><?php echo $infoSitio[0]['mpio_divipola_nombre']; ?>
 				</div>
 			</div>
 		</div>
