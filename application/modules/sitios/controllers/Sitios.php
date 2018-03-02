@@ -353,6 +353,17 @@ class Sitios extends CI_Controller {
 						echo "<a class='btn btn-info btn-xs' href='" . base_url('admin/asignar_pisa/' . $lista['id_sitio']) . "'>
 								Usuario PISA <span class='fa fa-gears fa-fw' aria-hidden='true'>
 							</a>";
+							
+							
+if($lista['id_school_pisa']){
+	echo "<p class='text-primary text-center'>";
+	echo "No. " . $lista['cedula_pisa'] . "</br>";
+	echo "<a href='" . base_url("admin/updatePisa/" . $lista['id_sitio']) . "' class='text-primary text-center'>Eliminar</p>";
+}else{
+	echo "<p class='text-danger text-center'><strong>Falta</strong></p>";
+}
+							
+							
 						echo "</td>";
 
 						if($lista['id_school_pisa']){
