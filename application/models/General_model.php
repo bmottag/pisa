@@ -1337,6 +1337,26 @@ class General_model extends CI_Model {
 				
 		}
 
+		/**
+		 * Visita previa
+		 * @since 16/3/2018
+		 */
+		public function get_visita_previa($arrDatos)
+		{			
+				$this->db->select();
 
+				$this->db->where('fk_id_sitio', $arrDatos["idSitio"]);
+				$this->db->order_by('id_visita_previa', "DESC");
+				
+				$query = $this->db->get('sitios_visita_previa');
+					
+				if ($query->num_rows() > 0) {
+					return $query->row_array();
+				} else {
+					return false;
+				}
+		}
+
+		
 
 }

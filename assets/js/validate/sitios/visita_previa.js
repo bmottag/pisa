@@ -1,20 +1,25 @@
 $( document ).ready( function () {
 
 jQuery.validator.addMethod("verificar", function(value, element, param) {
-	var campo = $('#disponibilidad').val();
-	if(campo == 2 && value == ""){
+	var campo = $(param).val();
+	
+	if(campo == 1 && value == ""){
 		return false;
 	}else{
 		return true;
 	}
-}, "This field is required.");
+}, "Campo requerido.");
 	
-	$("#motivo_disponibilidad").convertirMayuscula();
+	$("#nombre").convertirMayuscula();
+	$("#cargo").convertirMayuscula();
+	$("#observacion").convertirMayuscula();
 		
 	$( "#form" ).validate( {
 		rules: {
-			disponibilidad:			{ required: true},
-			motivo_disponibilidad:	{ verificar: "#disponibilidad" }
+			visita:			{ required: true},
+			fecha:			{ verificar: "#visita" },
+			nombre:			{ verificar: "#visita" },
+			cargo:			{ verificar: "#visita" }
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {
@@ -45,7 +50,7 @@ jQuery.validator.addMethod("verificar", function(value, element, param) {
 			
 				$.ajax({
 					type: "POST",	
-					url: base_url + "sitios/save_disponibilidad",	
+					url: base_url + "sitios/save_visita_previa",	
 					data: $("#form").serialize(),
 					dataType: "json",
 					contentType: "application/x-www-form-urlencoded;charset=UTF-8",

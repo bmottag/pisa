@@ -656,10 +656,10 @@ if($lista['id_school_pisa']){
     }
 	
     /**
-     * Cargo modal - formulario DISPONIBILIDAD SITIO
-     * @since 18/1/2018
+     * Cargo modal - formulario VISiTA PREVIA
+     * @since 16/3/2018
      */
-    public function cargarModalDisponibilidad() 
+    public function cargarModalVisitaPrevia() 
 	{
 			header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
 						
@@ -669,27 +669,25 @@ if($lista['id_school_pisa']){
 			$this->load->model("general_model");
 			//info de sitio
 			$arrParam = array("idSitio" => $data["idSitio"]);
-			$data['information'] = $this->general_model->get_sitios($arrParam);
-			
-			$this->load->view("form_disponibilidad_modal", $data);
+			$data['information'] = $this->general_model->get_visita_previa($arrParam);
+
+			$this->load->view("form_visita_previa_modal", $data);
     }
 	
 	/**
-	 * Update Sitios disponibilidad
-     * @since 18/1/2018
+	 * Guardar visita previa
+     * @since 16/3/2018
 	 */
-	public function save_disponibilidad()
+	public function save_visita_previa()
 	{			
 			header('Content-Type: application/json');
-		
-			if ($idSitio = $this->sitios_model->saveDisponibilidad()) {
-				//actualizar los campos de numero de computadores actualizados y numero de computadores que cumples diganostico
-				$this->updateNumeroComputadoresActualizados($idSala);
-echo $this->db->last_query();
-exit;
+			
+			if ($this->sitios_model->updateVisitaPrevia()) {
+				
+				$this->sitios_model->saveVisitaPrevia();
 				
 				$data["result"] = true;
-				$this->session->set_flashdata('retornoExito', 'Se actualizó la disponibilidad del sitios');
+				$this->session->set_flashdata('retornoExito', 'Se guardó la visita previa del sitio');
 			} else {
 				$data["result"] = "error";
 				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Contactarse con el Administrador.');

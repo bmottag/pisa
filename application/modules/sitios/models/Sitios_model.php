@@ -209,19 +209,46 @@
 		}
 		
 		/**
-		 * Update disponibilidad
-		 * @since 18/1/2018
+		 * Guardar visita previa
+		 * @since 18/3/2018
 		 */
-		public function saveDisponibilidad() 
-		{			
-				$idSitio = $this->input->post('hddIdSitio');
-				
+		public function saveVisitaPrevia() 
+		{							
 				$data = array(
-					'disponibilidad' => $this->input->post('disponibilidad'),
-					'motivo_disponibilidad' => $this->input->post('motivo_disponibilidad')
+					'fk_id_sitio' => $this->input->post('hddIdSitio'),
+					'visita_previa' => $this->input->post('visita'),
+					'fecha_visita_previa' => $this->input->post('fecha'),
+					'hora_visita_previa' => $this->input->post('hora'),
+					'nombre' => $this->input->post('nombre'),
+					'cargo' => $this->input->post('cargo'),
+					'observacion' => $this->input->post('observacion')
 				);
 			
-				$this->db->where('id_sitio', $idSitio);
+				$query = $this->db->insert('sitios_visita_previa', $data);			
+
+				if ($query) {
+					return true;
+				} else {
+					return false;
+				}
+		}
+		
+		/**
+		 * Actualizar visita previa en la tabla sitios
+		 * @since 18/3/2018
+		 */
+		public function updateVisitaPrevia() 
+		{		
+				$data = array(
+					'visita_previa' => $this->input->post('visita'),
+					'fecha_visita_previa' => $this->input->post('fecha'),
+					'hora_visita_previa' => $this->input->post('hora'),
+					'nombre' => $this->input->post('nombre'),
+					'cargo' => $this->input->post('cargo'),
+					'observacion' => $this->input->post('observacion')
+				);
+
+				$this->db->where('id_sitio', $this->input->post('hddIdSitio'));
 				$query = $this->db->update('sitios', $data);
 
 				if ($query) {
@@ -416,7 +443,7 @@
 					return false;
 				}
 		}
-		
+				
 		/**
 		 * update numero de computadores
 		 * @since 13/2/2018

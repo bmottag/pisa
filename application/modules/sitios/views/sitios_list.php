@@ -1,12 +1,15 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/validate/sitios/ajaxSalones.js"); ?>"></script>
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script>
 $(function(){ 
-	$(".btn-info").click(function () {	
+	$(".btn-warning").click(function () {	
 			var oID = $(this).attr("id");
             $.ajax ({
                 type: 'POST',
-				url: base_url + 'sitios/cargarModalDisponibilidad',
+				url: base_url + 'sitios/cargarModalVisitaPrevia',
                 data: {'idSitio': oID},
                 cache: false,
                 success: function (data) {
@@ -88,6 +91,21 @@ $(function(){
 									<a class='btn btn-default btn-xs' href='<?php echo base_url('sitios/salones/' . $lista['id_sitio']) ?>'>
 										Salas de cómputo <span class="fa fa-cube" aria-hidden="true">
 									</a>
+
+<?php 
+	$userRol = $this->session->userdata("rol");
+	
+	if($userRol==8){ 
+
+?>
+									
+<button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_sitio']; ?>" >
+	Visita previa <span class="glyphicon glyphicon-edit" aria-hidden="true">
+</button>
+
+<?php
+	}
+?>
 						
 									</td>
 									
@@ -105,14 +123,21 @@ $(function(){
 									echo "<td class='text-center'>";
 									echo $noComputadores;
 									echo "</td>";
+									
+									echo "<td class='text-center'>";
+									
+									if($userRol==1){
 						?>		
-									<td class='text-center'>
 									<a href="<?php echo base_url("admin/asignar_pisa/" . $lista['id_sitio']); ?>" class="btn btn-info btn-xs">Usuario PISA <span class="fa fa-gears fa-fw" aria-hidden="true"></a>
+									
 						<?php 
+									}
 if($lista['id_school_pisa']){
 	echo "<p class='text-primary text-center'>";
 	echo "No. " . $lista['cedula_pisa'] . "</br>";
-	echo "<a href='" . base_url("admin/updatePisa/" . $lista['id_sitio']) . "' class='text-primary text-center'>Eliminar</p>";
+	if($userRol==1){
+		echo "<a href='" . base_url("admin/updatePisa/" . $lista['id_sitio']) . "' class='text-primary text-center'>Eliminar</p>";
+	}
 }else{
 	echo "<p class='text-danger text-center'><strong>Falta</strong></p>";
 }
