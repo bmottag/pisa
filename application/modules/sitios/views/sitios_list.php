@@ -48,7 +48,7 @@
 								<th class="text-center">Municipio</th>
 								<th class="text-center">Sitio</th>
 								<th class="text-center">Código DANE</th>
-								<th class="text-center">Actualización de sitio</th>
+								<th class="text-center">Visita previa</th>
 								<th class="text-center">Gestión salas de cómputo</th>
 								<th class="text-center">No. salas de cómputo</th>
 								<th class="text-center">No. computadores</th>
