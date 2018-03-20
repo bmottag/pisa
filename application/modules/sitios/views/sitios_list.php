@@ -68,6 +68,7 @@ $(function(){
 								<th class="text-center">Municipio</th>
 								<th class="text-center">Sitio</th>
 								<th class="text-center">Código DANE</th>
+								<th class="text-center">Actualización de sitio</th>
 								<th class="text-center">Gestión salas de cómputo</th>
 								<th class="text-center">No. salas de cómputo</th>
 								<th class="text-center">No. computadores</th>
@@ -86,28 +87,32 @@ $(function(){
 									echo "<td >" . $lista['nombre_sitio'] . "</td>";
 									echo "<td class='text-center'>" . $lista['national_school_id'] . "</td>";
 									
-									echo "<td class='text-center'>";
 						?>
-									<a class='btn btn-default btn-xs' href='<?php echo base_url('sitios/salones/' . $lista['id_sitio']) ?>'>
-										Salas de cómputo <span class="fa fa-cube" aria-hidden="true">
-									</a>
-
-<?php 
-	$userRol = $this->session->userdata("rol");
-	
-	if($userRol==8){ 
-
-?>
-									
+									<td class='text-center'>
+																	
 <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_sitio']; ?>" >
 	Visita previa <span class="glyphicon glyphicon-edit" aria-hidden="true">
 </button>
 
 <?php
-	}
-?>
+if($lista['visita_previa'] != 1 && $lista['visita_previa'] != 2){
+	echo "<p class='text-danger text-center'><strong>Falta</strong></p>";
+}elseif($lista['visita_previa'] == 1){
+	echo "<p class='text-success text-center'><strong>Si</strong></p>";
+}elseif($lista['visita_previa'] == 2){
+	echo "<p class='text-success text-center'><strong>No</strong></p>";
+}
+?>									
+									</td>
+						
+									<td class='text-center'>
+									<a class='btn btn-default btn-xs' href='<?php echo base_url('sitios/salones/' . $lista['id_sitio']) ?>'>
+										Salas de cómputo <span class="fa fa-cube" aria-hidden="true">
+									</a>
 						
 									</td>
+									
+
 									
 						<?php
 									//cuenta registros de salones
@@ -126,18 +131,17 @@ $(function(){
 									
 									echo "<td class='text-center'>";
 									
-									if($userRol==1){
 						?>		
 									<a href="<?php echo base_url("admin/asignar_pisa/" . $lista['id_sitio']); ?>" class="btn btn-info btn-xs">Usuario PISA <span class="fa fa-gears fa-fw" aria-hidden="true"></a>
 									
 						<?php 
-									}
+
 if($lista['id_school_pisa']){
 	echo "<p class='text-primary text-center'>";
 	echo "No. " . $lista['cedula_pisa'] . "</br>";
-	if($userRol==1){
-		echo "<a href='" . base_url("admin/updatePisa/" . $lista['id_sitio']) . "' class='text-primary text-center'>Eliminar</p>";
-	}
+
+	echo "<a href='" . base_url("admin/updatePisa/" . $lista['id_sitio']) . "' class='text-primary text-center'>Eliminar</p>";
+
 }else{
 	echo "<p class='text-danger text-center'><strong>Falta</strong></p>";
 }
