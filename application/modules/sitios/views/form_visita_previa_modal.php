@@ -58,8 +58,8 @@
 			
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="hora">Hora : *</label>
-					<input type="text" id="hora" name="hora" class="form-control" value="<?php echo $information?$information["hora_visita_previa"]:""; ?>" placeholder="Hora" >
+					<label class="control-label" for="hora">Hora (hh:mm): *</label>
+					<input type="text" id="hora" name="hora" class="form-control" value="<?php echo $information?$information["hora_visita_previa"]:""; ?>" placeholder="hh:mm" >
 				</div>
 			</div>
 			

@@ -9,6 +9,23 @@ jQuery.validator.addMethod("verificar", function(value, element, param) {
 		return true;
 	}
 }, "Campo requerido.");
+
+jQuery.validator.addMethod("horahhmm", function(value, element) {
+	var res = false;
+
+	// Formato hh:mm
+	res = this.optional(element) || /^\d{2}[:]\d{2}$/.test(value);
+
+	var hora = value.split(':');
+	var hh = parseInt(hora[0],10);
+	var mm = parseInt(hora[1],10);
+	if (hh < 0 || hh > 23) res = false;
+	if (mm < 0 || mm > 59) res = false;
+
+	return res;
+}, "La hora indicada no es válida"
+);
+
 	
 	$("#nombre").convertirMayuscula();
 	$("#cargo").convertirMayuscula();
@@ -18,6 +35,7 @@ jQuery.validator.addMethod("verificar", function(value, element, param) {
 		rules: {
 			visita:			{ required: true},
 			fecha:			{ verificar: "#visita" },
+			hora: 			{ maxlength:5, verificar: "#visita", horahhmm: true },
 			nombre:			{ verificar: "#visita" },
 			cargo:			{ verificar: "#visita" }
 		},
