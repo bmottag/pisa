@@ -19,7 +19,7 @@ $(function(){
             });
 	});	
 	
-	$(".btn-warning").click(function () {	
+	$(".btn-info").click(function () {	
 			var oID = $(this).attr("id");
             $.ajax ({
                 type: 'POST',
@@ -59,7 +59,7 @@ $(function(){
 	});
 	
 	
-	$(".btn-info").click(function () {	
+	$(".btn-warning").click(function () {	
 			var oID = $(this).attr("id");
             $.ajax ({
                 type: 'POST',
@@ -117,7 +117,7 @@ $(function(){
 						<div class="alert alert-info">
 
 <strong>Visita previa </strong>						
-<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal_visita" id="<?php echo $idSitio; ?>" >
+<button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal_visita" id="<?php echo $idSitio; ?>" >
 	Visita previa <span class="glyphicon glyphicon-edit" aria-hidden="true">
 </button><br>
 						
@@ -291,7 +291,7 @@ $conteoComputadoresNOAdecuados = $lista['computadores'] - $conteoComputadoresAde
 			</div>
 		</div>
 		
-		<button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal_salon" id="<?php echo $idSitio; ?>">
+		<button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modal_salon" id="<?php echo $idSitio; ?>">
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar sala de cómputo
 		</button>	
 		<br>
