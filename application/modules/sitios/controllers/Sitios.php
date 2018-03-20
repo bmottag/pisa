@@ -682,6 +682,8 @@ if($lista['id_school_pisa']){
 	{			
 			header('Content-Type: application/json');
 			
+			$data["idRecord"] = $this->input->post('hddIdSitio');
+			
 			if ($this->sitios_model->updateVisitaPrevia()) {
 				
 				$this->sitios_model->saveVisitaPrevia();

@@ -92,7 +92,7 @@ jQuery.validator.addMethod("horahhmm", function(value, element) {
 							$("#div_load").css("display", "none");
 							$('#btnSubmit').removeAttr('disabled');
 
-							var url = base_url + "sitios";
+							var url = base_url + "sitios/salones" + "/" + data.idRecord;
 							$(location).attr("href", url);
 						}
 						else

@@ -1,5 +1,5 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/validate/sitios/ajaxVisitaPrevia.js"); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url("assets/js/validate/sitios/visita_previa.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/validate/sitios/visita_previa_v2.js"); ?>"></script>
 
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -87,7 +87,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="form-group text-left">
-					<label class="control-label" for="observacion">Observación : </label>
+					<label class="control-label" for="observacion">Observación : *</label>
 					<textarea id="observacion" name="observacion" class="form-control" rows="1"><?php echo $information?$information["observacion"]:""; ?></textarea>
 				</div>
 			</div>

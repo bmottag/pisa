@@ -1,6 +1,9 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/validate/sitios/ajaxSalones.js"); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/validate/sitios/salones.js"); ?>"></script>
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script>
 $(function(){ 
 	$(".btn-success").click(function () {	
@@ -55,6 +58,21 @@ $(function(){
             });
 	});
 	
+	
+	$(".btn-info").click(function () {	
+			var oID = $(this).attr("id");
+            $.ajax ({
+                type: 'POST',
+				url: base_url + 'sitios/cargarModalVisitaPrevia',
+                data: {'idSitio': oID},
+                cache: false,
+                success: function (data) {
+                    $('#tablaDatosVIsita').html(data);
+                }
+            });
+	});	
+
+	
 });
 </script>
 
@@ -97,6 +115,12 @@ $(function(){
 					
 					<div class="col-lg-4">	
 						<div class="alert alert-info">
+
+<strong>Visita previa </strong>						
+<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal_visita" id="<?php echo $idSitio; ?>" >
+	Visita previa <span class="glyphicon glyphicon-edit" aria-hidden="true">
+</button><br>
+						
 							<strong>No. de salas de cómputo: </strong><?php echo $infoSitio[0]['numero_salas']; ?><br>
 			<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $infoSitio[0]['id_sitio']; ?>">
 					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Número de salas de cómputo
@@ -301,6 +325,16 @@ $conteoComputadoresNOAdecuados = $lista['computadores'] - $conteoComputadoresAde
 	</div>
 </div>                       
 <!--FIN Modal Salones-->
+
+<!--INICIO Modal -->
+<div class="modal fade text-center" id="modal_visita" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">    
+	<div class="modal-dialog" role="document">
+		<div class="modal-content" id="tablaDatosVIsita">
+
+		</div>
+	</div>
+</div>                       
+<!--FIN Modal  -->
 
 
     <!-- Tables -->

@@ -1,25 +1,5 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/validate/sitios/ajaxSalones.js"); ?>"></script>
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-<script>
-$(function(){ 
-	$(".btn-warning").click(function () {	
-			var oID = $(this).attr("id");
-            $.ajax ({
-                type: 'POST',
-				url: base_url + 'sitios/cargarModalVisitaPrevia',
-                data: {'idSitio': oID},
-                cache: false,
-                success: function (data) {
-                    $('#tablaDatos').html(data);
-                }
-            });
-	});	
-});
-</script>
-
 <div id="page-wrapper">
 	<br>
 	
@@ -90,9 +70,7 @@ $(function(){
 						?>
 									<td class='text-center'>
 																	
-<button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_sitio']; ?>" >
-	Visita previa <span class="glyphicon glyphicon-edit" aria-hidden="true">
-</button>
+
 
 <?php
 if($lista['visita_previa'] != 1 && $lista['visita_previa'] != 2){
