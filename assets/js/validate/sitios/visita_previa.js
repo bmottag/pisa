@@ -37,7 +37,8 @@ jQuery.validator.addMethod("horahhmm", function(value, element) {
 			fecha:			{ verificar: "#visita" },
 			hora: 			{ maxlength:5, verificar: "#visita", horahhmm: true },
 			nombre:			{ verificar: "#visita" },
-			cargo:			{ verificar: "#visita" }
+			cargo:			{ verificar: "#visita" },
+			observacion:	{ required: true}
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {
